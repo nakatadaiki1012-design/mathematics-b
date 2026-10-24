@@ -317,6 +317,83 @@ sub, sup { font-size: .68em; line-height: 0; }
   #printProb { display: block !important; font-size: 16px; padding: 8px 14px; border-bottom: 1px solid #000; }
 }
 #printProb { display: none; }
+/* --- 🎮 ゲーム・クラス対戦 --- */
+.card.game .card-foot { display: none; }
+.card.game .card-body { gap: 8px; }
+.rkchip { margin-left: auto; font-size: .78rem; color: var(--muted); white-space: nowrap; }
+.sep { border: 0; border-top: 1px dashed var(--line); margin: 2px 0; }
+.hud { display: flex; align-items: center; gap: 8px; flex: none; }
+.tbar { flex: 1; position: relative; height: 24px; border: 1.5px solid var(--ink); border-radius: 12px; overflow: hidden; background: var(--panel); }
+.tbar i { position: absolute; inset: 0 auto 0 0; background: var(--accent); transition: width .1s linear; }
+.tbar i.hurry { background: var(--warm); }
+.tbar span { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 700; font-size: .78rem; mix-blend-mode: difference; color: #fff; }
+.tbar.host { flex: none; height: 12px; margin: 4px 0; }
+.hs { text-align: right; line-height: 1.1; min-width: 4.5em; }
+.hs small { display: block; font-size: .68rem; color: var(--muted); white-space: nowrap; }
+.hs b { font-family: var(--font-data); font-size: 1.5rem; }
+.hc { min-width: 5em; text-align: center; font-weight: 700; color: var(--warm); font-size: .75rem; line-height: 1.1; }
+.hc b { font-family: var(--font-data); font-size: 1.3rem; }
+.hc i { font-style: normal; margin-left: 4px; background: var(--gold); color: var(--panel); border-radius: 3px; padding: 0 4px; font-size: .72rem; }
+.gq { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; }
+.lab { display: flex; align-items: center; gap: 8px; font-size: .8rem; color: var(--muted); }
+.lab .pill { border: 1px solid var(--ink); border-radius: 3px; padding: 0 6px; font-weight: 700; color: var(--ink); }
+.lab .r { margin-left: auto; }
+.count { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 8px; }
+.count b { font-family: var(--font-data); font-size: 5rem; line-height: 1; color: var(--warm); }
+.count small { color: var(--muted); font-size: .85rem; max-width: 30em; }
+.gres { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.gres .score b { font-size: 2.4rem; }
+.gres .stamp { align-self: center; }
+.stamp.wait { color: var(--accent); border-color: var(--accent); }
+.roomhd { display: flex; align-items: center; gap: 12px; }
+.roomhd small { color: var(--muted); font-size: .75rem; }
+.roomhd .code { font-family: var(--font-data); font-size: 2.2rem; font-weight: 700; letter-spacing: .08em; color: var(--warm); }
+.qr { margin-left: auto; height: 96px; }
+.qr svg { height: 100%; width: auto; background: #fff; border-radius: 4px; }
+.board { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 10px 14px; gap: 6px; container-type: size; }
+.bhead { display: flex; align-items: center; gap: 10px; flex: none; }
+.bhead > b { font-family: var(--font-display); font-size: clamp(18px, 4.2cqh, 34px); }
+.btabs { margin-left: auto; display: flex; gap: 2px; }
+.btabs button { border: 1px solid var(--line); background: var(--panel); border-radius: 4px; padding: 3px 10px; font-weight: 700; font-size: .8rem; color: var(--muted); }
+.btabs button[aria-selected="true"] { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+.champ { flex: none; font-family: var(--font-display); font-size: clamp(18px, 5cqh, 40px); color: var(--warm); text-align: center; animation: fadein .5s; }
+.bbody { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.board .count b { font-size: clamp(60px, 30cqh, 200px); }
+.rk { flex: 1; min-height: 0; list-style: none; margin: 0; padding: 0; display: grid; grid-auto-flow: column; gap: 3px 18px; }
+.rk li { display: grid; grid-template-columns: 2em minmax(0, 36%) minmax(0, 1fr) 3.8em; align-items: center; gap: 6px; min-height: 0; min-width: 0; line-height: 1.2; overflow: hidden; border-bottom: 1px dashed var(--line); }
+.rk li.more { display: flex; justify-content: center; color: var(--muted); font-size: .8em; }
+.rk .rn { text-align: center; font-family: var(--font-data); font-weight: 600; line-height: 1; font-size: .9em; }
+.rk .nm { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rk .fire { font-style: normal; font-size: .7em; color: var(--warm); margin-left: 4px; }
+.rk .bar { height: 58%; max-height: 22px; background: var(--chip); border-radius: 3px; overflow: hidden; }
+.rk .bar i { display: block; height: 100%; background: var(--accent); transition: width .4s; }
+.rk .top1 .bar i { background: var(--gold); }
+.rk .top .nm { color: var(--warm); }
+.rk .sc { text-align: right; font-family: var(--font-data); font-weight: 600; }
+.rk li.me { background: var(--accent-soft); }
+.card-body .rk { flex: none; grid-auto-flow: row; font-size: .85rem; }
+.card-body .rk li { padding: 2px 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; overflow: hidden; }
+.chipn { border: 1.5px solid var(--ink); border-radius: 16px; padding: 2px 12px; background: var(--bg); font-weight: 700; font-size: clamp(13px, 3.4cqh, 22px); animation: pop .3s; }
+.chipn.me { background: var(--accent); color: var(--accent-ink); }
+.chips.small { gap: 4px; } .chips.small .chipn { font-size: .75rem; padding: 0 8px; }
+.plus { position: fixed; z-index: 99; transform: translateX(-50%); font-family: var(--font-data); font-weight: 600; color: var(--gold); font-size: 1rem; pointer-events: none; animation: plus .9s ease-out forwards; }
+@keyframes plus { from { opacity: 1; } to { opacity: 0; transform: translate(-50%, 36px); } }
+.celebrate { position: fixed; left: 50%; top: 38%; transform: translate(-50%, -50%); z-index: 100; background: var(--panel); border: 2px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); border-radius: 8px; padding: 14px 28px; text-align: center; animation: pop .4s; pointer-events: none; }
+.celebrate small { display: block; color: var(--muted); font-weight: 700; }
+.celebrate b { display: block; font-family: var(--font-display); font-size: 2rem; color: var(--warm); line-height: 1.3; }
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 100; background: var(--ink); color: var(--panel); border-radius: 6px; padding: 8px 16px; font-weight: 700; font-size: .9rem; max-width: 90vw; animation: fadein .3s; }
+.sdlg { border: 1.5px solid var(--ink); border-radius: 8px; box-shadow: 4px 4px 0 var(--ink); background: var(--panel); color: var(--ink); padding: 14px 16px; width: min(460px, 92vw); }
+.sdlg::backdrop { background: rgba(0, 0, 0, .35); }
+.sdlgIn { display: flex; flex-direction: column; gap: 10px; }
+.sdlgIn h2 { margin: 0; font-family: var(--font-display); font-size: 1.15rem; }
+.fld { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.fl { font-weight: 700; min-width: 6em; font-size: .9rem; }
+@media (max-width: 860px) {
+  .qr { height: 70px; }
+  .hs b { font-size: 1.25rem; }
+  .count b { font-size: 3.5rem; }
+}
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 </head>
@@ -328,12 +405,12 @@ sub, sup { font-size: .68em; line-height: 0; }
     <button type="button" class="tbtn lv" id="lvBtn" title="レベル"></button>
     <button type="button" class="tbtn" id="mkBtn" title="先生モード：数字を入れて図をつくる">✏️<span class="long"> 先生</span></button>
     <button type="button" class="tbtn" id="recBtn" title="学習のきろく">📒<span class="long"> きろく</span></button>
-    <button type="button" class="tbtn sm" id="fzBtn" title="文字の大きさ">あA</button>
-    <button type="button" class="tbtn sm" id="themeBtn" title="明るい／暗い画面">🌗</button>
-    <button type="button" class="tbtn sm" id="maxBtn" title="全画面（プロジェクター用）">⛶</button>
+    <button type="button" class="tbtn" id="gameBtn" title="タイムアタック・クラス対戦">🎮<span class="long"> ゲーム</span></button>
+    <button type="button" class="tbtn sm" id="setBtn" title="設定（文字の大きさ・画面・全画面・クラス対戦）">⚙</button>
   </div>
 </header>
 <div class="lvmenu" id="lvmenu" hidden></div>
+<dialog class="sdlg" id="sdlg"><div class="sdlgIn" id="sdlgIn"></div></dialog>
 <nav class="units" id="units" aria-label="単元"></nav>
 <main class="app">
   <section class="stage-wrap" aria-label="図">
@@ -469,6 +546,7 @@ const unitClear = u => { const r = prog[u.id] || {}; return PARTS.slice(0, 4).ev
 /* 単元をひらく */
 function openUnit(id, pi = null) {
   const u = UNITS.find(x => x.id === id) || UNITS[0];
+  if (typeof leaveAll === "function") leaveAll();
   S.u = u; S.mode = "lesson"; S.drill = null; S.mk = null;
   if (pi == null) { const r = prog[u.id] || {}; pi = PARTS.findIndex(p => p.k === "drill" ? drillBest(u) < PASS : !r[p.k]); if (pi < 0) pi = 0; }
   store.set("last", u.id);
@@ -569,8 +647,10 @@ function drillNext() {
   const score = d.res.filter(Boolean).length;
   if (!d.mixAll) {
     const r = prog[d.u.id] || (prog[d.u.id] = {}); const dr = r.drill || (r.drill = { best: 0, tries: 0 });
+    const firstPass = dr.best < PASS && score >= PASS;
     dr.best = Math.max(dr.best, score); dr.last = score; dr.tries++; dr.date = Date.now(); store.set("prog", prog); renderUnits();
-  }
+    if (typeof rewardDrill === "function") d.coins = rewardDrill(score, d.n, firstPass, score >= PASS);
+  } else if (typeof rewardDrill === "function") d.coins = rewardDrill(score, d.n, false, false);
   render();
 }
 function startDrill(opts) {
@@ -603,10 +683,13 @@ function renderUnits() {
 function render() {
   const u = S.u, k = kind(), inst = S.inst;
   renderNav();
+  if (S.mode === "game") { renderUnits(); const body = clear($("#body")); body.className = "card-body"; renderGame(body); draw(); return; }
+  document.querySelector(".card").classList.remove("game");
   /* 段階のタブ */
   const st = clear($("#stepper")), r = prog[u.id] || {};
   if (S.mode === "rec") st.append(h("button", { type: "button", "aria-current": "true", style: "grid-column:1/-1" }, "📒 学習のきろく"));
   else if (S.mode === "maker") st.append(h("button", { type: "button", "aria-current": "true", style: "grid-column:1/-1" }, "✏️ 先生モード：図をつくる"));
+  else if (S.mode === "game") st.append(h("button", { type: "button", "aria-current": "true", style: "grid-column:1/-1" }, "🎮"));
   else if (S.mode === "drill" && S.drill.mixAll) st.append(h("button", { type: "button", "aria-current": "true", style: "grid-column:1/-1" }, "🏁 総合演習"));
   else PARTS.forEach((p, i) => st.append(h("button", { type: "button", class: (p.k === "drill" ? drillBest(u) >= PASS : r[p.k]) ? "done" : "", "aria-current": i === S.pi && !S.done ? "true" : "false", onclick: () => goPart(i) }, p.name)));
   /* 式の帯 */
@@ -739,7 +822,7 @@ function renderDrill(body) {
     const score = d.res.filter(Boolean).length, pass = score >= Math.ceil(d.n * PASS / DRILL_N);
     body.append(h("div", { class: "ptitle" }, h("span", { class: "tag" }, "結果"), h("h2", {}, d.mixAll ? "総合演習" : d.u.name)));
     body.append(h("div", { class: "score " + (pass ? "pass" : "") }, h("b", {}, String(score)), ` / ${d.n} 問`, pass ? h("span", { class: "stamp" }, "合格") : null));
-    body.append(h("div", { class: "resrow" }, d.res.map((ok, i) => h("span", { class: "rbox " + (ok ? "ok" : "ng"), title: d.qs[i].title }, ok ? "○" : "✕"))));
+    body.append(h("div", { class: "resrow" }, d.res.map((ok, i) => h("span", { class: "rbox " + (ok ? "ok" : "ng"), title: d.qs[i].title }, ok ? "○" : "✕")), d.coins ? h("span", { class: "lead", style: "margin-left:8px;font-weight:700" }, `🪙 +${d.coins}`) : null));
     const row = h("div", { class: "minirow" });
     if (d.wrong && d.wrong.length) row.append(h("button", { type: "button", class: "mini", onclick: redoWrong }, `✕ の ${d.wrong.length} 問を やり直す`));
     row.append(h("button", { type: "button", class: "mini", onclick: () => startDrill({ u: d.u, mixAll: d.mixAll, pool: d.pool }) }, `🔁 もう一度 ${DRILL_N} 問`));
@@ -762,11 +845,12 @@ function renderSummary(body) {
   else body.append(h("p", { class: "lead" }, drillBest(u) >= PASS ? "演習は合格ずみ。" : `つぎは「演習」で ${DRILL_N} 問中 ${PASS} 問 正解すると 合格！`));
 }
 /* ===== 学習のきろく ===== */
-function openRecord() { S.mode = "rec"; S.drill = null; S.mk = null; history.replaceState(null, "", "#rec"); render(); }
+function openRecord() { if (typeof leaveAll === "function") leaveAll(); S.mode = "rec"; S.drill = null; S.mk = null; history.replaceState(null, "", "#rec"); render(); }
 function renderRecord(body) {
   body.append(h("div", { class: "ptitle" }, h("span", { class: "tag" }, "きろく"), h("h2", {}, "学習のきろく")));
   const clr = UNITS.filter(unitClear).length;
   body.append(h("div", { class: "score " + (clr === UNITS.length ? "pass" : "") }, h("b", {}, String(clr)), ` / ${UNITS.length} 単元 クリア`, clr === UNITS.length ? h("span", { class: "stamp" }, "全単元 合格") : null));
+  if (typeof rankOf === "function") body.append(h("p", { class: "lead", style: "font-size:.9rem" }, `🪙 ${RW.coins.toLocaleString()} コイン・段位「${rankOf(RW.coins).name}」　`, h("button", { type: "button", class: "lnk", onclick: openGame }, "🎮 ゲームへ")));
   const todo = UNITS.find(u => !unitClear(u));
   body.append(h("p", { class: "lead" }, "左の図が 進み具合。単元をタップすると その単元へ。", todo ? h("span", {}, h("br"), "▶ 次は ", h("button", { type: "button", class: "lnk", onclick: () => openUnit(todo.id) }, todo.name)) : "　🎉 全部クリア！"));
   for (const c of CATS) {
@@ -778,6 +862,7 @@ function renderRecord(body) {
 /* ===== 先生モード：数字を入れて図をつくる ===== */
 function openMaker(params) {
   const u = S.u, mk = u.mk;
+  if (typeof leaveAll === "function") leaveAll();
   S.mode = "maker"; S.drill = null; resetQ(); S.solved = true;
   const p = {}; for (const f of mk.fields) p[f.key] = f.def;
   if (params) for (const f of mk.fields) if (params.has(f.key)) { const v = f.seg ? (isNaN(+params.get(f.key)) ? params.get(f.key) : +params.get(f.key)) : +params.get(f.key); if (f.seg ? f.seg.some(([x]) => String(x) === String(v)) : !isNaN(v)) p[f.key] = v; }
@@ -835,6 +920,7 @@ function draw() {
     s("path", { d: "M0 0L10 5L0 10z", class: c === "mut" ? "f-ln" : "f-" + c, style: c === "mut" ? "fill:var(--muted)" : null }, m);
   }
   const k = kind(), hint = $("#hint");
+  if (S.mode === "game") { hint.textContent = ""; if (drawGame(svg, W, H)) clear(stage).append(svg); return; }
   if (S.mode === "rec" || !S.inst || (S.mode === "drill" && S.drill.done)) {
     hint.textContent = "";
     const g = s("g", {}, svg);
@@ -2289,6 +2375,459 @@ unit({
 </script>
 <script>
 "use strict";
+/* ===================== 🎮 ごほうび／⏱ タイムアタック／🏆 クラス対戦 =====================
+   クラス対戦は Firebase Realtime Database（無料）の REST API を使う。設定は ⚙ か 下の MB_CONFIG */
+window.MB_CONFIG = window.MB_CONFIG || { db: "https://english-logical-default-rtdb.firebaseio.com" };
+
+/* ---------- ごほうび：コイン → 段位、連続日数、バッジ ---------- */
+const RANKS = [[0, "10級"], [100, "9級"], [250, "8級"], [500, "7級"], [800, "6級"], [1200, "5級"], [1700, "4級"], [2300, "3級"], [3000, "2級"], [4000, "1級"], [5500, "初段"], [7500, "二段"], [10000, "三段"], [13000, "四段"], [17000, "五段"], [22000, "名人"]];
+const BADGES = [
+  { id: "first", ico: "🌱", name: "はじめの一歩", how: "はじめてコインを手に入れる" },
+  { id: "pass1", ico: "💮", name: "初合格", how: "演習に 1 つ合格" },
+  { id: "passAll", ico: "👑", name: "全単元制覇", how: "13 単元すべてクリア" },
+  { id: "day3", ico: "🔥", name: "3日連続", how: "3 日続けて学習" },
+  { id: "day7", ico: "🌋", name: "7日連続", how: "7 日続けて学習" },
+  { id: "combo10", ico: "⚡", name: "10 コンボ", how: "タイムアタックで 10 コンボ" },
+  { id: "ta1000", ico: "🎯", name: "1,000 点", how: "タイムアタックで 1,000 点" },
+  { id: "battle", ico: "🏆", name: "クラス対戦デビュー", how: "クラス対戦に参加" },
+  { id: "top3", ico: "🥇", name: "表彰台", how: "クラス対戦で 3 位以内" },
+];
+const dayNo = () => Math.floor((Date.now() + 9 * 3600e3) / 86400e3);
+const today = () => { const d = new Date(); return `${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}`; };
+let RW = store.get("rw", null) || { coins: 0, streak: 0, lastDay: 0, badges: {}, best: {}, battles: 0, top3: 0, maxCombo: 0, taBest: 0 };
+const saveRW = () => store.set("rw", RW);
+function rankOf(c) { let i = 0; while (i + 1 < RANKS.length && c >= RANKS[i + 1][0]) i++; const nx = RANKS[i + 1]; return { i, name: RANKS[i][1], from: RANKS[i][0], next: nx ? nx[0] : null, nextName: nx ? nx[1] : null }; }
+const streakNow = () => (RW.lastDay >= dayNo() - 1 ? RW.streak : 0);
+function touchDay() { const d = dayNo(); if (RW.lastDay === d) return; RW.streak = RW.lastDay === d - 1 ? RW.streak + 1 : 1; RW.lastDay = d; }
+function badgeOn(id) {
+  switch (id) {
+    case "first": return RW.coins > 0;
+    case "pass1": return UNITS.some(u => drillBest(u) >= PASS);
+    case "passAll": return UNITS.every(unitClear);
+    case "day3": return RW.streak >= 3;
+    case "day7": return RW.streak >= 7;
+    case "combo10": return RW.maxCombo >= 10;
+    case "ta1000": return RW.taBest >= 1000;
+    case "battle": return RW.battles >= 1;
+    case "top3": return RW.top3 >= 1;
+  }
+  return false;
+}
+function checkBadges() { for (const b of BADGES) if (!RW.badges[b.id] && badgeOn(b.id)) { RW.badges[b.id] = today(); celebrate(b.ico + " バッジ獲得", b.name); } saveRW(); }
+function earn(n) {
+  if (!n) return;
+  const before = rankOf(RW.coins).i;
+  RW.coins += n; touchDay();
+  const rk = rankOf(RW.coins);
+  if (rk.i > before) celebrate("🎉 段位アップ！", rk.name);
+  checkBadges(); saveRW(); plusFx(n);
+}
+function plusFx(n) {
+  const el = $("#recBtn"), rc = el.getBoundingClientRect();
+  const p = h("div", { class: "plus" }, `+${n} 🪙`); p.style.left = rc.left + rc.width / 2 + "px"; p.style.top = rc.bottom + "px";
+  document.body.append(p); setTimeout(() => p.remove(), 950);
+}
+const cq = []; let cbusy = false;
+function celebrate(t, big) {
+  cq.push([t, big]); if (cbusy) return;
+  (function nextC() { const x = cq.shift(); if (!x) { cbusy = false; return; } cbusy = true; const d = h("div", { class: "celebrate" }, h("small", {}, x[0]), h("b", {}, x[1])); document.body.append(d); setTimeout(() => { d.remove(); nextC(); }, 2000); })();
+}
+function toast(m) { const t = h("div", { class: "toast" }, m); document.body.append(t); setTimeout(() => t.remove(), 2600); }
+/* 演習の結果から コインをあげる（core の drillNext から よばれる） */
+function rewardDrill(score, n, firstPass, passNow) { let c = score * 10; if (passNow) c += firstPass ? 150 : 50; earn(c); return c; }
+
+/* ---------- 共通：ゲームの しくみ ---------- */
+function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+/* 同じ seed なら 同じ問題（クラス対戦で 全員同じ順番） */
+function withSeed(R, lv, fn) { const mr = Math.random, pl = LEVEL; Math.random = R; LEVEL = lv; try { return fn(); } finally { Math.random = mr; LEVEL = pl; } }
+function gpool(cfg) { return UNITS.filter(u => (cfg.c === "all" || u.cat === cfg.c) && (cfg.c === "all" || UNITS.filter(x => x.cat === u.cat).indexOf(u) < (cfg.u || 99))); }
+function cfgName(cfg) { const c = cfg.c === "all" ? "全分野" : CATS.find(x => x.id === cfg.c).name; const n = cfg.c !== "all" && cfg.u && cfg.u < UNITS.filter(x => x.cat === cfg.c).length ? `（〜${cfg.u}）` : ""; return `${c}${n}・${LEVELS[cfg.l || 1].name}・${cfg.t}秒`; }
+const RULER = [[0, "ウォーミングアップ中"], [3, "小テスト 1 回分"], [6, "教科書の練習問題 1 ページ分"], [10, "定期テストの大問 1 つ分"], [15, "定期テスト 1 回分"], [25, "問題集 1 章分"], [40, "模試 1 回分"]];
+const ruler = n => { let r = RULER[0][1]; for (const x of RULER) if (n >= x[0]) r = x[1]; return r; };
+let G = null, OFF = 0;
+const gnow = () => Date.now() + OFF;
+const mult = () => 1 + Math.min(4, Math.floor(G.combo / 10)) * .5;
+function newGame(cfg, seed, mode, startAt) {
+  if (G) clearInterval(G.timer);
+  G = { cfg, R: rng(seed), pool: gpool(cfg), qi: 0, score: 0, combo: 0, maxCombo: 0, ok: 0, miss: 0, mode, startAt, endAt: startAt + cfg.t * 1000, q: null, lock: false, over: false, timer: null };
+  nextGQ();
+}
+function nextGQ() {
+  const i = Math.floor(G.R() * G.pool.length), u = G.pool[i];
+  const inst = withSeed(G.R, G.cfg.l, () => { const x = u.pr(); x.order = shuffle(x.choices.map((_, j) => j)); return x; });
+  inst.u = u; G.q = { inst, pick: -1 }; G.qi++; G.lock = false;
+  S.inst = inst;
+}
+function gPick(i) {
+  const q = G.q; if (!G || G.over || G.lock || q.pick >= 0 || gnow() < G.startAt) return;
+  q.pick = i;
+  if (i === 0) { G.combo++; if (G.combo > G.maxCombo) G.maxCombo = G.combo; G.score += Math.round(30 * mult()); G.ok++; G.lock = true; pushScore(); setTimeout(() => { if (G && !G.over) { nextGQ(); drawGQ(); } }, 350); }
+  else { G.combo = 0; G.miss++; G.lock = true; setTimeout(() => { if (G && !G.over) { nextGQ(); drawGQ(); } }, 1100); }
+  drawGQ();
+}
+function drawHud() {
+  if (!G) return;
+  const t = gnow(), left = Math.max(0, G.endAt - t), all = G.cfg.t * 1000;
+  const f = $("#tfill"), sec = $("#tsec"), sc = $("#hscore"), cb = $("#hcombo");
+  if (f) { f.style.width = (t < G.startAt ? 100 : left / all * 100) + "%"; f.className = left < 10000 && t >= G.startAt ? "hurry" : ""; }
+  if (sec) sec.textContent = t < G.startAt ? G.cfg.t + "秒" : Math.ceil(left / 1000) + "秒";
+  if (sc) sc.textContent = G.score.toLocaleString();
+  if (cb) cb.innerHTML = G.combo >= 2 ? `<b>${G.combo}</b> コンボ${mult() > 1 ? `<i>×${mult()}</i>` : ""}` : "";
+}
+function drawGQ() {
+  const el = $("#gq"); if (!el || !G) return;
+  const t = gnow();
+  clear(el);
+  if (t < G.startAt) { const n = Math.ceil((G.startAt - t) / 1000); el.append(h("div", { class: "count" }, h("small", {}, cfgName(G.cfg)), h("b", {}, n > 3 ? "…" : String(n)), h("small", {}, "正しい答えを どんどんタップ！ まちがえると コンボが切れる"))); drawHud(); return; }
+  const q = G.q, inst = q.inst;
+  el.append(h("div", { class: "lab" }, h("span", { class: "pill" }, inst.u.name), h("span", { class: "r" }, `✅ ${G.ok}　✕ ${G.miss}`)));
+  el.append(h("div", { class: "prob", html: inst.problem }));
+  const ch = h("div", { class: "choices" + (inst.txt ? " txt one" : "") });
+  for (const i of inst.order) {
+    const b = h("button", { type: "button", class: "choice" + (q.pick < 0 ? "" : i === 0 ? " ok" : i === q.pick ? " ng" : ""), html: inst.choices[i], onclick: () => gPick(i) });
+    if (q.pick >= 0) b.disabled = true;
+    ch.append(b);
+  }
+  el.append(ch);
+  drawHud();
+  draw();
+}
+function runClock(onEnd) {
+  clearInterval(G.timer);
+  let wasCount = gnow() < G.startAt;
+  G.timer = setInterval(() => {
+    if (!G) return;
+    const t = gnow();
+    if (t < G.startAt) { drawGQ(); return; }
+    if (wasCount) { wasCount = false; drawGQ(); }
+    if (t >= G.endAt && !G.over) { G.over = true; clearInterval(G.timer); onEnd(); return; }
+    drawHud();
+  }, 100);
+  drawGQ();
+}
+function afterGame() { const coins = Math.floor(G.score / 20); if (G.maxCombo > RW.maxCombo) RW.maxCombo = G.maxCombo; if (G.score > RW.taBest) RW.taBest = G.score; return coins; }
+function playShell(title) {
+  const body = clear($("#body"));
+  body.append(h("div", { class: "hud" }, h("button", { type: "button", class: "mini", onclick: () => { leaveAll(); openGame(); } }, "✕"), h("div", { class: "tbar" }, h("i", { id: "tfill" }), h("span", { id: "tsec" })), h("div", { class: "hc", id: "hcombo" }), h("div", { class: "hs" }, h("small", {}, title), h("b", { id: "hscore" }, "0"))));
+  body.append(h("div", { class: "gq", id: "gq" }));
+}
+
+/* ---------- ⏱ ひとりで タイムアタック ---------- */
+function taCfg() { let c = store.get("ta", null); if (!c) c = { c: S.u ? S.u.cat : "seq", t: 60 }; c.l = LEVEL; c.u = 99; return c; }
+function startSolo() {
+  const cfg = taCfg(); S.game = { view: "solo" }; history.replaceState(null, "", "#ta");
+  newGame(cfg, Math.floor(Math.random() * 1e9), "solo", Date.now() + 3200);
+  renderGameFrame("⏱ タイムアタック"); playShell("スコア"); runClock(endSolo);
+}
+function endSolo() {
+  const key = G.cfg.c + "-" + G.cfg.l, prev = RW.best[key] || 0, rec = G.score > prev;
+  if (rec) RW.best[key] = G.score;
+  const coins = afterGame(); saveRW(); earn(coins); checkBadges();
+  G.share = `数学Bラボ ⏱タイムアタック（${cfgName(G.cfg)}）\n${G.score.toLocaleString()}点！ ${G.ok} 問を解いた（≒ ${ruler(G.ok)}）\n最大${G.maxCombo}コンボ・段位「${rankOf(RW.coins).name}」\n${location.origin}${location.pathname}`;
+  const el = clear($("#gq"));
+  el.append(h("div", { class: "gres" },
+    rec && G.score > 0 ? h("div", { class: "stamp" }, "新記録") : null,
+    h("div", { class: "score" }, h("b", {}, G.score.toLocaleString()), " 点"),
+    h("p", { class: "lead" }, `📝 ${G.ok} 問を解いた ≒ `, h("b", {}, ruler(G.ok))),
+    h("p", { class: "lead", style: "font-size:.85rem" }, `✅ 正解 ${G.ok}　✕ ミス ${G.miss}　⚡ 最大 ${G.maxCombo} コンボ　🪙 +${coins}`),
+    h("p", { class: "lead", style: "font-size:.8rem;color:var(--muted)" }, `${cfgName(G.cfg)} のベスト：${Math.max(prev, G.score).toLocaleString()} 点`),
+    h("div", { class: "minirow" }, h("button", { type: "button", class: "btn main", onclick: startSolo }, "↺ もう一度"), h("button", { type: "button", class: "btn", onclick: () => brag(G.share) }, "📣 自慢する"), h("button", { type: "button", class: "btn", onclick: () => { leaveAll(); openGame(); } }, "◀ もどる"))));
+  $("#hcombo").innerHTML = "";
+  draw();
+}
+function brag(text) {
+  if (navigator.share && /Mobi|Android|iPhone|iPad/.test(navigator.userAgent)) { navigator.share({ text }).catch(() => {}); return; }
+  if (navigator.clipboard) navigator.clipboard.writeText(text).then(() => toast("結果の文章をコピーしました。LINE などに はりつけて自慢しよう"), () => toast(text.split("\n")[1])); else toast(text.split("\n")[1]);
+}
+
+/* ---------- ゲームのトップ ---------- */
+function openGame() {
+  leaveAll(); S.mode = "game"; S.game = { view: "hub" }; S.drill = null; S.mk = null;
+  history.replaceState(null, "", "#game"); render();
+}
+function renderGameFrame(title) {
+  const st = clear($("#stepper")); st.append(h("button", { type: "button", "aria-current": "true", style: "grid-column:1/-1" }, title));
+  $("#fgen").innerHTML = `<span class="k">🎮</span>${title}`; $("#fnow").innerHTML = "";
+  document.querySelector(".card").classList.add("game");
+}
+function renderHub(body) {
+  const cfg = taCfg(), best = RW.best[cfg.c + "-" + cfg.l] || 0, rk = rankOf(RW.coins);
+  const seg = (key, opts) => h("div", { class: "seg" }, opts.map(([v, lab]) => h("button", { type: "button", "aria-pressed": String(cfg[key]) === String(v) ? "true" : "false", onclick: () => { const c = taCfg(); c[key] = v; store.set("ta", { c: c.c, t: c.t }); render(); } }, lab)));
+  body.append(h("div", { class: "ptitle" }, h("span", { class: "tag" }, "ゲーム"), h("h2", {}, "⏱ タイムアタック"), h("span", { class: "rkchip" }, `🪙 ${RW.coins.toLocaleString()}　${rk.name}`)));
+  body.append(h("p", { class: "lead" }, "60 秒で 何問とける？ 続けて正解すると コンボで点数アップ。"));
+  body.append(h("div", { class: "ctrl" }, h("label", { class: "sl" }, h("span", {}, "分野"), seg("c", [["seq", "数列"], ["stat", "統計"], ["all", "全部"]]), h("span", {})), h("label", { class: "sl" }, h("span", {}, "レベル"), h("span", { class: "lead", style: "font-size:.85rem" }, `${LEVELS[LEVEL].ico} ${LEVELS[LEVEL].name}（右上で変更）`), h("span", {}))));
+  body.append(h("div", { class: "minirow", style: "align-items:center" }, h("button", { type: "button", class: "btn main", onclick: startSolo }, "▶ スタート"), h("span", { class: "lead", style: "font-size:.85rem" }, `ベスト ${best.toLocaleString()} 点`)));
+  body.append(h("hr", { class: "sep" }));
+  body.append(h("div", { class: "ptitle" }, h("h2", {}, "🏆 クラス対戦")));
+  if (dbBase()) {
+    const code = h("input", { type: "text", id: "jCode", class: "ansin", inputmode: "numeric", maxlength: "4", placeholder: "部屋番号（4けた）" });
+    const name = h("input", { type: "text", id: "jName", class: "ansin", maxlength: "10", placeholder: "ニックネーム", value: store.get("nick", "") });
+    const go = () => joinRoom(code.value, name.value);
+    [code, name].forEach(x => x.addEventListener("keydown", e => { if (e.key === "Enter") go(); }));
+    body.append(h("p", { class: "lead", style: "font-size:.85rem" }, "先生の合図で 全員いっせいにスタート。ランキングが リアルタイムで動く。"));
+    body.append(h("div", { class: "ansrow" }, code, name));
+    body.append(h("div", { class: "minirow" }, h("button", { type: "button", class: "btn main", onclick: go }, "参加する ▶"), h("button", { type: "button", class: "btn", onclick: makeRoom }, "🏫 先生：部屋をつくる")));
+  } else body.append(h("p", { class: "hintbox" }, "まだ使えません。右上の ⚙ で データベースを登録すると使えます（README「クラス対戦の準備」）。"));
+}
+
+/* ---------- Firebase（REST ＋ ストリーム） ---------- */
+function dbBase() { const u = (store.get("db", "") || (window.MB_CONFIG && MB_CONFIG.db) || "").trim().replace(/\/+$/, ""); return /^https:\/\/[^\s]+$/.test(u) ? u : ""; }
+function pid() { let p = store.get("pid", null); if (!p) { p = "p" + Math.random().toString(36).slice(2, 10); store.set("pid", p); } return p; }
+function api(method, path, body) { const o = { method }; if (body !== undefined) o.body = JSON.stringify(body); return fetch(dbBase() + "/" + path + ".json", o).then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }); }
+function listen(path, cb) {
+  let tree = null, es = null, poll = null, closed = false;
+  const setAt = (p, val) => { const keys = p.split("/").filter(Boolean); if (!keys.length) { tree = val; return; } if (tree === null || typeof tree !== "object") tree = {}; let o = tree; for (let i = 0; i < keys.length - 1; i++) { if (o[keys[i]] == null || typeof o[keys[i]] !== "object") o[keys[i]] = {}; o = o[keys[i]]; } if (val === null) delete o[keys[keys.length - 1]]; else o[keys[keys.length - 1]] = val; };
+  const startPoll = () => { if (poll || closed) return; poll = setInterval(() => api("GET", path).then(v => { tree = v; cb(tree); }, () => {}), 1500); };
+  try {
+    es = new EventSource(dbBase() + "/" + path + ".json");
+    es.addEventListener("put", e => { const d = JSON.parse(e.data); setAt(d.path, d.data); cb(tree); });
+    es.addEventListener("patch", e => { const d = JSON.parse(e.data), p = d.path.replace(/\/$/, ""); Object.keys(d.data || {}).forEach(k => setAt(p + "/" + k, d.data[k])); cb(tree); });
+    es.onerror = () => { if (es.readyState === 2) startPoll(); };
+  } catch (e) { startPoll(); }
+  return () => { closed = true; if (es) es.close(); clearInterval(poll); };
+}
+function syncClock(code) { const t0 = Date.now(), p = `rooms/${code}/clock/${pid()}`; return api("PUT", p, { ".sv": "timestamp" }).then(ts => { const t1 = Date.now(); if (typeof ts === "number") OFF = ts - (t0 + t1) / 2; api("DELETE", p).catch(() => {}); }, () => {}); }
+function joinUrl(code) { let u = `${location.origin}${location.pathname}#join=${code}`; if (store.get("db", "") && !(window.MB_CONFIG && MB_CONFIG.db === dbBase())) u += "&db=" + encodeURIComponent(dbBase()); return u; }
+function playersOf(room, round) { const ps = room && room.players || {}; return Object.keys(ps).map(k => Object.assign({ id: k }, ps[k])).filter(p => p.n && (round == null || p.r === round)).sort((a, b) => round == null ? (b.b || 0) - (a.b || 0) : (b.s || 0) - (a.s || 0)); }
+
+/* ---------- 先生：部屋 ---------- */
+let HO = null;
+function makeRoom() {
+  const cfg = { c: S.u.cat, u: 99, l: LEVEL, t: 60 };
+  const tryOne = n => { const code = String(1000 + Math.floor(Math.random() * 9000)); return api("GET", `rooms/${code}`).then(v => { if (v && n < 6) return tryOne(n + 1); return api("PUT", `rooms/${code}`, { app: "mathb", cfg, state: "lobby", round: 0, seed: 0, startAt: 0, host: pid(), created: { ".sv": "timestamp" } }).then(() => { location.hash = "#host/" + code; }); }); };
+  tryOne(0).catch(e => toast(`部屋をつくれませんでした（${e.message}）。⚙ 設定を確認してください`));
+}
+function openHost(code) {
+  leaveAll(); S.mode = "game"; S.game = { view: "host" }; S.inst = null;
+  HO = { code, room: null, tab: "now", ending: false, timer: null, stop: null };
+  render();
+  syncClock(code).then(() => {
+    if (!HO || HO.code !== code) return;
+    HO.stop = listen(`rooms/${code}`, room => {
+      if (!HO) return;
+      if (!room) { toast("この部屋は閉じられました"); openGame(); return; }
+      const first = !HO.room; HO.room = room;
+      if (first) renderHostPanel(); else renderHostPanel(true);
+      drawBoard();
+    });
+    HO.timer = setInterval(() => {
+      if (!HO || !HO.room) return;
+      const r = HO.room;
+      if (r.state === "play" && gnow() > r.startAt + r.cfg.t * 1000 + 2500 && !HO.ending) { HO.ending = true; api("PATCH", `rooms/${code}`, { state: "end" }).then(() => { if (HO) HO.ending = false; }); }
+      if (r.state === "play") drawBoard();
+    }, 250);
+  });
+}
+function renderHostPanel(soft) {
+  const r = HO.room, body = $("#body"); if (!r) return;
+  const cfg = r.cfg, busy = r.state === "play", n = playersOf(r).length;
+  const qrOld = soft && $("#qr") ? $("#qr").innerHTML : "";
+  clear(body);
+  const seg = (key, opts) => h("div", { class: "seg" }, opts.map(([v, lab]) => h("button", { type: "button", "aria-pressed": String(cfg[key]) === String(v) ? "true" : "false", disabled: busy, onclick: () => { const o = {}; o[key] = v; if (key === "c") o.u = 99; api("PATCH", `rooms/${HO.code}/cfg`, o).catch(() => toast("変更できませんでした")); } }, lab)));
+  body.append(h("div", { class: "roomhd" }, h("small", {}, "部屋番号"), h("div", { class: "code" }, HO.code), h("div", { class: "qr", id: "qr", html: qrOld })));
+  body.append(h("p", { class: "lead", style: "font-size:.8rem;color:var(--muted)" }, "生徒：数学Bラボ → 🎮 → 部屋番号とニックネーム、または QR を読みとる"));
+  const units = UNITS.filter(x => x.cat === cfg.c);
+  body.append(h("div", { class: "ctrl" },
+    h("label", { class: "sl" }, h("span", {}, "分野"), seg("c", [["seq", "数列"], ["stat", "統計"], ["all", "全部"]]), h("span", {})),
+    cfg.c !== "all" ? h("label", { class: "sl" }, h("span", {}, "単元"), h("select", { disabled: busy, onchange: e => api("PATCH", `rooms/${HO.code}/cfg`, { u: +e.target.value }).catch(() => {}) }, units.map((u, i) => h("option", { value: i + 1 === units.length ? 99 : i + 1, selected: (cfg.u >= units.length ? 99 : cfg.u) === (i + 1 === units.length ? 99 : i + 1) }, i + 1 === units.length ? "全部" : `〜${i + 1} ${u.name}`))), h("span", {})) : null,
+    h("label", { class: "sl" }, h("span", {}, "レベル"), seg("l", LEVELS.map((l, i) => [i, l.ico + l.name])), h("span", {})),
+    h("label", { class: "sl" }, h("span", {}, "時間"), seg("t", [[30, "30秒"], [60, "60秒"], [90, "90秒"]]), h("span", {}))));
+  body.append(h("div", { class: "minirow", style: "align-items:center" }, h("span", { style: "font-weight:700" }, `👥 ${n} 人`), h("button", { type: "button", class: "btn main", disabled: busy, onclick: hostStart }, r.round ? `▶ 第${r.round + 1}回戦 スタート` : "▶ スタート")));
+  body.append(h("div", { class: "minirow" },
+    h("button", { type: "button", class: "mini", onclick: () => { const u = joinUrl(HO.code); if (navigator.clipboard) navigator.clipboard.writeText(u).then(() => toast("参加リンクをコピーしました"), () => toast(u)); else toast(u); } }, "🔗 参加リンク"),
+    h("button", { type: "button", class: "mini", onclick: () => { HO.tab = HO.tab === "best" ? "now" : "best"; drawBoard(); } }, "🏆 ハイスコア表示"),
+    h("button", { type: "button", class: "mini", onclick: () => { if (confirm(`部屋 ${HO.code} を閉じますか？（ランキングも消えます）`)) { const c = HO.code; leaveAll(); api("DELETE", `rooms/${c}`).then(openGame, openGame); } } }, "部屋を閉じる")));
+  if (!qrOld) drawQR(joinUrl(HO.code));
+}
+let qrLib = null;
+function drawQR(url) {
+  const put = () => { const el = $("#qr"); if (!el || !window.qrcode) return; const q = window.qrcode(0, "M"); q.addData(url); q.make(); el.innerHTML = q.createSvgTag({ cellSize: 4, margin: 2, scalable: true }); };
+  if (window.qrcode) { put(); return; }
+  if (!qrLib) { qrLib = document.createElement("script"); qrLib.src = "js/vendor/qrcode.js"; document.head.append(qrLib); }
+  qrLib.addEventListener("load", put);
+}
+function hostStart() {
+  const r = HO.room; if (!r || r.state === "play") return;
+  api("PATCH", `rooms/${HO.code}`, { state: "play", round: (r.round || 0) + 1, seed: Math.floor(Math.random() * 1e9), startAt: Math.round(gnow() + 5000) }).catch(() => toast("スタートできませんでした"));
+}
+/* ランキング表：広さを測って 入る列数・行数・文字の大きさを決める（40 人でもスクロールなし） */
+function rows(list, mode, W, H) {
+  const top = Math.max(1, ...list.map(p => mode === "best" ? p.b || 0 : p.s || 0));
+  let n = list.length, cols = n <= 10 ? 1 : n <= 24 ? 2 : 3, rowsN = n, more = 0;
+  const ol = h("ol", { class: "rk" });
+  if (W && H) {
+    cols = Math.max(1, Math.min(cols, Math.floor(W / 230)));
+    const maxRows = Math.max(1, Math.floor(H / 24));
+    rowsN = Math.ceil(n / cols);
+    if (rowsN > maxRows) { rowsN = maxRows; more = n - (cols * rowsN - 1); list = list.slice(0, cols * rowsN - 1); }
+    rowsN = Math.max(Math.min(8, maxRows), rowsN);
+    const fs = Math.max(11, Math.min(26, H / rowsN * .55));
+    ol.style.cssText = `grid-template-columns:repeat(${cols},minmax(0,1fr));grid-template-rows:repeat(${rowsN},minmax(0,1fr));font-size:${fs.toFixed(1)}px`;
+  }
+  let rank = 0, last = -1;
+  list.forEach((p, i) => {
+    const v = mode === "best" ? p.b || 0 : p.s || 0;
+    if (v !== last) { rank = i + 1; last = v; }
+    const medal = rank <= 3 && v > 0 ? ["🥇", "🥈", "🥉"][rank - 1] : String(rank);
+    ol.append(h("li", { class: (rank <= 3 && v > 0 ? `top top${rank}` : "") + (p.id === pid() ? " me" : "") }, h("span", { class: "rn" }, medal), h("span", { class: "nm" }, p.n, mode !== "best" && p.k >= 10 ? h("i", { class: "fire" }, `🔥${p.k}`) : null), h("span", { class: "bar" }, h("i", { style: `width:${(v / top * 100).toFixed(1)}%` })), h("span", { class: "sc" }, v.toLocaleString())));
+  });
+  if (more) ol.append(h("li", { class: "more" }, `…ほか ${more} 人`));
+  return ol;
+}
+function drawBoard() {
+  const r = HO && HO.room; if (!r) return;
+  const stage = $("#stage"), t = gnow();
+  let board = $("#board"); if (!board) { board = h("div", { class: "board", id: "board" }); clear(stage).append(board); }
+  clear(board);
+  let lst = null, lmode = "now", head, bodyEl = null;
+  const tabs = h("div", { class: "btabs" }, h("button", { type: "button", "aria-selected": HO.tab === "now" ? "true" : "false", onclick: () => { HO.tab = "now"; drawBoard(); } }, "今回"), h("button", { type: "button", "aria-selected": HO.tab === "best" ? "true" : "false", onclick: () => { HO.tab = "best"; drawBoard(); } }, "🏆 ハイスコア"));
+  if (HO.tab === "best") { head = h("div", { class: "bhead" }, h("b", {}, "🏆 この部屋のハイスコア"), tabs); const bl = playersOf(r).filter(p => p.b > 0); if (bl.length) { lst = bl; lmode = "best"; } else bodyEl = h("div", { class: "count" }, h("small", {}, "まだ記録がありません")); }
+  else if (r.state === "lobby" || !r.round) { const ps = playersOf(r); head = h("div", { class: "bhead" }, h("b", {}, "参加者を待っています"), tabs); bodyEl = ps.length ? h("div", { class: "chips" }, ps.map(p => h("span", { class: "chipn" }, p.n))) : h("div", { class: "count" }, h("small", {}, `生徒が 部屋番号 ${HO.code} で入ってくると ここに名前が出ます`)); }
+  else if (r.state === "play" && t < r.startAt) { head = h("div", { class: "bhead" }, h("b", {}, `第${r.round}回戦　${cfgName(r.cfg)}`), tabs); bodyEl = h("div", { class: "count" }, h("b", {}, String(Math.max(1, Math.ceil((r.startAt - t) / 1000)))), h("small", {}, "まもなく スタート！")); }
+  else {
+    lst = playersOf(r, r.round);
+    const end = r.state === "end", left = Math.max(0, r.startAt + r.cfg.t * 1000 - t);
+    head = h("div", {}, h("div", { class: "bhead" }, h("b", {}, end ? `🎉 第${r.round}回戦 結果発表` : `⏱ 残り ${Math.ceil(left / 1000)} 秒`), tabs), end ? null : h("div", { class: "tbar host" }, h("i", { style: `width:${left / (r.cfg.t * 1000) * 100}%`, class: left < 10000 ? "hurry" : "" })));
+    if (end && lst[0] && lst[0].s > 0) head.append(h("div", { class: "champ" }, `🥇 ${lst[0].n} さん　${lst[0].s.toLocaleString()} 点`));
+    if (!lst.length) { lst = null; bodyEl = h("div", { class: "count" }, h("small", {}, "まだ だれも 答えていません")); }
+  }
+  board.append(head);
+  const bb = h("div", { class: "bbody" }); board.append(bb);
+  if (lst) bb.append(rows(lst, lmode, bb.clientWidth, bb.clientHeight)); else bb.append(bodyEl);
+}
+
+/* ---------- 生徒：参加 ---------- */
+let BT = null;
+function joinRoom(codeIn, nameIn) {
+  const code = (codeIn || "").replace(/\D/g, ""), name = (nameIn || "").trim().slice(0, 10);
+  if (code.length !== 4) { toast("部屋番号は 4 けたです"); return; }
+  if (!name) { toast("ニックネームを入れてください"); return; }
+  store.set("nick", name);
+  const me = `rooms/${code}/players/${pid()}`;
+  api("GET", `rooms/${code}`).then(room => {
+    if (!room || !room.state) throw new Error("nf");
+    if (room.app !== "mathb") throw new Error("other");
+    return api("GET", me);
+  }).then(old => api("PATCH", me, { n: name, s: old && old.s || 0, b: old && old.b || 0, r: old && old.r || 0, k: 0 }))
+    .then(() => syncClock(code))
+    .then(() => { RW.battles = Math.max(RW.battles, 1); saveRW(); checkBadges(); location.hash = "#battle/" + code; })
+    .catch(e => toast(e.message === "nf" ? `部屋 ${code} が見つかりません` : e.message === "other" ? "それは別のアプリの部屋です" : `つながりません（${e.message}）`));
+}
+function openJoin(code, db) {
+  if (db) store.set("db", db);
+  openGame();
+  const c = $("#jCode"); if (c && code) { c.value = code; const n = $("#jName"); if (n && !n.value) n.focus(); }
+}
+function openBattle(code) {
+  leaveAll(); S.mode = "game"; S.game = { view: "battle" }; S.inst = null;
+  BT = { code, room: null, played: 0, last: 0, push: null, awarded: {} };
+  render();
+  syncClock(code).then(() => { if (BT) BT.stop = listen(`rooms/${code}`, onRoom); });
+}
+function onRoom(room) {
+  if (!BT) return;
+  if (!room) { toast("先生が部屋を閉じました"); openGame(); return; }
+  BT.room = room;
+  if (!(room.players && room.players[pid()])) { openJoin(BT.code); return; }
+  if (room.state === "play" && room.round !== BT.played && gnow() < room.startAt + room.cfg.t * 1000 - 3000) {
+    BT.played = room.round;
+    newGame(room.cfg, room.seed, "battle", room.startAt);
+    api("PATCH", `rooms/${BT.code}/players/${pid()}`, { s: 0, k: 0, r: room.round, d: 0 }).catch(() => {});
+    renderGameFrame(`🏆 部屋 ${BT.code}・第${room.round}回戦`); playShell("スコア"); runClock(endBattle);
+    return;
+  }
+  /* 先生の時計で 終わったら、こちらも終わる */
+  if (room.state === "end" && G && !G.over && G.mode === "battle") { G.over = true; clearInterval(G.timer); endBattle(); }
+  if (room.state === "end" && BT.played === room.round && !BT.awarded[room.round]) {
+    BT.awarded[room.round] = 1;
+    const lst = playersOf(room, room.round), my = lst.findIndex(p => p.id === pid());
+    if (my >= 0 && my < 3 && lst[my].s > 0) { RW.top3++; earn(50); }
+    saveRW(); checkBadges();
+  }
+  if (!G || G.over) drawWait();
+}
+function pushScore(final) {
+  if (!G || G.mode !== "battle" || !BT) return;
+  const t = Date.now();
+  if (!final && t - BT.last < 600) { clearTimeout(BT.push); BT.push = setTimeout(() => pushScore(), 650); return; }
+  BT.last = t;
+  const me = BT.room && BT.room.players && BT.room.players[pid()] || {};
+  api("PATCH", `rooms/${BT.code}/players/${pid()}`, { s: G.score, k: G.combo, r: BT.played, b: Math.max(me.b || 0, G.score), d: final ? 1 : 0 }).catch(() => {});
+}
+function endBattle() { clearTimeout(BT && BT.push); pushScore(true); const coins = afterGame() + 20; saveRW(); earn(coins); G.coins = coins; setTimeout(drawWait, 300); }
+function drawWait() {
+  if (!BT) return;
+  const room = BT.room, body = clear($("#body"));
+  renderGameFrame(`🏆 部屋 ${BT.code}`);
+  body.append(h("div", { class: "minirow", style: "align-items:center" }, h("button", { type: "button", class: "mini", onclick: () => { leaveAll(); openGame(); } }, "◀ ぬける"), h("span", { class: "lead", style: "font-size:.85rem" }, `👥 ${room ? playersOf(room).length : 0} 人`)));
+  if (!room) body.append(h("p", { class: "lead" }, "つないでいます…"));
+  else if (room.state === "play" && room.round !== BT.played) body.append(h("p", { class: "lead" }, h("b", {}, `いま 第${room.round}回戦の最中です`), h("br"), "次の回から参加できます。少し待ってね"));
+  else if (BT.played && room.round === BT.played) {
+    const lst = playersOf(room, room.round), my = lst.findIndex(p => p.id === pid()), meP = lst[my] || {}, fin = room.state === "end";
+    body.append(h("p", { class: "lead", style: "font-size:.85rem;color:var(--muted)" }, `第${room.round}回戦 ${fin ? "結果" : "（集計中… みんなが終わるのを待っています）"}`));
+    body.append(h("div", { class: "score pass" }, h("b", {}, String(my + 1)), ` 位 / ${lst.length} 人`));
+    body.append(h("p", { class: "lead", style: "font-size:.9rem" }, `${(meP.s || 0).toLocaleString()} 点　📝 ${G ? G.ok : 0} 問${G && G.coins ? `　🪙 +${G.coins}` : ""}`));
+    body.append(rows(lst.slice(0, 5), "now"));
+    if (fin) body.append(h("p", { class: "lead", style: "font-size:.8rem;color:var(--muted)" }, "先生が 次のスタートをおすと 始まります"));
+  } else {
+    body.append(h("div", {}, h("span", { class: "stamp wait" }, "参加中")));
+    body.append(h("p", { class: "lead" }, h("b", {}, `${store.get("nick", "")} さん、ようこそ！`), h("br"), "先生が スタートをおすと 3・2・1 で 全員いっせいに始まります"));
+    body.append(h("div", { class: "chips small" }, playersOf(room).slice(0, 40).map(p => h("span", { class: "chipn" + (p.id === pid() ? " me" : "") }, p.n))));
+  }
+  draw();
+}
+
+/* ---------- 画面のつなぎ ---------- */
+function leaveAll() {
+  if (G) { clearInterval(G.timer); G = null; }
+  if (HO) { clearInterval(HO.timer); if (HO.stop) HO.stop(); HO = null; }
+  if (BT) { if (BT.stop) BT.stop(); clearTimeout(BT.push); BT = null; }
+  document.querySelector(".card").classList.remove("game");
+}
+function renderGame(body) {
+  const v = S.game.view;
+  document.querySelector(".card").classList.add("game");
+  if (v === "hub") { renderGameFrame("🎮 ゲーム"); renderHub(body); }
+  else if (v === "host") { renderGameFrame(`🏫 先生：部屋 ${HO ? HO.code : ""}`); if (HO && HO.room) renderHostPanel(); else body.append(h("p", { class: "lead" }, "部屋をひらいています…")); }
+  else if (v === "battle") drawWait();
+}
+/* ゲーム中のステージ：問題の図（ヒント状態）／先生はランキング／トップは段位 */
+function drawGame(svg, W, H) {
+  if (S.game.view === "host") { drawBoard(); return false; }
+  const g = s("g", {}, svg);
+  if (G && !G.over && S.inst && gnow() >= G.startAt) { const uu = S.inst.u; uu.viz(svg, S.inst.p, -1, { W, H, intro: false, redraw: () => {} }); $("#hint").textContent = ""; return true; }
+  if (G && !G.over) { T(g, W / 2, H / 2 - 10, String(Math.max(1, Math.ceil((G.startAt - gnow()) / 1000))), "disp tw", 110); return true; }
+  const rk = rankOf(RW.coins), pc = rk.next ? (RW.coins - rk.from) / (rk.next - rk.from) : 1;
+  if (S.game.view === "solo" && G && G.over) { T(g, W / 2, H / 2 - 20, G.score.toLocaleString(), "disp " + (G.score >= 1000 ? "ta" : "tw"), 80); T(g, W / 2, H / 2 + 36, `${G.ok} 問 ≒ ${ruler(G.ok)}`, "b", 20); return true; }
+  if (S.game.view === "battle" && BT && BT.room && BT.played) { const lst = playersOf(BT.room, BT.room.round), my = lst.findIndex(p => p.id === pid()); if (my >= 0) { T(g, W / 2, H / 2 - 16, `${my + 1} 位`, "disp " + (my < 3 ? "ta" : "tw"), 80); T(g, W / 2, H / 2 + 40, `${lst.length} 人中`, "b", 20); return true; } }
+  T(g, W / 2, 70, "🪙 ごほうび", "b mut", 16);
+  T(g, W / 2, 128, rk.name, "disp tw", 54);
+  s("rect", { x: W / 2 - 150, y: 150, width: 300, height: 12, rx: 6, class: "f-chip s-ln" }, g);
+  s("rect", { x: W / 2 - 150, y: 150, width: 300 * pc, height: 12, rx: 6, class: "f-gd" }, g);
+  T(g, W / 2, 184, rk.next ? `次の「${rk.nextName}」まで あと ${(rk.next - RW.coins).toLocaleString()} コイン` : "最高の段位です！", "mut", 13);
+  T(g, W / 2, 214, `🪙 ${RW.coins.toLocaleString()} コイン　🔥 ${streakNow()} 日連続　🏅 ${Object.keys(RW.badges).length}/${BADGES.length}`, "b", 15);
+  const bw = Math.min(110, (W - 60) / BADGES.length), x0 = (W - bw * BADGES.length) / 2;
+  BADGES.forEach((b, i) => { const on = RW.badges[b.id], x = x0 + bw * (i + .5); T(g, x, 272, on ? b.ico : "🔒", on ? "" : "ghost", 28); T(g, x, 296, b.name, on ? "b" : "mut", clamp(bw / 7.5, 9, 12)); });
+  T(g, W / 2, H - 40, "コイン：演習の正解 +10・合格 +50（はじめて +150）・タイムアタック 20 点で +1・クラス対戦 参加 +20・3 位以内 +50", "mut", clamp(W / 70, 10, 13));
+  return true;
+}
+/* ---------- ⚙ 設定 ---------- */
+function openSettings() {
+  const dlg = $("#sdlg"), box = clear($("#sdlgIn"));
+  const seg = (lab, opts, cur, on) => h("div", { class: "fld" }, h("span", { class: "fl" }, lab), h("div", { class: "seg" }, opts.map(([v, l]) => h("button", { type: "button", "aria-pressed": String(cur) === String(v) ? "true" : "false", onclick: () => { on(v); openSettings(); } }, l))));
+  box.append(h("div", { class: "ptitle" }, h("h2", {}, "⚙ 設定"), h("button", { type: "button", class: "mini", style: "margin-left:auto", onclick: () => dlg.close() }, "✕ とじる")));
+  box.append(seg("文字の大きさ", [[0, "小"], [1, "中"], [2, "大"]], store.get("fz", 0), v => { fz = v; store.set("fz", v); applyFz(); render(); }));
+  box.append(seg("画面", [["", "自動"], ["light", "明るい"], ["dark", "暗い"]], store.get("theme", "") || "", v => { if (v) document.documentElement.dataset.theme = v; else delete document.documentElement.dataset.theme; store.set("theme", v); }));
+  box.append(h("div", { class: "fld" }, h("span", { class: "fl" }, "全画面"), h("button", { type: "button", class: "mini", onclick: () => { if (document.fullscreenElement) document.exitFullscreen(); else if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(() => {}); } }, "⛶ 全画面（プロジェクター用）")));
+  box.append(h("hr", { class: "sep" }), h("b", {}, "🏆 クラス対戦のデータベース（先生が 1 回だけ）"));
+  const inp = h("input", { type: "text", class: "ansin", placeholder: "https://〇〇-default-rtdb.〇〇.firebasedatabase.app", value: store.get("db", "") });
+  box.append(h("div", { class: "ansrow" }, inp, h("button", { type: "button", class: "btn", onclick: () => { store.set("db", inp.value.trim().replace(/\/+$/, "")); if (!dbBase()) { toast("https:// で始まる URL を入れてください"); return; } const k = "rooms/ping_" + pid(); api("PUT", k, { t: { ".sv": "timestamp" } }).then(() => api("DELETE", k)).then(() => toast("✅ つながりました"), e => toast(`✕ つながりません（${e.message}）`)); } }, "保存して接続テスト")));
+  box.append(h("p", { class: "lead", style: "font-size:.8rem;color:var(--muted)" }, window.MB_CONFIG && MB_CONFIG.db ? "はじめから 論理表現ラボと同じデータベースが設定ずみ（ここが空なら そちらを使います）。" : "作り方は README の「クラス対戦の準備」にあります。", " 生徒は 先生の部屋のリンク・QR から入れば 設定はいりません。"));
+  if (!dlg.open) dlg.showModal();
+}
+</script>
+<script>
+"use strict";
 /* ===== はじめる ===== */
 $("#nextBtn").addEventListener("click", next);
 $("#prevBtn").addEventListener("click", prev);
@@ -2309,21 +2848,17 @@ document.addEventListener("click", e => { if (!lvmenu.hidden && !e.target.closes
 $("#mkBtn").addEventListener("click", () => { if (S.mode === "maker") openUnit(S.u.id); else openMaker(); });
 $("#recBtn").addEventListener("click", () => { if (S.mode === "rec") openUnit(S.u.id); else openRecord(); });
 $("#replayBtn").addEventListener("click", draw);
-/* 文字の大きさ・明るさ・全画面 */
+$("#gameBtn").addEventListener("click", () => { if (S.mode === "game" && S.game.view === "hub") openUnit(S.u.id); else openGame(); });
+$("#setBtn").addEventListener("click", openSettings);
+$("#sdlg").addEventListener("click", e => { if (e.target === e.currentTarget) e.currentTarget.close(); });
+/* 文字の大きさ・明るさ（⚙ 設定から） */
 const FZ = ["", "fz1", "fz2"];
 let fz = store.get("fz", 0);
 const applyFz = () => { document.documentElement.classList.remove("fz1", "fz2"); if (FZ[fz]) document.documentElement.classList.add(FZ[fz]); };
 applyFz();
-$("#fzBtn").addEventListener("click", () => { fz = (fz + 1) % 3; store.set("fz", fz); applyFz(); render(); });
 const th = store.get("theme", null);
 if (th) document.documentElement.dataset.theme = th;
-$("#themeBtn").addEventListener("click", () => {
-  const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-  document.documentElement.dataset.theme = dark ? "light" : "dark"; store.set("theme", dark ? "light" : "dark");
-});
-$("#maxBtn").addEventListener("click", () => {
-  if (document.fullscreenElement) document.exitFullscreen(); else if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(() => {});
-});
+document.addEventListener("keydown", e => { if (!G || G.over || /INPUT|TEXTAREA|SELECT/.test(e.target.tagName || "")) return; if (/^[1-4]$/.test(e.key) && G.q && gnow() >= G.startAt) { const b = document.querySelectorAll("#gq .choice")[+e.key - 1]; if (b) b.click(); } });
 /* ✏️ 図に書きこむ（先生用） */
 {
   const cv = $("#ink"), bar = $("#penbar"), btn = $("#penBtn"), ctx = cv.getContext("2d");
@@ -2344,10 +2879,17 @@ $("#maxBtn").addEventListener("click", () => {
 window.addEventListener("beforeprint", () => { const pr = $("#body .prob"); $("#printProb").innerHTML = (pr ? pr.innerHTML : "") + (S.inst && S.inst.title ? ` <small>（${S.u.name}：${S.inst.title}）</small>` : ""); });
 let rsT;
 new ResizeObserver(() => { clearTimeout(rsT); rsT = setTimeout(draw, 60); }).observe($("#stage"));
-/* URL から画面をひらく：#u-arith/2 ・ #mk/u-arith?a=3&d=4&n=10 ・ #rec */
+/* URL から画面をひらく：#u-arith/2 ・ #mk/u-arith?a=3&d=4&n=10 ・ #rec ・ #game ・ #join=1234 ・ #host/1234 ・ #battle/1234 */
 function openHash() {
   const hs = location.hash.slice(1);
-  if (hs === "rec") { S.u = S.u || UNITS.find(u => u.id === store.get("last", UNITS[0].id)) || UNITS[0]; renderUnits(); openRecord(); return true; }
+  if (!S.u) { S.u = UNITS.find(u => u.id === store.get("last", UNITS[0].id)) || UNITS[0]; }
+  let m;
+  if (hs === "game") { if (!(S.mode === "game" && S.game.view === "hub")) openGame(); return true; }
+  if (hs === "ta") { if (!(G && G.mode === "solo" && !G.over)) { openGame(); startSolo(); } return true; }
+  if ((m = hs.match(/^join(?:=(\d*))?(?:&db=(.+))?$/))) { openJoin(m[1] || "", m[2] ? decodeURIComponent(m[2]) : ""); return true; }
+  if ((m = hs.match(/^host\/(\d{4})$/))) { if (!dbBase()) { openGame(); return true; } if (!(HO && HO.code === m[1])) openHost(m[1]); return true; }
+  if ((m = hs.match(/^battle\/(\d{4})$/))) { if (!dbBase()) { openGame(); return true; } if (!(BT && BT.code === m[1])) openBattle(m[1]); return true; }
+  if (hs === "rec") { renderUnits(); if (S.mode !== "rec") openRecord(); return true; }
   if (hs.startsWith("mk/")) { const [id, q] = hs.slice(3).split("?"); const u = UNITS.find(x => x.id === id); if (!u) return false; S.u = u; renderUnits(); openMaker(q ? new URLSearchParams(q) : null); return true; }
   const [id, pi] = hs.split("/");
   if (!UNITS.some(u => u.id === id)) return false;
