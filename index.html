@@ -144,6 +144,22 @@ sub, sup { font-size: .76em; line-height: 0; }
 .lead b { color: var(--warm); }
 .dots { display: flex; gap: 5px; align-items: center; font-size: .82rem; color: var(--muted); }
 .dots i { width: 10px; height: 10px; }
+/* 数学Aラボと同じ 初学者向けのしかけ */
+.ptitle .role { margin-left: auto; font-size: .72rem; color: var(--muted); white-space: nowrap; }
+.goal { color: var(--accent); font-weight: 700; font-size: .9rem; line-height: 1.5; border-left: 3px solid var(--accent); padding-left: 8px; }
+.resume { color: var(--accent); font-size: .8rem; }
+.trysay { margin: 0; color: var(--warm); font-weight: 700; font-size: .85rem; }
+.whyng { display: inline; font-weight: 500; color: var(--ink); }
+.result.whyng { display: block; border-left: 3px solid var(--warm); padding: 4px 8px; background: var(--warm-soft); border-radius: 0 4px 4px 0; font-size: .9rem; }
+.mini.more { border-style: dashed; border-color: var(--accent); }
+.sdlg { max-height: 86vh; overflow: auto; }
+.flow { margin: 0; padding-left: 1.4em; display: flex; flex-direction: column; gap: 6px; font-size: .92rem; line-height: 1.6; }
+.flow .calc { font-family: var(--font-data); background: var(--chip); border-radius: 4px; padding: 3px 8px; margin-top: 2px; }
+.flow.welcome li::marker { color: var(--warm); font-weight: 800; }
+.miss { border: 1.5px solid var(--warm); border-radius: 5px; padding: 6px 10px; font-size: .9rem; }
+.miss b { color: var(--warm); } .miss ul { margin: 4px 0 0; padding-left: 1.2em; } .miss li { margin-bottom: 3px; }
+.miss .mono { font-family: var(--font-data); font-weight: 600; }
+@media (max-width: 860px) { .ptitle .role, .trysay { display: none; } .goal { font-size: .78rem; line-height: 1.4; } .card .readout { font-size: .8rem; padding: 4px 8px; } }
 /* 用語（タップで意味） */
 .term { border-bottom: 2px dotted var(--gold); cursor: help; }
 .gpop { position: fixed; z-index: 80; max-width: min(320px, 90vw); background: var(--panel); border: 1.5px solid var(--ink); border-radius: 6px; box-shadow: 3px 3px 0 var(--ink); padding: 8px 12px; font-size: .88rem; line-height: 1.55; animation: fadein .15s; }
@@ -568,12 +584,30 @@ const CATS = [
   { id: "stat", name: "統計的な推測", short: "統計", ico: "📊" },
 ];
 const PARTS = [
-  { k: "intro", name: "導入" },
-  { k: "ex", name: "例題" },
-  { k: "pr", name: "類題" },
-  { k: "ap", name: "応用" },
-  { k: "drill", name: "演習" },
+  { k: "intro", name: "導入", role: "図を動かして しくみを見る" },
+  { k: "ex", name: "例題", role: "先生といっしょに解く" },
+  { k: "pr", name: "類題", role: "自分で解いてみよう" },
+  { k: "ap", name: "応用", role: "少しひねった問題" },
+  { k: "drill", name: "演習", role: "5 問で 腕だめし" },
 ];
+/* まちがいの理由：WHY([選択肢, 理由], …) → { 選択肢: 理由 } */
+const WHY = (...pairs) => Object.fromEntries(pairs.filter(x => x && x.length === 2 && x[0] != null).map(([k, v]) => [String(k), v]));
+/* 単元のめあて（数学Aラボと同じく、単元のはじめに出す） */
+const GOALS = {
+  "u-arith": "「同じ数ずつ たす」数列の 第 n 項を、棒グラフの すきまの数 から求められる",
+  "u-asum": "等差数列の和を、階段を 逆さに重ねた 長方形の半分として求められる",
+  "u-geo": "「同じ数ずつ かける」数列の 第 n 項を、×r の回数から求められる",
+  "u-gsum": "等比数列の和を、S と rS を ずらして ひく方法で求められる",
+  "u-sigma": "Σ の意味を読みとり、Σk・Σk²・Σc の公式で 和を計算できる",
+  "u-diff": "となりの差（階差数列）を書き出して、もとの数列の項を求められる",
+  "u-rec": "a<sub>n+1</sub> = pa<sub>n</sub> + q を、α とのずれが 等比数列になることを使って解ける",
+  "u-induct": "ドミノの ①最初の 1 枚 ②となりへ伝わる で、帰納法の証明の形が書ける",
+  "u-dist": "確率分布の表から、期待値（つりあう点）と 分散（ばらつき）を求められる",
+  "u-binom": "n 回くり返すときの 回数の確率と、E = np、V = np(1 − p) を使える",
+  "u-normal": "標準化して 正規分布表を使い、面積として 確率を求められる",
+  "u-est": "標本平均から、母平均 m の 信頼区間（95%）を求められる",
+  "u-test": "「ふつう」と仮定したときの めずらしさで、仮説を 棄却するか判断できる",
+};
 const LEVELS = [{ ico: "🌱", name: "やさしい", tip: "小さい数・ヒントが先に出る" }, { ico: "🌿", name: "ふつう", tip: "教科書と同じくらい" }, { ico: "🌳", name: "挑戦", tip: "大きい数・演習は自分で数字を入力" }];
 let LEVEL = clamp(store.get("level", 1), 0, 2);
 const DRILL_N = 5, PASS = 4;
@@ -598,7 +632,8 @@ function openUnit(id, pi = null) {
   const u = UNITS.find(x => x.id === id) || UNITS[0];
   if (typeof leaveAll === "function") leaveAll();
   S.u = u; S.mode = "lesson"; S.drill = null; S.mk = null;
-  if (pi == null) { const r = prog[u.id] || {}; pi = PARTS.findIndex(p => p.k === "drill" ? drillBest(u) < PASS : !r[p.k]); if (pi < 0) pi = 0; }
+  S.resumed = false;
+  if (pi == null) { const r = prog[u.id] || {}; pi = PARTS.findIndex(p => p.k === "drill" ? drillBest(u) < PASS : !r[p.k]); if (pi < 0) pi = 0; S.resumed = pi > 0; }
   store.set("last", u.id);
   renderNav(); renderUnits();
   goPart(pi);
@@ -791,11 +826,14 @@ function renderFnow() {
   void last;
 }
 function partHead(body, title, tag) {
-  body.append(h("div", { class: "ptitle" }, h("span", { class: "tag" }, tag || PARTS[S.pi].name), h("h2", {}, title)));
+  const P = PARTS[S.pi];
+  body.append(h("div", { class: "ptitle" }, h("span", { class: "tag", title: P.role }, tag || P.name), h("h2", {}, title), tag ? null : h("span", { class: "role" }, P.role)));
+  if (S.resumed && !tag) { body.append(h("div", { class: "resume" }, `▶ 前回の続き（${P.name}）から。「◀」で前の段階へ`)); S.resumed = false; }
 }
 function renderIntro(body) {
   const u = S.u, I = u.intro, p = S.inst.p;
   partHead(body, I.title);
+  if (GOALS[u.id]) body.append(h("div", { class: "goal", html: "🎯 めあて：" + GOALS[u.id] }));
   body.append(h("p", { class: "lead", html: termify(I.lead) }));
   const ro = I.say ? h("div", { class: "readout", html: I.say(p) }) : null;
   if (I.controls) body.append(controls(I.controls, p, () => { $("#fnow").innerHTML = I.eq ? `<div class="eqline cur">${I.eq(p)}</div>` : ""; if (ro) ro.innerHTML = I.say(p); draw(); }));
@@ -853,18 +891,38 @@ function renderProblem(body) {
   if (k !== "ex" && inst.choices) {
     choiceBox(inst, body);
     if (!S.solved) {
-      if (S.tries === 1) body.append(h("div", { class: "result ng" }, "✕ ちがうよ。ヒントを見て もう一度"));
+      if (S.tries === 1) { const w = wrongWhy(inst); body.append(h("div", { class: "result ng" }, "✕ ちがうよ。", w ? h("span", { class: "whyng", html: termify(w) }) : null, h("br"), "ヒントを見て もう一度")); }
       for (let i = 0; i < S.hint; i++) body.append(h("div", { class: "hintbox", html: "💡 " + termify(inst.hint[i]) }));
       if (inst.hint && S.hint < inst.hint.length) body.append(h("div", { class: "minirow" }, h("button", { type: "button", class: "mini", onclick: () => { S.hint++; render(); } }, S.hint ? "💡 もう1つヒント" : "💡 ヒント")));
     }
   }
   if (S.solved) stepText(body, k === "pr");
+  else if (k !== "ex") body.append(h("p", { class: "trysay" }, "→ まず自分で解いてみよう！ わからなければ「解説を見る ▶」"));
+}
+/* 選んだまちがいの理由 */
+function wrongWhy(inst) { const i = S.picked.filter(x => x !== 0).slice(-1)[0]; if (i == null) return ""; const w = inst.why && inst.why[inst.choices[i]]; return `「${inst.choices[i]}」は ${w || "答えと合わない。ステップごとに 計算しなおそう"}`; }
+/* 📖 くわしい解説：解き方の流れ ＋ よくあるまちがい（ダイアログで開く。数学Aラボと同じ） */
+function moreBtn(inst) { return h("button", { type: "button", class: "mini more", onclick: () => openMore(inst) }, "📖 それでもわからないときは（くわしい解説）"); }
+function openMore(inst) {
+  const dlg = $("#sdlg"), box = clear($("#sdlgIn"));
+  box.append(h("div", { class: "ptitle" }, h("h2", {}, "📖 " + (inst.title || "くわしい解説")), h("button", { type: "button", class: "mini", style: "margin-left:auto", onclick: () => dlg.close() }, "✕ とじる")));
+  if (inst.problem) box.append(h("div", { class: "prob", html: termify(inst.problem) }));
+  box.append(h("b", {}, "解き方の流れ"));
+  box.append(h("ol", { class: "flow" }, (inst.steps || []).map(st => h("li", {}, h("div", { html: termify(st.say) }), st.eq ? h("div", { class: "calc", html: st.eq }) : null))));
+  if (inst.choices) box.append(h("div", {}, "答え：", h("span", { class: "choice ok ans", html: inst.choices[0] })));
+  const ws = inst.why ? Object.entries(inst.why).filter(([c]) => inst.choices.includes(c)) : [];
+  if (ws.length) box.append(h("div", { class: "miss" }, h("b", {}, "よくあるまちがい"), h("ul", {}, ws.map(([c, w]) => h("li", {}, h("span", { class: "mono", html: c }), "：", h("span", { html: termify(w) }))))));
+  if (!dlg.open) dlg.showModal();
 }
 function stepText(body, canRedo) {
   const n = steps().length;
   body.append(h("div", { class: "dots" }, steps().map((_, i) => h("i", { class: i === S.step ? "on" : i < S.step ? "done" : "", onclick: () => { S.step = i; render(); } })), h("span", {}, ` ${S.step + 1} / ${n}`)));
   body.append(h("div", { class: "say", html: termify(steps()[S.step].say) }));
-  if (canRedo && S.step === n - 1) body.append(h("div", { class: "minirow" }, h("button", { type: "button", class: "mini", onclick: () => goPart(2) }, "🔁 数字をかえて もう1問")));
+  if (S.step === n - 1 && S.picked.length && !S.picked.includes(0)) body.append(h("p", { class: "trysay" }, "まちがえたところは「📖 くわしい解説」で確かめよう"));
+  const row = h("div", { class: "minirow" });
+  if (canRedo && S.step === n - 1) row.append(h("button", { type: "button", class: "mini", onclick: () => goPart(2) }, "🔁 数字をかえて もう1問"));
+  if (S.step === n - 1 && S.inst.steps) row.append(moreBtn(S.inst));
+  if (row.childNodes.length) body.append(row);
 }
 function renderDrill(body) {
   const d = S.drill, inst = S.inst;
@@ -884,15 +942,37 @@ function renderDrill(body) {
   if (d.mixAll) body.append(h("div", { class: "lead", style: "font-size:.85rem;color:var(--muted)" }, inst.u.name));
   body.append(h("div", { class: "prob", html: termify(inst.problem) }));
   choiceBox(inst, body);
-  if (S.solved) { body.append(h("div", { class: "say", html: termify(steps()[S.step].say) })); if (S.step > 0) body.append(h("div", { class: "minirow" }, h("button", { type: "button", class: "mini", onclick: () => { S.step = 0; render(); } }, "📖 はじめから解説を見る"))); }
+  if (S.solved) {
+    const w = !S.firstOk ? wrongWhy(inst) : "";
+    if (w) body.append(h("div", { class: "result ng whyng", html: termify(w) }));
+    else body.append(h("div", { class: "say", html: termify(steps()[S.step].say) }));
+    body.append(h("div", { class: "minirow" }, moreBtn(inst)));
+  }
   else if (LEVEL === 0 && inst.hint) body.append(h("div", { class: "hintbox", html: "💡 " + inst.hint[0] }));
 }
 function renderSummary(body) {
   const u = S.u;
   body.append(h("div", { class: "ptitle" }, h("span", { class: "tag" }, "まとめ"), h("h2", {}, u.name)));
+  if (GOALS[u.id]) body.append(h("div", { class: "goal", html: "🎯 めあて：" + GOALS[u.id] + "　…できたかな？" }));
   body.append(h("div", { class: "summary" }, h("h3", {}, "おぼえること"), h("ul", { class: "pts" }, u.summary.map(t => h("li", { html: termify(t) })))));
   if (unitClear(u)) body.append(h("div", {}, h("span", { class: "stamp" }, "合格"), h("span", { style: "margin-left:14px;font-weight:700" }, "この単元はクリア！")));
   else body.append(h("p", { class: "lead" }, drillBest(u) >= PASS ? "演習は合格ずみ。" : `つぎは「演習」で ${DRILL_N} 問中 ${PASS} 問 正解すると 合格！`));
+}
+/* ===== はじめての人へ（最初の 1 回だけ） ===== */
+function welcome(force) {
+  if (!force && store.get("welcomed", false)) return;
+  store.set("welcomed", true);
+  const dlg = $("#sdlg"), box = clear($("#sdlgIn"));
+  box.append(h("div", { class: "ptitle" }, h("h2", {}, "👋 数学Bラボへ ようこそ")));
+  box.append(h("ol", { class: "flow welcome" },
+    h("li", {}, h("b", {}, "上で 単元をえらぶ"), h("br"), "「1 等差数列」から順番がおすすめ。下の線が 進み具合です"),
+    h("li", {}, h("b", {}, "右下の 緑のボタンで 進む"), h("br"), "導入 → 例題 → 類題 → 応用 → 演習。キーボードの → でも OK"),
+    h("li", {}, h("b", {}, "左の図を よく見る"), h("br"), "式と同じ色で 図が動きます。スライダーや棒は さわって動かせる"),
+    h("li", {}, h("b", {}, "わからない言葉は タップ"), h("br"), h("span", { class: "term", "data-t": "初項" }, "点線の言葉"), " を押すと 意味が出ます"),
+    h("li", {}, h("b", {}, "まちがえても 大丈夫"), h("br"), "なぜちがうか が出て、ヒントを見て もう一度えらべます")));
+  box.append(h("p", { class: "lead", style: "font-size:.85rem" }, "むずかしいときは 右上の ", h("b", {}, "🌿"), " で「🌱 やさしい」に。この説明は ⚙ からも見られます。"));
+  box.append(h("div", { class: "minirow" }, h("button", { type: "button", class: "btn main", onclick: () => dlg.close() }, "はじめる ▶")));
+  if (!dlg.open) dlg.showModal();
 }
 /* ===== 学習のきろく ===== */
 function openRecord() { if (typeof leaveAll === "function") leaveAll(); S.mode = "rec"; S.drill = null; S.mk = null; history.replaceState(null, "", "#rec"); render(); }
@@ -1154,6 +1234,7 @@ unit({
       return {
         title: `第 ${n} 項を求める`, problem: `初項 ${a}、公差 ${neg(d)} の等差数列の <b>第 ${n} 項</b> は？`,
         p: { a, d, N: n, n }, choices: numChoices(ans, [a + n * d, n * d, a + (n - 2) * d]),
+        why: WHY([a + n * d, `${d < 0 ? "−" + -d : "+" + d} を ${n} 回 たしている。a<sub>1</sub> から a<sub>${n}</sub> までの すきまは ${n - 1} 個`], [n * d, "初項 a をたし忘れている"], [a + (n - 2) * d, `${d < 0 ? "−" + -d : "+" + d} の回数が 1 回少ない（すきまは ${n - 1} 個）`]),
         hint: [`a<sub>1</sub> から a<sub>${n}</sub> まで、${d < 0 ? "−" + -d : "+" + d} を何回する？`, `すきまの数は ${n} − 1 = ${n - 1}`],
         steps: [
           { say: `初項 <b>a = ${a}</b>、公差 <b>d = ${d}</b>。`, eq: `a = ${a},  d = ${d}` },
@@ -1167,6 +1248,7 @@ unit({
     title: "2 つの項から一般項", problem: "第 3 項が 11、第 7 項が 23 である等差数列の 一般項 a<sub>n</sub> は？",
     p: { a: 5, d: 3, N: 8, mode: "known", known: [3, 7] },
     choices: ["a<sub>n</sub> = 3n + 2", "a<sub>n</sub> = 3n + 5", "a<sub>n</sub> = 4n − 1", "a<sub>n</sub> = 3n − 1"],
+    why: WHY(["a<sub>n</sub> = 3n + 5", "これだと a<sub>1</sub> = 8。a<sub>3</sub> から 1 つしか もどっていない（a<sub>1</sub> までは 2 つもどる）"], ["a<sub>n</sub> = 4n − 1", "d = 4 だと a<sub>3</sub> = 11 には合うが a<sub>7</sub> = 27 になってしまう。a<sub>3</sub>→a<sub>7</sub> の すきまは 4 個"], ["a<sub>n</sub> = 3n − 1", "これだと a<sub>3</sub> = 8。a<sub>3</sub> = 11 に合わない"]),
     hint: ["a<sub>3</sub> と a<sub>7</sub> の間に +d は何回ある？", "4d = 23 − 11"],
     steps: [
       { say: "わかっているのは a<sub>3</sub> = 11 と a<sub>7</sub> = 23 の 2 本の棒だけ。", eq: "a<sub>3</sub> = 11,  a<sub>7</sub> = 23" },
@@ -1248,6 +1330,7 @@ unit({
       return {
         title: "和を求める", problem: `初項 ${a}、公差 ${d} の等差数列の、初項から <b>第 ${n} 項まで の和</b> は？`,
         p: { a, d, n }, choices: numChoices(S, [n * (a + l), S - l, S + l + d]),
+        why: WHY([n * (a + l), "長方形の面積のまま。階段は その <b>半分</b>（2 でわる）"], [S - l, `最後の項 l = ${l} が入っていない（項が 1 つ少ない）`], [S + l + d, "項が 1 つ多い"]),
         hint: [`まず 末項 l = a<sub>${n}</sub> を求めよう`, `S = n(a + l) ÷ 2`],
         steps: [
           { say: `末項 l = ${a} + (${n} − 1) × ${d} = <b>${l}</b>。`, eq: `l = ${a} + ${n - 1} × ${d} = ${l}` },
@@ -1261,6 +1344,7 @@ unit({
   ap: {
     title: "奇数の和", problem: "1 から 99 までの奇数の和 1 + 3 + 5 + … + 99 は？",
     p: { a: 1, d: 2, n: 50 }, choices: ["2500", "5000", "2550", "2450"],
+    why: WHY(["5000", "長方形の面積のまま。2 でわる"], ["2550", "項数を 51 と数えている。99 = 1 + (n − 1) × 2 から n = 50"], ["2450", "項数を 49 と数えている。99 = 1 + (n − 1) × 2 から n = 50"]),
     hint: ["まず 項の数 n を求めよう（99 は第何項？）", "a = 1, l = 99 を S = n(a + l) ÷ 2 へ"],
     steps: [
       { say: "項の数：99 = 1 + (n − 1) × 2 より <b>n = 50</b> 個。", eq: "99 = 1 + (n − 1)·2  →  n = 50" },
@@ -1306,6 +1390,7 @@ unit({
       return {
         title: `第 ${n} 項を求める`, problem: `初項 ${a}、公比 ${r} の等比数列の <b>第 ${n} 項</b> は？`,
         p: { a, r, N: n, n }, choices: numChoices(ans, [a * r ** n, a * r * (n - 1), a + r * (n - 1), a * r ** (n - 2)]),
+        why: WHY([a * r ** n, `×${r} を ${n} 回している。すきまは ${n - 1} 個`], [a * r * (n - 1), `${r} を ${n - 1} 回 <b>かけ算</b>するので ${r}<sup>${n - 1}</sup>。${r} × ${n - 1} ではない`], [a + r * (n - 1), "等差数列のように たしている。等比は かける"], [a * r ** (n - 2), `×${r} の回数が 1 回少ない`]),
         hint: [`×${r} を何回する？`, `すきまの数は ${n - 1}。a × r<sup>${n - 1}</sup>`],
         steps: [
           { say: `初項 <b>a = ${a}</b>、公比 <b>r = ${r}</b>。`, eq: `a = ${a},  r = ${r}` },
@@ -1319,6 +1404,7 @@ unit({
     title: "2 つの項から一般項", problem: "第 2 項が 6、第 5 項が 48 である等比数列（公比は実数）の 一般項 a<sub>n</sub> は？",
     p: { a: 3, r: 2, N: 6, mode: "known", known: [2, 5] },
     choices: ["a<sub>n</sub> = 3·2<sup>n−1</sup>", "a<sub>n</sub> = 6·2<sup>n−1</sup>", "a<sub>n</sub> = 2·3<sup>n−1</sup>", "a<sub>n</sub> = 3·2<sup>n</sup>"],
+    why: WHY(["a<sub>n</sub> = 6·2<sup>n−1</sup>", "6 は a<sub>2</sub>。初項 a<sub>1</sub> は 6 ÷ 2 = 3"], ["a<sub>n</sub> = 2·3<sup>n−1</sup>", "初項と公比が 入れかわっている（a<sub>2</sub> = 6 にはなるが a<sub>5</sub> = 162）"], ["a<sub>n</sub> = 3·2<sup>n</sup>", "これだと a<sub>1</sub> = 6。べきは n − 1"]),
     hint: ["a<sub>2</sub> から a<sub>5</sub> まで ×r を何回する？", "r<sup>3</sup> = 48 ÷ 6"],
     steps: [
       { say: "わかっているのは a<sub>2</sub> = 6、a<sub>5</sub> = 48。", eq: "a<sub>2</sub> = 6,  a<sub>5</sub> = 48" },
@@ -1424,6 +1510,7 @@ unit({
       return {
         title: "和を求める", problem: `初項 ${a}、公比 ${r} の等比数列の、初項から <b>第 ${n} 項まで の和</b> は？`,
         p: { a, r, n }, choices: numChoices(S, [a * (r ** n - 1), a * (r ** (n + 1) - 1) / (r - 1), a * r ** n, S - a]),
+        why: WHY([a * (r ** n - 1), `rS − S = (r − 1)S。最後に r − 1 = ${r - 1} でわる`].slice(0, r === 2 ? 0 : 2), [a * (r ** (n + 1) - 1) / (r - 1), "項が 1 つ多い（べきを n + 1 にしている）"], [a * r ** n, "rS の 最後の項 だけ。S − rS で のこるのは 両はし 2 つ"], [S - a, "初項 a が入っていない"]),
         hint: ["S を r 倍して 1 つずらし、ひいてみよう", `S = a(r<sup>n</sup> − 1) ÷ (r − 1)`],
         steps: [
           { say: `S = ${terms.join(" + ")}`, eq: `S = ${terms.join(" + ")}` },
@@ -1437,6 +1524,7 @@ unit({
   ap: {
     title: "和が 80 になるのは", problem: "初項 2、公比 3 の等比数列で、初項から第 n 項までの和が <b>80</b> になる n は？",
     p: { a: 2, r: 3, n: 5, mode: "cum", target: 80 }, choices: ["n = 4", "n = 5", "n = 3", "n = 6"],
+    why: WHY(["n = 5", "5 項までの和は 242。行きすぎ"], ["n = 3", "3 項までの和は 26。まだ 80 にならない"], ["n = 6", "6 項までの和は 728。行きすぎ"]),
     hint: ["和を順に計算してみよう：2, 2 + 6, …", "公式：2(3<sup>n</sup> − 1)/(3 − 1) = 3<sup>n</sup> − 1"],
     steps: [
       { say: "タイルをならべる：2, 6, 18, 54, 162 …", eq: "2, 6, 18, 54, 162, …" },
@@ -1519,12 +1607,13 @@ unit({
     fields: [{ key: "type", seg: [["lin", "Σ(ak + b)"], ["k", "Σ k"], ["k2", "Σ k²"]], def: "lin" }, { key: "ca", label: "a（k の係数）", min: 1, max: 9, def: 2 }, { key: "cb", label: "b", min: 0, max: 20, def: 1 }, { key: "n", label: "n", min: 2, max: 12, def: 7 }],
     rand: () => ({ type: L("lin", "lin", pick(["lin", "lin", "k2"])), ca: rL([2, 2, 2], [2, 3, 5]), cb: rL([1, 1, 1], [2, 3, 9]), n: rL([4, 5, 8], [6, 9, 12]) }),
     gen: ({ type, ca: a, cb: b, n }) => {
-      if (type === "k") { const ans = n * (n + 1) / 2; return { title: "Σ k", problem: `${SIG(n)} k は？`, p: { type: "k", n }, choices: numChoices(ans, [n * (n + 1), n * n, ans + n]), hint: ["1 + 2 + … + n の階段を 逆さに重ねる", "n(n + 1)/2"], steps: [{ say: `1 + 2 + … + ${n} の <b>階段</b>。`, eq: `1 + 2 + … + ${n}` }, { say: `逆さに重ねると どの列も ${n + 1}。長方形 ${n} × ${n + 1} の半分。`, eq: `${SIG(n)} k = <span class="fr"><i>${n} × ${n + 1}</i><i>2</i></span> = <b class="cw">${ans}</b>` }] }; }
-      if (type === "k2") { const ans = n * (n + 1) * (2 * n + 1) / 6, sq = n * (n + 1) / 2; return { title: "Σ k²", problem: `${SIG(n)} k<sup>2</sup> は？`, p: { type: "k2", n }, choices: numChoices(ans, [sq * sq, sq, n * n]), hint: ["k² は 1 辺 k の正方形の面積", "n(n + 1)(2n + 1)/6"], steps: [{ say: `1 辺 1, 2, …, ${n} の <b>正方形</b> の面積を全部たす。`, eq: range(1, n).map(j => j * j).join(" + ") }, { say: `公式 n(n + 1)(2n + 1)/6 に n = ${n}。（(Σk)<sup>2</sup> = ${sq * sq} とは ちがう！）`, eq: `${SIG(n)} k<sup>2</sup> = <span class="fr"><i>${n}·${n + 1}·${2 * n + 1}</i><i>6</i></span> = <b class="cw">${ans}</b>` }] }; }
+      if (type === "k") { const ans = n * (n + 1) / 2; return { title: "Σ k", problem: `${SIG(n)} k は？`, p: { type: "k", n }, choices: numChoices(ans, [n * (n + 1), n * n, ans + n]), why: WHY([n * (n + 1), "長方形のまま。2 でわる"], [n * n, "n × n ではなく n(n + 1)/2"]), hint: ["1 + 2 + … + n の階段を 逆さに重ねる", "n(n + 1)/2"], steps: [{ say: `1 + 2 + … + ${n} の <b>階段</b>。`, eq: `1 + 2 + … + ${n}` }, { say: `逆さに重ねると どの列も ${n + 1}。長方形 ${n} × ${n + 1} の半分。`, eq: `${SIG(n)} k = <span class="fr"><i>${n} × ${n + 1}</i><i>2</i></span> = <b class="cw">${ans}</b>` }] }; }
+      if (type === "k2") { const ans = n * (n + 1) * (2 * n + 1) / 6, sq = n * (n + 1) / 2; return { title: "Σ k²", problem: `${SIG(n)} k<sup>2</sup> は？`, p: { type: "k2", n }, choices: numChoices(ans, [sq * sq, sq, n * n]), why: WHY([sq * sq, `(1 + 2 + … + ${n})<sup>2</sup> を計算している。Σk<sup>2</sup> は 2 乗してから たす`], [sq, "Σk（2 乗していない）"], [n * n, `最後の項 ${n}<sup>2</sup> だけ`]), hint: ["k² は 1 辺 k の正方形の面積", "n(n + 1)(2n + 1)/6"], steps: [{ say: `1 辺 1, 2, …, ${n} の <b>正方形</b> の面積を全部たす。`, eq: range(1, n).map(j => j * j).join(" + ") }, { say: `公式 n(n + 1)(2n + 1)/6 に n = ${n}。（(Σk)<sup>2</sup> = ${sq * sq} とは ちがう！）`, eq: `${SIG(n)} k<sup>2</sup> = <span class="fr"><i>${n}·${n + 1}·${2 * n + 1}</i><i>6</i></span> = <b class="cw">${ans}</b>` }] }; }
       const ans = a * n * (n + 1) / 2 + b * n;
       return {
         title: "Σ(ak + b)", problem: `${SIG(n)} (${a}k${b ? " + " + b : ""}) は？`,
         p: { type: "lin", n, ca: a, cb: b }, choices: numChoices(ans, [a * n * (n + 1) / 2 + b, a * n * (n + 1) + b * n, a * n * (n + 1) / 2]),
+        why: WHY([a * n * (n + 1) / 2 + b, `Σ${b} を ${b} にしている。${b} を ${n} 回たすので ${b * n}`], [a * n * (n + 1) + b * n, "Σk = n(n + 1)/2 の ÷2 を忘れている"], [a * n * (n + 1) / 2, `${b} の部分（青い棒）を たし忘れている`]),
         hint: [`${a}k の部分と ${b} の部分に 分けて考えよう`, `Σ${b} は ${b} を ${n} 回たす（${b} だけ ではない！）`],
         steps: [
           { say: `k = 1, 2, …, ${n} を入れた棒をならべる。`, eq: `${a + b} + ${2 * a + b} + … + ${a * n + b}` },
@@ -1538,6 +1627,7 @@ unit({
   ap: {
     title: "Σ k²", problem: `${SIG(6)} k<sup>2</sup> は？`,
     p: { type: "k2", n: 6 }, choices: ["91", "21", "441", "36"],
+    why: WHY(["21", "Σk（2 乗していない）"], ["441", "(1 + 2 + … + 6)<sup>2</sup> = 21<sup>2</sup>。Σk<sup>2</sup> は 2 乗してから たす"], ["36", "最後の項 6<sup>2</sup> だけ"]),
     hint: ["k² は 1 辺 k の正方形の面積", "n(n + 1)(2n + 1)/6 に n = 6"],
     steps: [
       { say: "k<sup>2</sup> は <b>1 辺 k の正方形</b>。1, 4, 9, 16, 25, 36 をならべる。", eq: "1 + 4 + 9 + 16 + 25 + 36" },
@@ -1635,6 +1725,7 @@ unit({
         p: { terms, known, target: N, pattern: pat, pattern2: `差を a${subd(N)} まで のばす` },
         txt: false,
         choices: numChoices(ans, [ans + diffs[N - 2] * 2, terms[N - 2], ans - a1]),
+        why: WHY([ans + diffs[N - 2] * 2, "差を たしすぎ（a" + subd(N) + " を通りこしている）"], [terms[N - 2], `それは 1 つ手前の a<sub>${N - 1}</sub>`], [ans - a1, "初項 a<sub>1</sub> をたし忘れている（差の合計だけ）"]),
         hint: ["となりの差を書き出してみよう", kind === "geo" ? `差は ×2 ずつ。a<sub>${N}</sub> まで のばそう` : `差は ${c} ずつ増える。a<sub>${N}</sub> まで のばそう`],
         steps: [
           { say: `数列 ${terms.slice(0, known).join(", ")}, …`, eq: terms.slice(0, known).join(", ") + ", …" },
@@ -1649,6 +1740,7 @@ unit({
     title: "差が等比数列", problem: "数列 2, 3, 5, 9, 17, … の一般項 a<sub>n</sub> は？",
     p: { terms: [2, 3, 5, 9, 17, 33], known: 5, target: 6, pattern: "1, 2, 4, 8 → ×2（等比）", pattern2: "差をのばすと 16" },
     choices: ["a<sub>n</sub> = 2<sup>n−1</sup> + 1", "a<sub>n</sub> = 2<sup>n</sup> + 1", "a<sub>n</sub> = 2<sup>n−1</sup>", "a<sub>n</sub> = n<sup>2</sup> − n + 2"],
+    why: WHY(["a<sub>n</sub> = 2<sup>n</sup> + 1", "n = 1 を入れると 3。a<sub>1</sub> = 2 に合わない"], ["a<sub>n</sub> = 2<sup>n−1</sup>", "+1 がない。n = 1 で 1 になり a<sub>1</sub> = 2 に合わない"], ["a<sub>n</sub> = n<sup>2</sup> − n + 2", "a<sub>1</sub>, a<sub>2</sub> には合うが a<sub>3</sub> = 8（本当は 5）"]),
     hint: ["差は 1, 2, 4, 8 … 何数列？", "a<sub>n</sub> = 2 + (1 + 2 + … + 2<sup>n−2</sup>)"],
     steps: [
       { say: "数列 2, 3, 5, 9, 17, …", eq: "2, 3, 5, 9, 17, …" },
@@ -1744,6 +1836,7 @@ unit({
       return {
         title: "一般項を求める", problem: `a<sub>1</sub> = ${a1}、a<sub>n+1</sub> = ${sq} で定まる数列の一般項は？`,
         p: { a1, pp, q, N: 5 },
+        why: WHY([`a<sub>n</sub> = ${recEq(c, pp, -al)}`, "α をもどすときの 符号がちがう（a<sub>n</sub> = (ずれ) + α）"], [`a<sub>n</sub> = ${recEq(a1 || c + 1, pp, al)}`, "等比数列の初項を a<sub>1</sub> にしている。初項は a<sub>1</sub> − α"], [`a<sub>n</sub> = ${c === 1 ? "" : c + "·"}${pp}<sup>n</sup> ${al < 0 ? "−" : "+"} ${Math.abs(al)}`, "べきは n − 1。n = 1 を入れて a<sub>1</sub> になるか たしかめよう"], [`a<sub>n</sub> = ${c === 1 ? "" : c + "·"}${pp}<sup>n−1</sup>`, "最後に α を もどし忘れている"], [`a<sub>n</sub> = ${recEq(c + 1, pp, al)}`, `等比数列の初項 a<sub>1</sub> − α = ${mns(a1)} − (${mns(al)}) = ${c} の計算がずれている`], [`a<sub>n</sub> = ${recEq(c, pp, 2 * al)}`, `α = ${mns(al)}。α = pα + q の解き方を たしかめよう`], [`a<sub>n</sub> = ${recEq(c, pp + 1, al)}`, `公比は p = ${pp}`]),
         choices: choices4(`a<sub>n</sub> = ${recEq(c, pp, al)}`, [`a<sub>n</sub> = ${recEq(c, pp, -al)}`, `a<sub>n</sub> = ${recEq(a1 || c + 1, pp, al)}`, `a<sub>n</sub> = ${c === 1 ? "" : c + "·"}${pp}<sup>n</sup> ${al < 0 ? "−" : "+"} ${Math.abs(al)}`, `a<sub>n</sub> = ${recEq(c + 1, pp, al)}`, `a<sub>n</sub> = ${recEq(c, pp, 2 * al)}`, `a<sub>n</sub> = ${c === 1 ? "" : c + "·"}${pp}<sup>n−1</sup>`, `a<sub>n</sub> = ${recEq(c, pp + 1, al)}`]),
         hint: [`α = ${pp}α ${q < 0 ? "−" : "+"} ${Math.abs(q)} を解こう`, `a<sub>n</sub> − α は 初項 a<sub>1</sub> − α、公比 ${pp}`],
         steps: [
@@ -1759,6 +1852,7 @@ unit({
     title: "どこに近づく？", problem: "a<sub>1</sub> = 4、a<sub>n+1</sub> = <span class=\"fr\"><i>1</i><i>2</i></span>a<sub>n</sub> + 1。n を大きくすると a<sub>n</sub> は？",
     p: { a1: 4, pp: .5, q: 1, N: 8 }, txt: true,
     choices: ["2 に近づく", "0 に近づく", "1 に近づく", "どんどん大きくなる"],
+    why: WHY(["0 に近づく", "0 に近づくのは α との <b>ずれ</b> a<sub>n</sub> − 2。a<sub>n</sub> 自体は 2 に近づく"], ["1 に近づく", "1 は たす数 q。α = ½α + 1 を解くと 2"], ["どんどん大きくなる", "p = ½ なので ずれは半分ずつ 小さくなる"]),
     hint: ["α = α/2 + 1 を解いてみよう", "α とのずれが ×1/2 ずつ…"],
     steps: [
       { say: "計算すると 4, 3, 2.5, 2.25, 2.125, … 少しずつ <b>何かに近づく</b>。", eq: "4 → 3 → 2.5 → 2.25 → 2.125 → …" },
@@ -1844,13 +1938,13 @@ unit({
     rand: () => ({ q: L(ri(0, 1), ri(0, 2), ri(0, 2)) }),
     gen: ({ q }) => {
       const Q = [
-        { f: "1 + 3 + 5 + … + (2n − 1) = n<sup>2</sup>", hyp: "1 + 3 + … + (2k − 1) = k<sup>2</sup>", next: "2k + 1", pl: ["1 + 3 + … + (2k−1) = k²", "(2k+1)"], c: ["k<sup>2</sup> + (2k + 1)", "k<sup>2</sup> + (2k − 1)", "k<sup>2</sup> + 2k", "(k + 1)<sup>2</sup> + (2k + 1)"], res: "k<sup>2</sup> + 2k + 1 = (k + 1)<sup>2</sup>" },
-        { f: "1 + 2 + 4 + … + 2<sup>n−1</sup> = 2<sup>n</sup> − 1", hyp: "1 + 2 + … + 2<sup>k−1</sup> = 2<sup>k</sup> − 1", next: "2<sup>k</sup>", pl: ["1 + 2 + … + 2^(k−1) = 2^k − 1", "2^k"], c: ["(2<sup>k</sup> − 1) + 2<sup>k</sup>", "(2<sup>k</sup> − 1) + 2<sup>k+1</sup>", "(2<sup>k</sup> − 1) + 2<sup>k−1</sup>", "2<sup>k</sup> + 2<sup>k</sup>"], res: "2·2<sup>k</sup> − 1 = 2<sup>k+1</sup> − 1" },
-        { f: "1<sup>2</sup> + 2<sup>2</sup> + … + n<sup>2</sup> = n(n+1)(2n+1)/6", hyp: "1<sup>2</sup> + … + k<sup>2</sup> = k(k+1)(2k+1)/6", next: "(k + 1)<sup>2</sup>", pl: ["1² + … + k² = k(k+1)(2k+1)/6", "(k+1)²"], c: ["k(k+1)(2k+1)/6 + (k + 1)<sup>2</sup>", "k(k+1)(2k+1)/6 + k<sup>2</sup>", "k(k+1)(2k+1)/6 + (k + 1)", "(k+1)(k+2)(2k+3)/6 + (k + 1)<sup>2</sup>"], res: "(k+1)(k+2)(2k+3)/6" },
+        { f: "1 + 3 + 5 + … + (2n − 1) = n<sup>2</sup>", hyp: "1 + 3 + … + (2k − 1) = k<sup>2</sup>", next: "2k + 1", pl: ["1 + 3 + … + (2k−1) = k²", "(2k+1)"], w: ["(2k − 1) は n = k の最後の項。次の項は 2(k + 1) − 1 = 2k + 1", "次の項は 2k ではなく 2k + 1（奇数）", "仮定で k<sup>2</sup> におきかえるところを (k + 1)<sup>2</sup> にしている"], c: ["k<sup>2</sup> + (2k + 1)", "k<sup>2</sup> + (2k − 1)", "k<sup>2</sup> + 2k", "(k + 1)<sup>2</sup> + (2k + 1)"], res: "k<sup>2</sup> + 2k + 1 = (k + 1)<sup>2</sup>" },
+        { f: "1 + 2 + 4 + … + 2<sup>n−1</sup> = 2<sup>n</sup> − 1", hyp: "1 + 2 + … + 2<sup>k−1</sup> = 2<sup>k</sup> − 1", next: "2<sup>k</sup>", pl: ["1 + 2 + … + 2^(k−1) = 2^k − 1", "2^k"], w: ["次の項は 2<sup>(k+1)−1</sup> = 2<sup>k</sup>", "2<sup>k−1</sup> は n = k の最後の項", "仮定の 2<sup>k</sup> − 1 の −1 を忘れている"], c: ["(2<sup>k</sup> − 1) + 2<sup>k</sup>", "(2<sup>k</sup> − 1) + 2<sup>k+1</sup>", "(2<sup>k</sup> − 1) + 2<sup>k−1</sup>", "2<sup>k</sup> + 2<sup>k</sup>"], res: "2·2<sup>k</sup> − 1 = 2<sup>k+1</sup> − 1" },
+        { f: "1<sup>2</sup> + 2<sup>2</sup> + … + n<sup>2</sup> = n(n+1)(2n+1)/6", hyp: "1<sup>2</sup> + … + k<sup>2</sup> = k(k+1)(2k+1)/6", next: "(k + 1)<sup>2</sup>", pl: ["1² + … + k² = k(k+1)(2k+1)/6", "(k+1)²"], w: ["k<sup>2</sup> は n = k の最後の項。次は (k + 1)<sup>2</sup>", "2 乗を忘れている", "左辺の前半は 仮定（n = k の右辺）でおきかえる。n = k + 1 の右辺ではない"], c: ["k(k+1)(2k+1)/6 + (k + 1)<sup>2</sup>", "k(k+1)(2k+1)/6 + k<sup>2</sup>", "k(k+1)(2k+1)/6 + (k + 1)", "(k+1)(k+2)(2k+3)/6 + (k + 1)<sup>2</sup>"], res: "(k+1)(k+2)(2k+3)/6" },
       ][q];
       return {
         title: "n = k + 1 の左辺", problem: `${Q.f} を帰納法で証明する。n = k で成り立つと仮定したとき、<b>n = k + 1 の左辺</b>（＝の左がわ）は どう書ける？`,
-        p: { kmap: [2, 3, 3, 4], lines: Q.pl }, choices: Q.c, txt: true,
+        p: { kmap: [2, 3, 3, 4], lines: Q.pl }, choices: Q.c, txt: true, why: WHY([Q.c[1], Q.w[0]], [Q.c[2], Q.w[1]], [Q.c[3], Q.w[2]]),
         hint: ["n = k + 1 の左辺 ＝ n = k の左辺 ＋ 次の 1 項。n = k の左辺は 仮定の式で おきかえられる", `次の 1 項は ${Q.next}`],
         steps: [
           { say: `仮定（k 枚目が倒れた）：${Q.hyp}`, eq: Q.hyp },
@@ -1865,6 +1959,7 @@ unit({
     title: "足りないものは？", problem: "ある証明：「n = k で成り立つと仮定すると n = k + 1 でも成り立つ。よって すべての n で成り立つ。」この証明に <b>足りない</b> のは？",
     p: { mode: "nobase" }, txt: true,
     choices: ["n = 1 で成り立つことの確認（①）", "n = k + 1 で成り立つという仮定", "n = 0 での計算", "何も足りない"],
+    why: WHY(["n = k + 1 で成り立つという仮定", "n = k + 1 は 示すこと。仮定してはいけない"], ["n = 0 での計算", "自然数は 1 から。最初のドミノは n = 1"], ["何も足りない", "②だけでは 1 枚目が倒れない"]),
     hint: ["ドミノで考えると？", "②だけでは、最初の 1 枚が倒れるとは かぎらない"],
     steps: [
       { say: "②（となりに伝わる しくみ）は ある。", eq: "② n = k ⇒ n = k + 1 は OK" },
@@ -1988,6 +2083,7 @@ unit({
         title: "期待値を求める", problem: `X の確率分布が <span class="eq">X = 1, 2, 3, 4</span> で <span class="eq">P = ${ws.map(w => frs(w, D)).join(", ")}</span> のとき、E(X) は？`,
         p: { xs, ws },
         choices: choices4(alt(E), [alt(2.5), alt(sum(xs.map((x, i) => x * ws[i]))), alt(E + .3), alt(E - .4), alt(E + .5)]),
+        why: Object.assign(WHY(...[.3, -.4, .5].map(e => [alt(E + e), "x × P の計算か たし算が ずれている。4 つの かけ算を 1 つずつ たしかめよう"])), WHY([alt(2.5), "1, 2, 3, 4 の ふつうの平均。確率の重みを使っていない"], [alt(sum(xs.map((x, i) => x * ws[i]))), `分子だけ たしている。分母 ${D} でわる`])),
         hint: ["値 × 確率 を 4 つ計算して たそう", "1×P₁ + 2×P₂ + 3×P₃ + 4×P₄"],
         steps: [
           { say: "棒の高さが 確率。", eq: `P = ${ws.map(w => frs(w, D)).join(", ")}` },
@@ -2001,6 +2097,7 @@ unit({
     title: "Y = 2X + 1", problem: "サイコロの目を X、Y = 2X + 1 とする。E(Y) と V(Y) は？（E(X) = 7/2、V(X) = 35/12）",
     p: { mode: "lin" },
     choices: ["E = 8, V = 35/3", "E = 8, V = 35/6", "E = 7, V = 35/3", "E = 8, V = 47/12"],
+    why: WHY(["E = 8, V = 35/6", "分散は 2 倍ではなく 2<sup>2</sup> = 4 倍"], ["E = 7, V = 35/3", "E(2X + 1) の +1 を忘れている"], ["E = 8, V = 47/12", "V に +1 をしている。ずらすだけでは ばらつきは かわらない"]),
     hint: ["つりあう点も 2 倍して 1 ずらす", "ばらつき（はば）が 2 倍 → 分散は 2² 倍。+1 は ばらつきに関係ない"],
     steps: [
       { say: "X（サイコロの目）：E(X) = 7/2、V(X) = 35/12。", eq: "E(X) = 7/2,  V(X) = 35/12" },
@@ -2074,6 +2171,7 @@ unit({
       return {
         title: "E と V", problem: `確率 ${frs(pn, pd)} で当たるくじを ${n} 回引く（毎回もどす）。当たりの回数 X の E(X) と V(X) は？`,
         p: { n, p: pn / pd, Elab: f(E), plab: frs(pn, pd) },
+        why: WHY([c(f(E), frs(V[0], V[1] * 2)), "V を 2 でわっている。V = np(1 − p) のまま"], [c(frs(E[0], E[1] * 2), f(V)), "E を 2 でわっている。E = np のまま"], [c(f(E), f(E)), "V = np にしている。(1 − p) をかけ忘れ"], [c(f(E), frs(n * pn * pn, pd * pd)), "V = np<sup>2</sup> にしている。正しくは np(1 − p)"], [c(frs(n * (pd - pn), pd), f(V)), "E がはずれの回数 n(1 − p) になっている"]),
         choices: choices4(c(f(E), f(V)), [c(f(E), f(E)), c(f(E), frs(n * pn * pn, pd * pd)), c(frs(n * (pd - pn), pd), f(V)), c(f(E), frs(V[0], V[1] * 2)), c(frs(E[0], E[1] * 2), f(V))]),
         hint: ["X は 二項分布 B(n, p)", "E = np、V = np(1 − p)"],
         steps: [
@@ -2088,6 +2186,7 @@ unit({
     title: "ちょうど 2 回", problem: "サイコロを 5 回投げる。<b>6 の目がちょうど 2 回</b> 出る確率は？",
     p: { n: 5, p: 1 / 6, hl: 2, feat: { E: 99, V: 99, hl: 1, val: 2 } },
     choices: [fr(625, 3888), fr(125, 7776), fr(5, 18), fr(125, 3888)],
+    why: WHY([fr(125, 7776), "並び方 <sub>5</sub>C<sub>2</sub> = 10 通りを かけ忘れている"], [fr(5, 18), "はずれる 3 回分の (5/6)<sup>3</sup> を かけ忘れている"], [fr(125, 3888), "並び方を 2 通りにしている。<sub>5</sub>C<sub>2</sub> = 10"]),
     hint: ["6 が出る 2 回を 5 回のうち どこにするか：<sub>5</sub>C<sub>2</sub>", "1 通りの確率 (1/6)<sup>2</sup>(5/6)<sup>3</sup>"],
     steps: [
       { say: "1 回で 6 が出る確率 1/6。5 回は おたがいに影響しない（独立）。X は B(5, 1/6)。", eq: "X は B(5, 1/6)" },
@@ -2187,6 +2286,7 @@ unit({
         title: "確率を求める", problem: `X が N(${m}, ${sd}<sup>2</sup>) にしたがうとき、<b>P(${q})</b> は？（p(${z}) = ${zTab(z)}）`,
         p: { m, sd, lo, hi, vlab: true, ans: f4(ans) },
         choices: choices4(f4(ans), w.map(f4)),
+        why: WHY(...w.map((v, i) => [f4(v), ({ ge: [`p(${z}) は 0〜z の面積。右はしは 0.5 − p(z)`, "左がわの面積になっている", "−z〜z の面積になっている"], btw: ["かた方だけ。左右あるので 2 倍", "はしの部分の面積になっている", "0.5 + p(z) は 左半分＋右の一部"], le: ["0.5（左半分）を たし忘れている", "右はしの面積になっている", "−z〜z の面積になっている"] })[type][i]])),
         hint: ["まず 標準化して z を出そう", "図の どの部分の面積か考えて、0.5 や p(z) を たす・ひく"],
         steps: [
           { say: `山の <b>赤い線</b> で区切られた部分の面積を求める。`, eq: `P(${q}) = ?` },
@@ -2201,6 +2301,7 @@ unit({
     title: "二項分布を 正規分布で", problem: "コインを 400 回投げる。表が <b>220 回以上</b> 出る確率は？（p(2) = 0.4772）",
     p: { m: 200, sd: 10, lo: 220, hi: null, vlab: true, binom: { n: 400, p: .5 }, kmap: [0, 0, 1, 3], ans: "0.0228" },
     choices: ["0.0228", "0.4772", "0.9772", "0.0456"],
+    why: WHY(["0.4772", "p(2) は 0〜2 の面積。右はしは 0.5 − p(2)"], ["0.9772", "220 回以下（左がわ）の確率になっている"], ["0.0456", "両はしを たしている。「以上」は 右はしだけ"]),
     hint: ["X は B(400, 1/2)。m = np、σ = √(np(1 − p))", "z = (220 − 200)/10"],
     steps: [
       { say: "X は B(400, ½)。n が大きいと 棒グラフは <b>正規分布の山に そっくり</b>。", eq: "B(400, ½) ≒ 正規分布" },
@@ -2308,6 +2409,7 @@ unit({
         title: "信頼区間", problem: `大きさ ${n} の標本の平均が ${xb}、母標準偏差 ${sd}。母平均 m の <b>信頼度 ${cf}%</b> の信頼区間は？`,
         p: { mode: "calc", xb, sd, n, conf }, txt: true,
         choices: choices4(iv(half), [iv(conf * sd), iv((conf === 2.58 ? 1.96 : 2.58) * se), iv(conf * sd / n)]),
+        why: WHY([iv(conf * sd), "σ を √n でわり忘れている"], [iv((conf === 2.58 ? 1.96 : 2.58) * se), `信頼度 ${cf}% なら ${conf} を使う`], [iv(conf * sd / n), "√n ではなく n でわっている"]),
         hint: ["まず σ/√n を計算", `x̄ ± ${conf} × σ/√n`],
         steps: [
           { say: `x̄ = <b>${xb}</b>。`, eq: `x̄ = ${xb}` },
@@ -2322,6 +2424,7 @@ unit({
     title: "はばを半分に", problem: "信頼区間の <b>はばを半分</b> にするには、標本の大きさ n を何倍にすればよい？",
     p: { mode: "width", xb: 50, sd: 10, n: 25 },
     choices: ["4 倍", "2 倍", "16 倍", "1/2 倍"],
+    why: WHY(["2 倍", "はばは 1/√n に比例。2 倍では 1/√2 ≈ 0.71 倍"], ["16 倍", "16 倍だと はばは 1/4。半分なら 4 倍で十分"], ["1/2 倍", "n をへらすと 区間は 広くなる"]),
     hint: ["はば = 2 × 1.96 × σ/√n", "n は √ の中。√n を 2 倍にするには？"],
     steps: [
       { say: "はば = 2 × 1.96 × σ/√n。n は <b>分母の √ の中</b>。", eq: "はば ∝ 1/√n" },
@@ -2406,6 +2509,7 @@ unit({
       return {
         title: "判定する", problem: `コインを ${n} 回投げたら 表が <b>${x} 回</b>。表が出やすいと判断できるか（有意水準 ${al}、片側）。P(X ≧ ${x}) と判定は？`,
         p: { n, p0: .5, x, alpha }, txt: true,
+        why: WHY([`P ≈ ${fmt(t, 4)} → ${v(!yes)}`, `確率と判定が逆。${alpha} より小さい → 棄却 → 出やすいと判断`], [`P ≈ ${fmt(px, 4)} → ${v(px < alpha)}`, `それは ちょうど ${x} 回の確率だけ。${x} 回 <b>以上</b> を全部たす`], [`P ≈ ${fmt(px, 4)} → ${v(px >= alpha)}`, `それは ちょうど ${x} 回の確率だけ。${x} 回 <b>以上</b> を全部たす`], [`P ≈ ${fmt(1 - t + px, 4)} → ${v(false)}`, `${x} 回 <b>以下</b> の確率（反対がわ）になっている`]),
         choices: choices4(`P ≈ ${fmt(t, 4)} → ${v(yes)}`, [`P ≈ ${fmt(t, 4)} → ${v(!yes)}`, `P ≈ ${fmt(px, 4)} → ${v(px < alpha)}`, `P ≈ ${fmt(1 - t + px, 4)} → ${v(false)}`, `P ≈ ${fmt(px, 4)} → ${v(px >= alpha)}`]),
         hint: ["P(X = x) だけでなく、x 回 <b>以上</b> 全部の確率をたす", `その確率が ${alpha} より小さければ 棄却 ＝「ふつう」を捨てる ＝ 出やすいと判断できる`],
         steps: [
@@ -2420,7 +2524,8 @@ unit({
   ap: {
     title: "新薬の効果", problem: "これまでの薬で治る確率は 60%。新薬を 100 人に使ったら <b>70 人</b> 治った。新薬は効果があると言えるか（有意水準 5%、片側。正規分布で近似）。",
     p: { mode: "norm", m: 60, sd: Math.sqrt(24), x: 70 }, txt: true,
-    choices: ["z ≈ 2.04 > 1.645 → 効果があると言える", "P ≈ 0.021 > 0.01 → 言えない（有意水準を 1% とまちがえた）", "z ≈ 0.10 → 言えない（標準化で σ でわっていない）", "70 > 60 なので 必ず効果がある"],
+    choices: ["z ≈ 2.04 > 1.645 → 効果があると言える", "P ≈ 0.021 > 0.01 → 言えない", "z ≈ 0.10 → 言えない", "70 > 60 なので 必ず効果がある"],
+    why: WHY(["P ≈ 0.021 > 0.01 → 言えない", "有意水準は 5%（0.05）。1% とまちがえている"], ["z ≈ 0.10 → 言えない", "(70 − 60) を σ でわっていない（100 でわっている）"], ["70 > 60 なので 必ず効果がある", "60% でも たまたま 70 人治ることはある。めずらしさを 確率で はかる"]),
     hint: ["仮説「効果なし（p = 0.6）」で m = 60、σ = √(100 × 0.6 × 0.4)", "z = (70 − 60)/σ を 1.645 とくらべる"],
     steps: [
       { say: "帰無仮説 H<sub>0</sub>：「新薬も 60%（効果なし）」、対立仮説 H<sub>1</sub>：「60% より高い」。治る人数 X は B(100, 0.6)。n = 100 と大きいので、正規分布の単元と同じく N(60, 24) で近似：m = 60、σ = √24 ≈ 4.9。", eq: "m = 60,  σ = √24 ≈ 4.90" },
@@ -2878,6 +2983,7 @@ function openSettings() {
   box.append(seg("文字の大きさ", [[0, "小"], [1, "中"], [2, "大"]], store.get("fz", 0), v => { fz = v; store.set("fz", v); applyFz(); render(); }));
   box.append(seg("画面", [["", "自動"], ["light", "明るい"], ["dark", "暗い"]], store.get("theme", "") || "", v => { if (v) document.documentElement.dataset.theme = v; else delete document.documentElement.dataset.theme; store.set("theme", v); }));
   box.append(h("div", { class: "fld" }, h("span", { class: "fl" }, "全画面"), h("button", { type: "button", class: "mini", onclick: () => { if (document.fullscreenElement) document.exitFullscreen(); else if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(() => {}); } }, "⛶ 全画面（プロジェクター用）")));
+  box.append(h("div", { class: "fld" }, h("span", { class: "fl" }, "使い方"), h("button", { type: "button", class: "mini", onclick: () => welcome(true) }, "👋 はじめての人へ（使い方）")));
   box.append(h("hr", { class: "sep" }), h("b", {}, "🏆 クラス対戦のデータベース（先生が 1 回だけ）"));
   const inp = h("input", { type: "text", class: "ansin", placeholder: "https://〇〇-default-rtdb.〇〇.firebasedatabase.app", value: store.get("db", "") });
   box.append(h("div", { class: "ansrow" }, inp, h("button", { type: "button", class: "btn", onclick: () => { store.set("db", inp.value.trim().replace(/\/+$/, "")); if (!dbBase()) { toast("https:// で始まる URL を入れてください"); return; } const k = "rooms/ping_" + pid(); api("PUT", k, { t: { ".sv": "timestamp" } }).then(() => api("DELETE", k)).then(() => toast("✅ つながりました"), e => toast(`✕ つながりません（${e.message}）`)); } }, "保存して接続テスト")));
@@ -2952,11 +3058,12 @@ function openHash() {
   if (hs.startsWith("mk/")) { const [id, q] = hs.slice(3).split("?"); const u = UNITS.find(x => x.id === id); if (!u) return false; S.u = u; renderUnits(); openMaker(q ? new URLSearchParams(q) : null); return true; }
   const [id, pi] = hs.split("/");
   if (!UNITS.some(u => u.id === id)) return false;
-  if (S.u && id === S.u.id && S.mode === "lesson" && +pi === S.pi) return true;
+  if (S.inst && S.u && id === S.u.id && S.mode === "lesson" && +pi === S.pi) return true;
   openUnit(id, pi == null || pi === "" ? null : +pi); return true;
 }
 window.addEventListener("hashchange", openHash);
 if (!openHash()) openUnit(store.get("last", UNITS[0].id));
+if (!/^#(join|host|battle|mk\/|ta)/.test(location.hash)) setTimeout(() => welcome(false), 400);
 </script>
 </body>
 </html>
