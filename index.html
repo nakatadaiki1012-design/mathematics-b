@@ -418,6 +418,103 @@ sub, sup { font-size: .76em; line-height: 0; }
   .hs b { font-size: 1.25rem; }
   .count b { font-size: 3.5rem; }
 }
+/* --- 🪜 解き方ステップ・じっくりチャレンジ・クイズ大会（数学Aラボと同じ見た目） --- */
+.lab .stars { color: var(--gold); letter-spacing: 1px; } .lab .stars i { font-style: normal; color: var(--line); }
+.sprob { display: flex; gap: 8px; align-items: baseline; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); padding: 6px 10px; font-size: .9rem; line-height: 1.55; font-weight: 600; }
+.sprob > b { flex: none; font-size: .68rem; color: var(--panel); background: var(--muted); border-radius: 3px; padding: 1px 6px; }
+.fhint { border-left: 3px solid var(--gold); background: var(--gold-soft); padding: 5px 10px; font-size: .9rem; border-radius: 0 4px 4px 0; font-family: var(--font-data); }
+.fhint b { font-family: var(--font-body); }
+.ws { display: flex; flex-direction: column; gap: 4px; }
+.wshd { font-size: .72rem; font-weight: 700; color: var(--muted); }
+.wsr { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: baseline; gap: 8px; font-size: .85rem; padding: 3px 8px; border-radius: 6px; }
+.wsr .no { font-weight: 800; }
+.wsr .sask { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wsr .ans { font-weight: 800; text-align: right; font-family: var(--font-data); }
+.wsr.ok { background: var(--accent-soft); } .wsr.ok .ans, .wsr.ok .no { color: var(--accent); }
+.wsr.ng { background: var(--warm-soft); } .wsr.ng .ans, .wsr.ng .no { color: var(--warm); }
+.wsr.fut { color: var(--muted); opacity: .7; }
+.wsr.cur { display: block; position: relative; background: var(--panel); border: 3px solid var(--warm); padding: 12px 10px 10px; box-shadow: 0 0 0 4px var(--warm-soft); margin-top: 6px; animation: wsflash .5s ease-out; }
+.wsr.cur.ok { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); animation: none; } .wsr.cur.ng { animation: none; }
+@keyframes wsflash { from { transform: scale(.97); box-shadow: 0 0 0 12px var(--warm-soft); } }
+.curhd { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.curhd .no { font-size: 1.4rem; color: var(--warm); line-height: 1; }
+.curhd .sask { font-size: 1rem; font-weight: 800; color: var(--ink); line-height: 1.4; flex: 1; white-space: normal; }
+.curhd .here { position: absolute; top: -11px; right: 12px; font-size: .72rem; font-weight: 800; color: #fff; background: var(--warm); border-radius: 10px; padding: 2px 10px; }
+.wsr.cur.ok .here { background: var(--accent); } .wsr.cur.ok .curhd .no { color: var(--accent); }
+.choice .kb { display: inline-block; min-width: 1.3em; margin-right: 4px; font-size: .7em; color: var(--muted); border: 1px solid var(--line); border-radius: 3px; text-align: center; font-family: var(--font-data); vertical-align: 1px; }
+.choices.steps { grid-template-columns: 1fr 1fr; } .choices.steps .choice { font-family: var(--font-body); font-size: .92rem; text-align: left; }
+.choice.mine { outline: 3px solid var(--ink); outline-offset: 1px; }
+.choices.shapes .choice { display: flex; align-items: center; gap: 8px; border-color: var(--sc); box-shadow: 2px 2px 0 var(--sc); text-align: left; }
+.choices.shapes .choice .sh { flex: none; width: 28px; height: 28px; border-radius: 5px; display: grid; place-items: center; background: var(--sc); color: #fff; font-size: .95rem; }
+.whyline { border-left: 3px solid var(--warm); background: var(--warm-soft); padding: 4px 8px; font-size: .85rem; border-radius: 0 4px 4px 0; margin-top: 6px; }
+.qtools { margin-top: 2px; } .mini.on { border-color: var(--gold); background: var(--gold-soft); }
+.clhud { display: flex; align-items: center; gap: 8px; }
+.clhud .lives { font-size: 1.05rem; letter-spacing: 1px; } .clhud .qn b { font-family: var(--font-data); font-size: 1.2rem; }
+.clhud .fire { color: var(--warm); font-weight: 800; } .clhud .sc { margin-left: auto; text-align: right; line-height: 1.1; } .clhud .sc small { display: block; font-size: .68rem; color: var(--muted); } .clhud .sc b { font-family: var(--font-data); font-size: 1.3rem; }
+.qtimer { position: relative; height: 22px; border: 1.5px solid var(--ink); border-radius: 11px; overflow: hidden; background: var(--panel); flex: none; }
+.qtimer i { position: absolute; inset: 0 auto 0 0; background: var(--accent-soft); border-right: 3px solid var(--accent); transition: width .25s linear; }
+.qtimer.hurry i { background: var(--warm-soft); border-right-color: var(--warm); }
+.qtimer span { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 700; font-size: .78rem; }
+.clfb { border: 2px solid var(--line); border-radius: 8px; padding: 8px 12px; background: var(--panel); text-align: center; display: flex; flex-direction: column; gap: 5px; }
+.clfb.ok { border-color: var(--accent); } .clfb.ng { border-color: var(--warm); } .clfb.wait { border-style: dashed; }
+.clfb .big { font-size: 1.15rem; font-weight: 800; } .clfb.ok .big { color: var(--accent); } .clfb.ng .big { color: var(--warm); }
+.clfb .sub { font-size: .88rem; }
+.rvfo { font-family: var(--font-data); font-size: .85rem; color: var(--muted); }
+.qpn { font-weight: 700; color: var(--muted); font-size: .85rem; }
+.ghp { position: relative; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column; gap: 5px; background: var(--bg); }
+.ghp.rec { border: 2px solid var(--accent); }
+.ghp > b { font-size: .98rem; } .ghp > p { display: none; }
+.gres .minirow .btn { white-space: nowrap; padding: 7px 10px; }
+.gbadge { position: absolute; top: -9px; right: 10px; background: var(--accent); color: var(--accent-ink); font-size: .68rem; font-weight: 800; padding: 1px 9px; border-radius: 9px; }
+.bestv { font-size: .78rem; color: var(--muted); }
+.rules { margin: 6px 0 0; padding-left: 1.1em; text-align: left; font-size: .85rem; line-height: 1.6; color: var(--ink); }
+.tpop { position: absolute; right: 70px; top: 30px; z-index: 5; font-weight: 800; font-size: .85rem; padding: 1px 8px; border-radius: 4px; pointer-events: none; animation: tpop .9s ease-out forwards; }
+.tpop.up { color: var(--accent); background: var(--accent-soft); } .tpop.dn { color: var(--warm); background: var(--warm-soft); }
+@keyframes tpop { to { transform: translateY(-16px); opacity: 0; } }
+.hud { position: relative; }
+.rk .up { font-style: normal; font-size: .65em; color: var(--accent); } .rk .fin { font-style: normal; font-size: .6em; color: var(--muted); }
+.awards { display: flex; flex-wrap: wrap; gap: 6px 14px; justify-content: center; font-size: clamp(12px, 2.6cqh, 18px); flex: none; }
+.awards .aw b { color: var(--warm); }
+.qctl { display: flex; justify-content: flex-end; gap: 8px; flex: none; }
+.ansn { margin-left: auto; font-size: clamp(13px, 2.8cqh, 22px); } .ansn b { font-family: var(--font-data); font-size: 1.3em; color: var(--warm); }
+.bhead .stars { color: var(--gold); font-size: clamp(14px, 3cqh, 24px); }
+.bq { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 12px; align-items: start; overflow: hidden; }
+.bq > .qc:only-child { grid-column: 1 / -1; }
+.bfig svg, .bex svg { width: 100%; height: auto; max-height: 46cqh; border: 1px solid var(--line); border-radius: 6px; background: var(--stage-1); }
+.qc { display: flex; flex-direction: column; gap: 10px; }
+.qcq { font-size: clamp(16px, 4.4cqh, 34px); font-weight: 700; line-height: 1.5; }
+.qcch { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.qch { position: relative; display: flex; align-items: center; gap: 10px; border: 2px solid var(--sc); border-radius: 8px; background: var(--panel); padding: 8px 10px; font-family: var(--font-data); font-weight: 700; font-size: clamp(14px, 3.6cqh, 28px); min-height: clamp(44px, 9cqh, 84px); overflow: hidden; }
+.qch .sh { flex: none; width: clamp(26px, 5.5cqh, 46px); height: clamp(26px, 5.5cqh, 46px); border-radius: 6px; display: grid; place-items: center; background: var(--sc); color: #fff; font-size: clamp(14px, 3cqh, 26px); position: relative; z-index: 1; }
+.qch .tx { position: relative; z-index: 1; }
+.qch.right { background: var(--accent-soft); border-color: var(--accent); } .qch.dim { opacity: .5; }
+.qch .ok { margin-left: auto; color: var(--accent); font-size: 1.3em; position: relative; z-index: 1; }
+.qch .cnt { position: absolute; inset: 0 auto 0 0; background: color-mix(in srgb, var(--sc) 22%, transparent); }
+.qch em { margin-left: auto; font-style: normal; font-size: .75em; color: var(--muted); position: relative; z-index: 1; } .qch.right em { margin-left: 8px; }
+.bq.rev .qcch { grid-template-columns: 1fr; }
+.bex { display: flex; flex-direction: column; gap: 8px; font-size: clamp(12px, 2.6cqh, 18px); }
+.bwhy { margin: 0; padding-left: 1.1em; line-height: 1.5; }
+.podium { display: grid; grid-template-columns: 1fr 1.15fr 1fr; align-items: end; gap: 10px; flex: none; max-width: 640px; width: 100%; margin: 0 auto; }
+.pd { display: flex; flex-direction: column; align-items: center; gap: 2px; text-align: center; } .pd .md { font-size: clamp(26px, 7cqh, 54px); } .pd b { font-size: clamp(15px, 3.6cqh, 28px); } .pd small { color: var(--muted); font-family: var(--font-data); }
+.pd i { display: block; width: 100%; background: var(--chip); border: 1.5px solid var(--line); border-radius: 6px 6px 0 0; } .pd.p1 i { height: clamp(36px, 11cqh, 100px); background: var(--gold); } .pd.p2 i { height: clamp(26px, 8cqh, 70px); } .pd.p3 i { height: clamp(18px, 5cqh, 46px); }
+.rvlist { display: flex; flex-direction: column; gap: 10px; }
+.rvitem { border: 1.5px solid var(--line); border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column; gap: 6px; }
+.rvitem.ng { border-color: var(--warm); } .rvitem.ok { border-color: var(--accent); }
+.rvhead { display: flex; gap: 6px; align-items: center; font-size: .8rem; } .rvhead .rvn { font-family: var(--font-data); font-weight: 700; color: var(--muted); }
+.rvhead .pill, .lab .pill { border: 1px solid var(--ink); border-radius: 3px; padding: 0 6px; font-weight: 700; } .rvhead .stars { color: var(--gold); }
+.rvq { font-weight: 700; line-height: 1.55; } .rvans { font-size: .9rem; } .okc { color: var(--accent); } .ngc { color: var(--warm); }
+.rvtrail { margin: 0; padding-left: 1.4em; font-size: .85rem; display: flex; flex-direction: column; gap: 2px; }
+.rvtrail li { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; } .rvtrail li span { color: var(--muted); } .rvtrail li b { font-family: var(--font-data); } .rvtrail li i { font-style: normal; font-weight: 800; }
+.rvtrail li.ok i { color: var(--accent); } .rvtrail li.ng i, .rvtrail li.ng b { color: var(--warm); }
+.card.game .card-body { overflow: auto; }
+.stage-area:has(#board) .stools { display: none; }
+@media (max-width: 860px) { .card.game { max-height: 66dvh; } }
+@media (max-width: 860px) {
+  .choices.steps { grid-template-columns: 1fr 1fr; } .choices.steps .choice { font-size: .82rem; padding: 6px 6px; }
+  .wsr.cur { padding: 10px 8px 8px; } .curhd .sask { font-size: .88rem; } .curhd { margin-bottom: 6px; }
+  .wsr { font-size: .78rem; padding: 2px 6px; }
+  .ghp > p { display: none; } .ghp { padding: 6px 8px; gap: 4px; }
+}
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 </head>
@@ -2539,7 +2636,237 @@ unit({
 </script>
 <script>
 "use strict";
-/* ===================== 🎮 ごほうび／⏱ タイムアタック／🏆 クラス対戦 =====================
+/* ===================== 🪜 解き方ステップ（ゲーム用） =====================
+   1 問を「考え方 → 式 → 計算」の 小さな 4 択に分ける（数学Aラボと同じ考え方）。
+   数学Bラボでは ステップが合うたびに 左の図も 1 段 進む（vk = そのステップで見せる図の段階）。
+   それぞれ { unit, w（★ むずかしさ）, q（問題）, ans, p（図のパラメータ）, steps: [{ ask, ans, wrong, vk, why }] } を返す */
+const stp = (ask, ans, wrong, vk, why) => ({ ask, ans: String(ans), wrong: wrong.filter(w => w != null).map(String), vk, why: why || {} });
+const plainT = t => String(t).replace(/<[^>]+>/g, "").replace(/\s+/g, "");
+/* 数だけの答え → その値（式やことばは NaN） */
+const numV = t => { const s = plainT(t).replace(/−/g, "-"); const m = s.match(/^(-?\d+(?:\.\d+)?)(?:\/(\d+))?$/); return m ? (m[2] ? +m[1] / +m[2] : +m[1]) : NaN; };
+/* 選択肢：答え＋まちがい（同じ見た目・同じ値はのぞく）。たりないときは 数の答えだけ 近い数をつくる */
+function stepChoices(st) {
+  const out = [st.ans], va = numV(st.ans);
+  for (const w of st.wrong) {
+    if (out.length >= 4) break;
+    if (out.some(o => plainT(o) === plainT(w))) continue;
+    const vw = numV(w); if (isFinite(va) && isFinite(vw) && Math.abs(va - vw) < 1e-9) continue;
+    out.push(w);
+  }
+  const pa = plainT(st.ans).replace(/−/g, "-");
+  if (/^-?\d+(\.\d+)?$/.test(pa)) {
+    const dec = (pa.split(".")[1] || "").length, unit = dec ? 10 ** -dec : 1;
+    for (let d = 1; out.length < 4 && d < 30; d++) {
+      const v = va + (d % 2 ? 1 : -1) * Math.ceil(d / 2) * unit * (dec ? 3 : 1);
+      if (v < 0 && va >= 0) continue;
+      const t = dec ? v.toFixed(dec) : mns(v);
+      if (!out.some(o => plainT(o).replace(/−/g, "-") === plainT(t).replace(/−/g, "-"))) out.push(t);
+    }
+  }
+  return shuffle(out.slice(0, 4));
+}
+const A_ = n => `a<sub>${n}</sub>`;
+const STEPGEN = {
+  arith() {
+    const a = ri(1, 9), d = ri(2, 6), n = ri(5, 10), ans = a + (n - 1) * d;
+    return { unit: "u-arith", w: 1, q: `初項 ${a}、公差 ${d} の等差数列の 第 ${n} 項は？`, ans, p: { a, d, N: n, n },
+      steps: [
+        stp(`${A_(1)} から ${A_(n)} まで、+${d} を 何回 たす？`, `${n - 1} 回`, [`${n} 回`, `${n + 1} 回`, `${d} 回`], 1, { [`${n} 回`]: "棒の数ではなく すきまの数（n − 1）", [`${n + 1} 回`]: "すきまは n − 1 個" }),
+        stp(`${A_(n)} を求める 式は？`, `${a} + (${n} − 1) × ${d}`, [`${a} + ${n} × ${d}`, `${a} × ${d}<sup>${n - 1}</sup>`, `(${a} + ${d}) × ${n - 1}`], 2, { [`${a} × ${d}<sup>${n - 1}</sup>`]: "それは 等比数列（かける）の式" }),
+        stp(`${a} + ${n - 1} × ${d} を 計算すると？`, ans, [a + n * d, (n - 1) * d, (a + d) * (n - 1)], 2, { [String((n - 1) * d)]: "初項 a をたし忘れ" }),
+      ] };
+  },
+  arith2() {
+    const a = ri(1, 6), d = ri(2, 5), i = ri(2, 3), j = i + ri(3, 4), ai = a + (i - 1) * d, aj = a + (j - 1) * d, ans = a + 7 * d;
+    return { unit: "u-arith", w: 2, q: `第 ${i} 項が ${ai}、第 ${j} 項が ${aj} の等差数列の 第 8 項は？`, ans, p: { a, d, N: 8, mode: "known", known: [i, j] },
+      steps: [
+        stp(`${A_(i)} → ${A_(j)} の すきまは 何個？`, `${j - i} 個`, [`${j - i + 1} 個`, `${j} 個`, `${j - i - 1} 個`], 1, { [`${j - i + 1} 個`]: "棒の数を数えている。すきまは 番号の差" }),
+        stp(`公差 d は？（${aj} − ${ai} を すきまの数でわる）`, d, [aj - ai, (aj - ai) / (j - i + 1) % 1 ? null : (aj - ai) / (j - i + 1), d + 1], 1, { [String(aj - ai)]: "すきまの数で わり忘れ" }),
+        stp(`初項 ${A_(1)} は？（${A_(i)} から ${i - 1} つ もどる）`, a, [ai - i * d, ai, a + d], 2, { [String(ai)]: `それは ${A_(i)}` }),
+        stp(`第 8 項 ${A_(8)} = ${a} + 7 × ${d} は？`, ans, [a + 8 * d, a + 6 * d, 7 * d], 3),
+      ] };
+  },
+  asum() {
+    const a = ri(1, 6), d = ri(1, 4), n = ri(5, 10), l = a + (n - 1) * d, S = n * (a + l) / 2;
+    return { unit: "u-asum", w: 2, q: `初項 ${a}、公差 ${d} の等差数列の、初項から 第 ${n} 項までの 和は？`, ans: S, p: { a, d, n },
+      steps: [
+        stp(`末項 l（第 ${n} 項）は？`, l, [a + n * d, a + (n - 2) * d, n * d], 0, { [String(a + n * d)]: "+d を n 回 たしている（すきまは n − 1）" }),
+        stp(`階段を 逆さに重ねると、どの列の高さも？（a + l）`, a + l, [l, l - a, a + l + d], 1),
+        stp(`和の 式は？`, `${n} × ${a + l} ÷ 2`, [`${n} × ${a + l}`, `(${n} − 1) × ${a + l} ÷ 2`, `${n} × ${l} ÷ 2`], 2, { [`${n} × ${a + l}`]: "それは 長方形。階段は その半分" }),
+        stp(`計算すると？`, S, [n * (a + l), S - l, S + l + d], 3, { [String(n * (a + l))]: "2 でわり忘れ" }),
+      ] };
+  },
+  geo() {
+    const a = ri(1, 5), r = ri(2, 3), n = r === 3 ? ri(4, 5) : ri(4, 6), ans = a * r ** (n - 1);
+    return { unit: "u-geo", w: 1, q: `初項 ${a}、公比 ${r} の等比数列の 第 ${n} 項は？`, ans, p: { a, r, N: n, n },
+      steps: [
+        stp(`${A_(1)} から ${A_(n)} まで、×${r} を 何回 する？`, `${n - 1} 回`, [`${n} 回`, `${n + 1} 回`, `${r} 回`], 1, { [`${n} 回`]: "すきまの数は n − 1" }),
+        stp(`${A_(n)} を求める 式は？`, `${a} × ${r}<sup>${n - 1}</sup>`, [`${a} × ${r}<sup>${n}</sup>`, `${a} + ${r} × ${n - 1}`, `${a} × ${r} × ${n - 1}`], 2, { [`${a} + ${r} × ${n - 1}`]: "それは 等差数列（たす）の式", [`${a} × ${r} × ${n - 1}`]: "くり返しの かけ算は べき（r<sup>n−1</sup>）" }),
+        stp(`${a} × ${r}<sup>${n - 1}</sup> を 計算すると？`, ans, [a * r ** n, a * r * (n - 1), a * r ** (n - 2)], 2),
+      ] };
+  },
+  geo2() {
+    const a = ri(2, 4), r = ri(2, 3), i = 2, j = r === 3 ? 4 : 5, ai = a * r ** (i - 1), aj = a * r ** (j - 1), k = j - i;
+    return { unit: "u-geo", w: 3, q: `第 ${i} 項が ${ai}、第 ${j} 項が ${aj} の等比数列（公比は実数）の 初項は？`, ans: a, p: { a, r, N: 6, mode: "known", known: [i, j] },
+      steps: [
+        stp(`${A_(i)} → ${A_(j)} で、×r を 何回 する？`, `${k} 回`, [`${k + 1} 回`, `${j} 回`, `${k - 1} 回`], 1),
+        stp(`r<sup>${k}</sup> は？（${aj} ÷ ${ai}）`, r ** k, [aj - ai, r ** k / r, r ** k * r], 1, { [String(aj - ai)]: "等比は 差ではなく 比（わり算）" }),
+        stp(`公比 r は？`, r, [r ** k, r + 1, k], 1),
+        stp(`初項 ${A_(1)} は？（${A_(i)} ÷ r）`, a, [ai, ai * r, a + 1], 3, { [String(ai)]: `それは ${A_(i)}` }),
+      ] };
+  },
+  gsum() {
+    const a = ri(1, 3), r = ri(2, 3), n = r === 2 ? ri(4, 6) : ri(3, 5), t = a * r ** n, S = a * (r ** n - 1) / (r - 1);
+    return { unit: "u-gsum", w: 2, q: `初項 ${a}、公比 ${r} の等比数列の、初項から 第 ${n} 項までの 和は？`, ans: S, p: { a, r, n },
+      steps: [
+        stp(`S を ${r} 倍して 1 つずらし、${r}S − S を すると のこるのは？`, `${t} と ${a}`, [`${t / r} と ${a}`, `${t} だけ`, `${a * r} と ${a}`], 2, { [`${t} だけ`]: "S の最初の項 a も のこる" }),
+        stp(`(${r} − 1)S = ${t} − ${a} は？`, t - a, [t + a, t, t / r - a], 2),
+        stp(`S は？${r === 2 ? "" : `（${r - 1} でわる）`}`, S, [t - a === S ? null : t - a, S + a, S - a, S * r], 3, { [String(t - a)]: `(r − 1) = ${r - 1} で わり忘れ` }),
+      ] };
+  },
+  sigma() {
+    const a = ri(2, 3), b = ri(1, 3), n = ri(5, 9), sk = n * (n + 1) / 2, ans = a * sk + b * n;
+    return { unit: "u-sigma", w: 2, q: `${SIG(n)} (${a}k + ${b}) は？`, ans, p: { type: "lin", n, ca: a, cb: b },
+      steps: [
+        stp(`${a}k の部分と ${b} の部分に 分けると？`, `${a} × (1 + 2 + … + ${n}) + ${b} × ${n}`, [`${a} × (1 + 2 + … + ${n}) + ${b}`, `(1 + 2 + … + ${n}) + ${b} × ${n}`, `${a} × ${n} + ${b} × ${n}`], 1, { [`${a} × (1 + 2 + … + ${n}) + ${b}`]: `Σ${b} は ${b} を ${n} 回たす` }),
+        stp(`1 + 2 + … + ${n} は？（n(n + 1) ÷ 2）`, sk, [n * (n + 1), n * n, n * (n - 1) / 2], 2, { [String(n * (n + 1))]: "2 でわり忘れ" }),
+        stp(`${a} × ${sk} + ${b} × ${n} は？`, ans, [a * sk + b, a * n * (n + 1) + b * n, a * sk], 3),
+      ] };
+  },
+  sigma2() {
+    const n = ri(4, 7), sq = n * (n + 1) / 2, ans = n * (n + 1) * (2 * n + 1) / 6;
+    return { unit: "u-sigma", w: 2, q: `${SIG(n)} k<sup>2</sup> は？`, ans, p: { type: "k2", n },
+      steps: [
+        stp(`Σk<sup>2</sup> の 公式は？`, `n(n + 1)(2n + 1) ÷ 6`, [`{n(n + 1) ÷ 2}<sup>2</sup>`, `n(n + 1) ÷ 2`, `n<sup>2</sup>(n + 1) ÷ 2`], 1, { [`{n(n + 1) ÷ 2}<sup>2</sup>`]: "それは (Σk)<sup>2</sup>（たしてから 2 乗）" }),
+        stp(`n = ${n} を入れると？`, `${n} × ${n + 1} × ${2 * n + 1} ÷ 6`, [`${n} × ${n + 1} × ${2 * n} ÷ 6`, `${n} × ${n + 1} ÷ 2`, `${n} × ${2 * n + 1} ÷ 6`], 2),
+        stp(`計算すると？`, ans, [sq * sq, sq, n * n], 3, { [String(sq * sq)]: "(Σk)<sup>2</sup> になっている" }),
+      ] };
+  },
+  diff() {
+    const a1 = ri(1, 5), b1 = ri(1, 3), c = ri(1, 3), N = ri(6, 7), t = [a1], b = [];
+    for (let i = 1; i < N; i++) { b.push(b1 + (i - 1) * c); t.push(t[i - 1] + b[i - 1]); }
+    const ans = t[N - 1], sb = sum(b);
+    return { unit: "u-diff", w: 2, q: `数列 ${t.slice(0, 4).join(", ")}, … の 第 ${N} 項は？`, ans, p: { terms: t, known: 4, target: N, pattern: `${b.slice(0, 3).join(", ")} → ${c} ずつ増える`, pattern2: `差を a${subd(N)} まで のばす` },
+      steps: [
+        stp(`となりの差（階差）は？`, `${b[0]}, ${b[1]}, ${b[2]}`, [`${b[1]}, ${b[2]}, ${b[3]}`, `${t[0]}, ${t[1]}, ${t[2]}`, `${b[0]}, ${b[0]}, ${b[0]}`], 1),
+        stp(`差は どう かわる？`, `${c} ずつ 増える`, [`${c + 1} ずつ 増える`, `×2 ずつ`, "かわらない"], 1),
+        stp(`差を b<sub>1</sub> から b<sub>${N - 1}</sub> まで たすと？`, sb, [sb - b[N - 2], sb + b[N - 2] + c, sb + a1], 2, { [String(sb - b[N - 2])]: `差は ${N - 1} 個（a<sub>${N}</sub> まで）` }),
+        stp(`${A_(N)} = ${A_(1)} + （差の合計）は？`, ans, [sb, t[N - 2], ans + b[N - 2] + c], 3, { [String(sb)]: "初項 a<sub>1</sub> をたし忘れ" }),
+      ] };
+  },
+  rec() {
+    const pp = ri(2, 3), al = pick([-3, -2, -1, 1, 2, 3]), c = ri(1, 3), q = al * (1 - pp), a1 = al + c;
+    const qs = `${q < 0 ? "−" : "+"} ${Math.abs(q)}`;
+    return { unit: "u-rec", w: 3, q: `${A_(1)} = ${mns(a1)}、a<sub>n+1</sub> = ${pp}a<sub>n</sub> ${qs} の 一般項は？`, ans: `a<sub>n</sub> = ${recEq(c, pp, al)}`, p: { a1, pp, q, N: 5 },
+      steps: [
+        stp(`α = ${pp}α ${qs} を 解くと？`, `α = ${mns(al)}`, [`α = ${mns(-al)}`, `α = ${mns(q)}`, `α = ${mns(al + (al > 0 ? 1 : -1))}`], 1, { [`α = ${mns(q)}`]: "q をそのまま答えている。α = pα + q を解く" }),
+        stp(`a<sub>n</sub> − α は どんな数列？`, `初項 ${c}・公比 ${pp} の等比数列`, [`初項 ${mns(a1)}・公比 ${pp} の等比数列`, `初項 ${c}・公差 ${pp} の等差数列`, `初項 ${c}・公比 ${mns(q)} の等比数列`], 2, { [`初項 ${mns(a1)}・公比 ${pp} の等比数列`]: "初項は a<sub>1</sub> − α" }),
+        stp(`一般項は？（α を もどす）`, `a<sub>n</sub> = ${recEq(c, pp, al)}`, [`a<sub>n</sub> = ${recEq(c, pp, -al)}`, `a<sub>n</sub> = ${c === 1 ? "" : c + "·"}${pp}<sup>n−1</sup>`, `a<sub>n</sub> = ${c === 1 ? "" : c + "·"}${pp}<sup>n</sup> ${al < 0 ? "−" : "+"} ${Math.abs(al)}`], 3, { [`a<sub>n</sub> = ${c === 1 ? "" : c + "·"}${pp}<sup>n−1</sup>`]: "α を もどし忘れ" }),
+      ] };
+  },
+  induct() {
+    const Q = pick([
+      { f: "1 + 3 + 5 + … + (2n − 1) = n<sup>2</sup>", pl: ["1 + 3 + … + (2k−1) = k²", "(2k+1)"], c: ["k<sup>2</sup> + (2k + 1)", "k<sup>2</sup> + (2k − 1)", "k<sup>2</sup> + 2k", "(k + 1)<sup>2</sup> + (2k + 1)"], res: "(k + 1)<sup>2</sup>", rw: ["k<sup>2</sup> + 1", "(k + 1)<sup>2</sup> + 1", "k<sup>2</sup> + 2k − 1"] },
+      { f: "1 + 2 + 4 + … + 2<sup>n−1</sup> = 2<sup>n</sup> − 1", pl: ["1 + 2 + … + 2^(k−1) = 2^k − 1", "2^k"], c: ["(2<sup>k</sup> − 1) + 2<sup>k</sup>", "(2<sup>k</sup> − 1) + 2<sup>k+1</sup>", "(2<sup>k</sup> − 1) + 2<sup>k−1</sup>", "2<sup>k</sup> + 2<sup>k</sup>"], res: "2<sup>k+1</sup> − 1", rw: ["2<sup>2k</sup> − 1", "2<sup>k+1</sup> + 1", "4<sup>k</sup> − 1"] },
+      { f: "1<sup>2</sup> + 2<sup>2</sup> + … + n<sup>2</sup> = n(n+1)(2n+1)/6", pl: ["1² + … + k² = k(k+1)(2k+1)/6", "(k+1)²"], c: ["k(k+1)(2k+1)/6 + (k + 1)<sup>2</sup>", "k(k+1)(2k+1)/6 + k<sup>2</sup>", "k(k+1)(2k+1)/6 + (k + 1)", "(k+1)(k+2)(2k+3)/6 + (k + 1)<sup>2</sup>"], res: "(k+1)(k+2)(2k+3)/6", rw: ["(k+1)(k+2)(2k+1)/6", "k(k+1)(2k+3)/6", "(k+1)<sup>2</sup>(2k+1)/6"] },
+    ]);
+    return { unit: "u-induct", w: 2, q: `${Q.f} を 数学的帰納法で 証明する。`, ans: Q.res, p: { kmap: [0, 1, 3, 4], lines: Q.pl },
+      steps: [
+        stp("はじめに たしかめるのは？（最初のドミノ）", "n = 1 で 成り立つこと", ["n = 0 で 成り立つこと", "n = k + 1 で 成り立つこと", "n = 2 で 成り立つこと"], 1, { "n = k + 1 で 成り立つこと": "それは ② で示すこと" }),
+        stp("n = k で成り立つと 仮定したとき、n = k + 1 の 左辺は？", Q.c[0], Q.c.slice(1), 2, { [Q.c[1]]: "次の 1 項を まちがえている" }),
+        stp("整理すると？（n = k + 1 の 右辺になれば OK）", Q.res, Q.rw, 3),
+      ] };
+  },
+  dist() {
+    let ws; do { const c = [ri(1, 7), ri(1, 7), ri(1, 7)].sort((x, y) => x - y); ws = [c[0], c[1] - c[0], c[2] - c[1], 10 - c[2]]; } while (ws.some(w => w <= 0) || new Set(ws).size < 3);
+    const xs = [1, 2, 3, 4], sxw = sum(xs.map((x, i) => x * ws[i])), E = sxw / 10;
+    return { unit: "u-dist", w: 2, q: `X = 1, 2, 3, 4 の確率が ${ws.map(w => frs(w, 10)).join(", ")} のとき、期待値 E(X) は？`, ans: fmt(E, 1), p: { xs, ws },
+      steps: [
+        stp("期待値 E(X) の 求め方は？", "（値 × 確率）を 全部たす", ["値を 全部たして 4 でわる", "確率を 全部たす", "いちばん高い棒の 値"], 1, { "値を 全部たして 4 でわる": "確率の重みを 使っていない" }),
+        stp(`1×P₁ + 2×P₂ + 3×P₃ + 4×P₄ の 分子は？（分母は 10）`, sxw, [10, sxw + ws[0], sxw - ws[3], 25], 1),
+        stp(`E(X) = ${sxw} ÷ 10 は？`, fmt(E, 1), ["2.5", String(sxw), fmt(E + .5, 1)], 2, { "2.5": "1〜4 の ふつうの平均" }),
+      ] };
+  },
+  binom() {
+    const [pn, pd, ns] = pick(BINOM_SET), n = pick(ns), Ef = frs(n * pn, pd), Vf = frs(n * pn * (pd - pn), pd * pd), pf = frs(pn, pd);
+    return { unit: "u-binom", w: 2, q: `確率 ${pf} で当たるくじを ${n} 回引く（毎回もどす）。当たりの回数 X の 分散 V(X) は？`, ans: Vf, p: { n, p: pn / pd, plab: pf, Elab: Ef },
+      steps: [
+        stp("X は どんな分布？", `B(${n}, ${pf})`, [`B(${pf}, ${n})`, `B(${n}, ${frs(pd - pn, pd)})`, `B(${n - 1}, ${pf})`], 0),
+        stp("期待値 E(X) = np は？", Ef, [frs(n * (pd - pn), pd), frs(n * pn * pn, pd * pd), String(n)], 1, { [frs(n * (pd - pn), pd)]: "それは はずれの回数 n(1 − p)" }),
+        stp("分散 V(X) = np(1 − p) は？", Vf, [Ef, frs(n * pn * pn, pd * pd), frs(n * pn * (pd - pn) * (pd - pn), pd ** 3)], 2, { [Ef]: "(1 − p) を かけ忘れ" }),
+      ] };
+  },
+  binom2() {
+    const n = ri(3, 5), k = ri(1, n - 1), die = Math.random() < .5, C = nCr(n, k);
+    const [num, den] = die ? [C * 5 ** (n - k), 6 ** n] : [C, 2 ** n];
+    const one = die ? `(1/6)<sup>${k}</sup>(5/6)<sup>${n - k}</sup>` : `(1/2)<sup>${n}</sup>`, what = die ? `サイコロを ${n} 回投げて 1 の目が` : `コインを ${n} 回投げて 表が`;
+    return { unit: "u-binom", w: 3, q: `${what} ちょうど ${k} 回 出る確率は？`, ans: frs(num, den), p: { n, p: die ? 1 / 6 : .5, hl: k, plab: die ? "1/6" : "1/2", feat: { E: 99, V: 99, hl: 1, val: 2 } },
+      steps: [
+        stp(`${n} 回のうち ${k} 回を えらぶ 並び方は？`, `${C} 通り`, [`${nCr(n, k) * (k > 1 ? k : 2)} 通り`, `${k} 通り`, `${n * k} 通り`], 1),
+        stp("1 つの並びの 確率は？", one, die ? [`(1/6)<sup>${k}</sup>`, `(1/6)<sup>${n}</sup>`, `(5/6)<sup>${k}</sup>(1/6)<sup>${n - k}</sup>`] : [`(1/2)<sup>${k}</sup>`, `(1/2)<sup>${n - k}</sup>`, `1/${n}`], 1, die ? { [`(1/6)<sup>${k}</sup>`]: "はずれる回の (5/6) も かける" } : { [`(1/2)<sup>${k}</sup>`]: "うらの回の (1/2) も かける" }),
+        stp(`${C} × ${one} は？`, frs(num, den), [frs(num / C, den), frs(C, den), frs(num * 2, den)], 2, { [frs(num / C, den)]: "並び方を かけ忘れ" }),
+      ] };
+  },
+  normal() {
+    const m = pick([50, 60, 100, 170]), sd = pick([4, 5, 10]), z = pick([.5, 1, 1.5, 2]), type = pick(["ge", "btw", "le"]), pzz = +zTab(z);
+    let lo = null, hi = null, ans, q, form, w;
+    if (type === "ge") { lo = m + z * sd; ans = .5 - pzz; q = `X ≧ ${fmt(lo, 2)}`; form = `0.5 − p(${z})`; w = [`p(${z})`, `0.5 + p(${z})`, `2 × p(${z})`]; }
+    else if (type === "btw") { lo = m - z * sd; hi = m + z * sd; ans = 2 * pzz; q = `${fmt(lo, 2)} ≦ X ≦ ${fmt(hi, 2)}`; form = `2 × p(${z})`; w = [`p(${z})`, `0.5 − p(${z})`, `0.5 + p(${z})`]; }
+    else { hi = m + z * sd; ans = .5 + pzz; q = `X ≦ ${fmt(hi, 2)}`; form = `0.5 + p(${z})`; w = [`p(${z})`, `0.5 − p(${z})`, `2 × p(${z})`]; }
+    const f4 = v => v.toFixed(4), x0 = type === "le" ? hi : type === "btw" ? hi : lo;
+    return { unit: "u-normal", w: 2, q: `X が N(${m}, ${sd}<sup>2</sup>) にしたがうとき、P(${q}) は？（p(${z}) = ${zTab(z)}）`, ans: f4(ans), p: { m, sd, lo, hi, vlab: true, ans: f4(ans) },
+      steps: [
+        stp(`${fmt(x0, 2)} を 標準化すると z = ？`, z, [fmt(z * sd, 2), fmt(x0 / sd, 2), fmt(z / 2, 2)], 1, { [fmt(z * sd, 2)]: "σ で わり忘れ" }),
+        stp("求める面積の 式は？", form, w, 2, { [`p(${z})`]: "p(z) は 0〜z の面積だけ" }),
+        stp("計算すると？", f4(ans), [f4(pzz), f4(1 - ans), f4(Math.abs(ans - .1))], 3),
+      ] };
+  },
+  est() {
+    const [n, sd] = pick([[25, 5], [36, 6], [64, 8], [100, 10], [100, 5], [144, 6], [400, 10]]), xb = ri(40, 80) + ri(0, 9) / 10, se = sd / Math.sqrt(n), half = 1.96 * se;
+    const iv = hh => `${fmt(xb - hh, 3)} ≦ m ≦ ${fmt(xb + hh, 3)}`;
+    return { unit: "u-est", w: 2, q: `大きさ ${n} の標本の平均が ${xb}、母標準偏差 ${sd}。母平均 m の 信頼度 95% の信頼区間は？`, ans: iv(half), p: { mode: "calc", xb, sd, n, conf: 1.96 },
+      steps: [
+        stp(`標本平均の ばらつき σ/√n = ${sd}/√${n} は？`, fmt(se, 3), [fmt(sd / n, 3), String(sd), fmt(sd / Math.sqrt(n) * 2, 3)], 1, { [fmt(sd / n, 3)]: "√n ではなく n で わっている" }),
+        stp(`1.96 × ${fmt(se, 3)} は？`, fmt(half, 3), [fmt(2.58 * se, 3), fmt(1.96 * sd, 3), fmt(se, 3)], 2, { [fmt(2.58 * se, 3)]: "2.58 は 信頼度 99%" }),
+        stp("信頼区間は？", iv(half), [iv(1.96 * sd), iv(2.58 * se), iv(se)], 3),
+      ] };
+  },
+  test() {
+    const n = 20, x = ri(12, 17), t = tailB(n, x), px = binomP(n, .5, x), yes = t < .05;
+    const ya = "棄却する（表が出やすいと言える）", na = "棄却できない（出やすいとは言えない）";
+    return { unit: "u-test", w: 3, q: `コインを ${n} 回投げたら 表が ${x} 回。表が出やすいと判断できるか（有意水準 5%・片側）。`, ans: yes ? ya : na, p: { n, p0: .5, x, alpha: .05 },
+      steps: [
+        stp("帰無仮説 H<sub>0</sub> は？", "p = 1/2（ふつうのコイン）", ["p > 1/2（表が出やすい）", `p = ${x}/${n}`, "p = 0"], 0, { "p > 1/2（表が出やすい）": "それは 対立仮説 H<sub>1</sub>" }),
+        stp("H<sub>0</sub> のもとで 調べる 確率は？", `P(X ≧ ${x})`, [`P(X = ${x})`, `P(X ≦ ${x})`, `P(X ≧ 10)`], 1, { [`P(X = ${x})`]: `ちょうど ${x} 回だけでなく、${x} 回 以上 全部` }),
+        stp(`P(X ≧ ${x}) は およそ？`, fmt(t, 3), [fmt(px, 3), fmt(1 - t + px, 3), fmt(Math.min(.999, t * 2.5 + .01), 3)], 2),
+        stp(`${fmt(t, 3)} と 0.05 を くらべて 判定は？`, yes ? ya : na, [yes ? na : ya, "どちらとも 決められない"], 3),
+      ] };
+  },
+};
+/* 単元 → ステップ問題の種類 */
+const STEP_KEYS = {};
+for (const k of Object.keys(STEPGEN)) { const u = STEPGEN[k]().unit; (STEP_KEYS[u] = STEP_KEYS[u] || []).push(k); }
+/* 答えだけモードの むずかしさ（★） */
+const UNIT_W = { "u-arith": 1, "u-asum": 2, "u-geo": 1, "u-gsum": 2, "u-sigma": 2, "u-diff": 2, "u-rec": 3, "u-induct": 2, "u-dist": 2, "u-binom": 2, "u-normal": 2, "u-est": 2, "u-test": 3 };
+/* ステップの問題を ゲーム用に（選択肢をまぜる） */
+function stepQ(key) {
+  const g = STEPGEN[key](), u = UNITS.find(x => x.id === g.unit);
+  const clean = st => { const why = {}; for (const [k, v] of Object.entries(st.why)) if (plainT(k) !== plainT(st.ans)) why[k] = v; return why; };
+  return Object.assign({ key, u, cat: u.name }, g, { ans: String(g.ans), steps: g.steps.map(st => Object.assign({}, st, { why: clean(st), ch: stepChoices(st) })) });
+}
+/* 答えだけの問題（授業の類題と同じ問題） */
+function plainQ(u) {
+  const inst = u.pr(), ch = shuffle(inst.choices.slice());
+  return { key: u.id, u, cat: u.name, w: UNIT_W[u.id] || 2, q: inst.problem, ans: inst.choices[0], ch, why: inst.why || {}, p: inst.p, inst, txt: inst.txt };
+}
+</script>
+<script>
+"use strict";
+/* ===================== 🎮 ゲーム（数学Aラボと同じ しくみ） =====================
+   ・🧗 じっくりチャレンジ（ひとり）：1 問ずつ 考える時間。答えると すぐ解説。❤ 3 つ。
+   ・⏱ タイムアタック（ひとり）：正解すると 時間がもどる。時間がなくなるまで。
+   ・🏆 クラス対戦：🎯 クイズ大会（1 問ずつ・先生の画面）／⏱ 早とき（全員いっせい）。
+   どれも「🪜 解き方ステップ」（1 問を 考え方 → 式 → 計算 の 小さな 4 択に分ける）で遊べる。
    クラス対戦は Firebase Realtime Database（無料）の REST API を使う。設定は ⚙ か 下の MB_CONFIG */
 window.MB_CONFIG = window.MB_CONFIG || { db: "https://english-logical-default-rtdb.firebaseio.com" };
 
@@ -2551,14 +2878,16 @@ const BADGES = [
   { id: "passAll", ico: "👑", name: "全単元制覇", how: "13 単元すべてクリア" },
   { id: "day3", ico: "🔥", name: "3日連続", how: "3 日続けて学習" },
   { id: "day7", ico: "🌋", name: "7日連続", how: "7 日続けて学習" },
-  { id: "combo10", ico: "⚡", name: "10 コンボ", how: "タイムアタックで 10 コンボ" },
+  { id: "step100", ico: "🪜", name: "ステップ 100", how: "解き方ステップを 100 回 正解" },
+  { id: "climb10", ico: "🧗", name: "じっくり 10 問", how: "じっくりチャレンジで 10 問 正解" },
+  { id: "combo10", ico: "⚡", name: "10 コンボ", how: "ゲームで 10 コンボ" },
   { id: "ta1000", ico: "🎯", name: "1,000 点", how: "タイムアタックで 1,000 点" },
   { id: "battle", ico: "🏆", name: "クラス対戦デビュー", how: "クラス対戦に参加" },
   { id: "top3", ico: "🥇", name: "表彰台", how: "クラス対戦で 3 位以内" },
 ];
 const dayNo = () => Math.floor((Date.now() + 9 * 3600e3) / 86400e3);
 const today = () => { const d = new Date(); return `${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}`; };
-let RW = store.get("rw", null) || { coins: 0, streak: 0, lastDay: 0, badges: {}, best: {}, battles: 0, top3: 0, maxCombo: 0, taBest: 0 };
+let RW = Object.assign({ coins: 0, streak: 0, lastDay: 0, badges: {}, best: {}, battles: 0, top3: 0, maxCombo: 0, taBest: 0, stepOk: 0, climbBest: 0 }, store.get("rw", {}));
 const saveRW = () => store.set("rw", RW);
 function rankOf(c) { let i = 0; while (i + 1 < RANKS.length && c >= RANKS[i + 1][0]) i++; const nx = RANKS[i + 1]; return { i, name: RANKS[i][1], from: RANKS[i][0], next: nx ? nx[0] : null, nextName: nx ? nx[1] : null }; }
 const streakNow = () => (RW.lastDay >= dayNo() - 1 ? RW.streak : 0);
@@ -2570,6 +2899,8 @@ function badgeOn(id) {
     case "passAll": return UNITS.every(unitClear);
     case "day3": return RW.streak >= 3;
     case "day7": return RW.streak >= 7;
+    case "step100": return RW.stepOk >= 100;
+    case "climb10": return RW.climbBest >= 10;
     case "combo10": return RW.maxCombo >= 10;
     case "ta1000": return RW.taBest >= 1000;
     case "battle": return RW.battles >= 1;
@@ -2600,61 +2931,213 @@ function toast(m) { const t = h("div", { class: "toast" }, m); document.body.app
 /* 演習の結果から コインをあげる（core の drillNext から よばれる） */
 function rewardDrill(score, n, firstPass, passNow) { let c = score * 10; if (passNow) c += firstPass ? 150 : 50; earn(c); return c; }
 
-/* ---------- 共通：ゲームの しくみ ---------- */
+/* ---------- 問題をつくる ---------- */
 function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
-/* 同じ seed なら 同じ問題（クラス対戦で 全員同じ順番） */
+/* 同じ seed なら 同じ問題（クラス対戦で 全員同じ順番・同じ数字） */
 function withSeed(R, lv, fn) { const mr = Math.random, pl = LEVEL; Math.random = R; LEVEL = lv; try { return fn(); } finally { Math.random = mr; LEVEL = pl; } }
 function gpool(cfg) { return UNITS.filter(u => (cfg.c === "all" || u.cat === cfg.c) && (cfg.c === "all" || UNITS.filter(x => x.cat === u.cat).indexOf(u) < (cfg.u || 99))); }
-function cfgName(cfg) { const c = cfg.c === "all" ? "全分野" : CATS.find(x => x.id === cfg.c).name; const n = cfg.c !== "all" && cfg.u && cfg.u < UNITS.filter(x => x.cat === cfg.c).length ? `（〜${cfg.u}）` : ""; return `${c}${n}・${LEVELS[cfg.l || 1].name}・${cfg.t}秒`; }
+function makeQs(cfg, seed, n = 90) {
+  const R = rng(seed), pool = gpool(cfg);
+  return withSeed(R, cfg.l ?? 1, () => {
+    const kinds = [];
+    for (const u of pool) { if (cfg.st && STEP_KEYS[u.id]) STEP_KEYS[u.id].forEach(k => kinds.push(["s", k])); else kinds.push(["p", u]); }
+    const out = []; let bag = [];
+    for (let i = 0; i < n; i++) { if (!bag.length) bag = shuffle(kinds.slice()); const [t, x] = bag.pop(); out.push(t === "s" ? stepQ(x) : plainQ(x)); }
+    /* はじめは やさしい問題から。★3 は 6 問目から */
+    const minW = Math.min(...out.map(q => q.w)), first = [], rest = [];
+    out.forEach(q => (q.w === minW && first.length < 3 ? first : rest).push(q));
+    const res = first.concat(rest);
+    for (let i = first.length; i < 6; i++) if (res[i] && res[i].w === 3) { const j = res.findIndex((q, k) => k >= 6 && q.w < 3); if (j > 0) [res[i], res[j]] = [res[j], res[i]]; }
+    return res;
+  });
+}
+const SCOPES = [["seq", "数列"], ["stat", "統計"], ["all", "全部"]];
+const scopeName = cfg => (cfg.c === "all" ? "全分野" : CATS.find(x => x.id === cfg.c).name) + (cfg.c !== "all" && cfg.u && cfg.u < UNITS.filter(x => x.cat === cfg.c).length ? `（〜${UNITS.filter(x => x.cat === cfg.c)[cfg.u - 1].name}）` : "");
+const startT = cfg => +cfg.t || (cfg.st ? 120 : 90);
+const cfgName = cfg => `${scopeName(cfg)}${cfg.st ? "・🪜 解き方ステップ" : "・答えだけ"}・持ち時間 ${startT(cfg)} 秒`;
+
+/* ---------- ルール（数学Aラボと同じ） ---------- */
+const QLIM = { 1: 45, 2: 80, 3: 120 }, QSPEED = { s: .6, n: 1, l: 1.5 }, QSPEED_NAME = { s: "短め", n: "ふつう", l: "長め" };
+const qLimit = (w, sp, st) => Math.round(QLIM[w] * (QSPEED[sp] || 1) * (st ? 1.25 : 1));
+/* 点数：正解なら 500〜1000 点（はやいほど 多い。でも 正しさの方が ずっと大事）× むずかしさ × 連続正解 */
+const qPoints = (remain, w, streak, hint) => Math.round((500 + 500 * clamp(remain, 0, 1)) * (.75 + .25 * w) * (1 + .1 * Math.min(5, streak)) * (hint ? .5 : 1));
+const BONUS = { 1: 8, 2: 15, 3: 24 }, READ_SEC = 2.5, PENALTY = 3, STEP_PENALTY = 2, COMBO_BONUS = 3, WRONG_WAIT = 1900, STEP_WRONG_WAIT = 1600;
+/* 正解するほど もどる時間が 少しずつ へる（いつかは 時間切れ） */
+const bonusSec = (w, ok) => Math.round(BONUS[w] * Math.max(.2, Math.pow(.96, ok)) * 10) / 10;
+const RULES = { step: ["🪜 1 問を「考え方 → 式 → 計算」の 小さな 4 択で 順に答える", "✅ ステップが合うと 点数と時間。左の図も 1 段 進む", "❌ まちがえても 正しい答えを見て 続けられる（−2 秒）", "🏁 全部合う（完答）と ボーナス"], plain: ["✅ 正解 → 時間がもどる（★ むずかしいほど たくさん）", "❌ まちがい → −3 秒（続けると もっとへる）", "🔥 5 問連続 正解 → +3 秒", "👀 読まずに おす「早おし」は 点と時間が へる"] };
+const rulesBox = st => h("ul", { class: "rules" }, RULES[st ? "step" : "plain"].map(t => h("li", {}, t)));
 const RULER = [[0, "ウォーミングアップ中"], [3, "小テスト 1 回分"], [6, "教科書の練習問題 1 ページ分"], [10, "定期テストの大問 1 つ分"], [15, "定期テスト 1 回分"], [25, "問題集 1 章分"], [40, "模試 1 回分"]];
 const ruler = n => { let r = RULER[0][1]; for (const x of RULER) if (n >= x[0]) r = x[1]; return r; };
-let G = null, OFF = 0;
+const SHAPES = [["▲", "var(--warm)"], ["◆", "var(--blue)"], ["●", "var(--gold)"], ["■", "var(--accent)"]];
+const NUMS = "①②③④⑤";
+let OFF = 0;
 const gnow = () => Date.now() + OFF;
+
+/* ---------- 1 問の画面（ひとり・クラス 共通） ----------
+   Q = { q, si（いまのステップ）, sres（ステップの○×）, pick, hint } */
+let CUR = null;  // いま 図にかいている問題
+const newQS = q => ({ q, si: 0, sres: [], pick: -1, hint: false, t0: gnow() });
+/* 図の段階：ステップが合うたびに 1 段進む（答えだけ は 答えたら 解説の図） */
+function figK(Q) {
+  const q = Q.q;
+  if (q.steps) { const n = Q.si + (Q.pick >= 0 ? 1 : 0); return n > 0 ? q.steps[Math.min(n, q.steps.length) - 1].vk : -1; }
+  return Q.pick >= 0 || Q.done ? q.inst.steps.length - 1 : -1;
+}
+function qHead(q, right) { return h("div", { class: "lab" }, h("span", { class: "pill" }, q.cat), h("span", { class: "stars", title: "むずかしさ" }, "★".repeat(q.w), h("i", {}, "★".repeat(3 - q.w))), right ? h("span", { class: "r", html: right }) : null); }
+function hintBox(q) { return h("div", { class: "fhint", html: `📐 <b>${q.u.name}</b>　${q.u.gen}` }); }
+/* o = { onPick(i), right, shapes（クイズ大会の ▲◆●■）, showWhy, lockAll } */
+function qPanel(el, Q, o = {}) {
+  clear(el);
+  const q = Q.q;
+  el.append(qHead(q, o.right));
+  el.append(h("div", { class: q.steps ? "sprob" : "prob", html: q.steps ? `<b>問題</b><span>${termify(q.q)}</span>` : termify(q.q) }));
+  if (Q.hint) el.append(hintBox(q));
+  if (q.steps) {
+    const ws = h("div", { class: "ws" }, h("div", { class: "wshd" }, `🪜 解き方（${q.steps.length} ステップ）`));
+    q.steps.forEach((s2, j) => {
+      const isDone = j < Q.si || (o.lockAll && j <= Q.si && Q.pick >= 0) || (Q.over && j >= Q.si);
+      if (j < Q.si || (Q.over && j > Q.si)) ws.append(h("div", { class: "wsr " + (Q.sres[j] ? "ok" : "ng") }, h("span", { class: "no" }, NUMS[j]), h("span", { class: "sask", html: s2.ask }), h("span", { class: "ans", html: (Q.sres[j] ? "✓ " : Q.sres[j] === false ? "✕ → " : "− ") + s2.ans })));
+      else if (j === Q.si) {
+        const done = Q.pick >= 0 || Q.over, ok = Q.sres[j];
+        const ch = h("div", { class: "choices steps" }, s2.ch.map((c2, i) => h("button", { type: "button", class: "choice" + (!done ? "" : c2 === s2.ans ? " ok" : i === Q.pick ? " ng" : ""), html: `<span class="kb">${i + 1}</span>${c2}`, disabled: done || null, onclick: () => o.onPick && o.onPick(i) })));
+        const why = done && !ok && Q.pick >= 0 && s2.why[s2.ch[Q.pick]] ? h("div", { class: "whyline", html: `「${s2.ch[Q.pick]}」は ${s2.why[s2.ch[Q.pick]]}` }) : null;
+        ws.append(h("div", { class: "wsr cur" + (done ? (ok ? " ok" : " ng") : "") }, h("div", { class: "curhd" }, h("span", { class: "no" }, NUMS[j]), h("span", { class: "sask", html: s2.ask }), h("span", { class: "here" }, done ? (ok ? "✓ 正解" : "✕ ざんねん") : "いまここ")), ch, why));
+      } else ws.append(h("div", { class: "wsr fut" }, h("span", { class: "no" }, NUMS[j]), h("span", { class: "sask" }, "次のステップ")));
+      void isDone;
+    });
+    el.append(ws);
+  } else {
+    const done = Q.pick >= 0 || Q.over;
+    const ch = h("div", { class: "choices" + (o.shapes ? " shapes" : "") + (q.txt ? " txt one" : "") }, q.ch.map((c2, i) => {
+      const cls = !done ? "" : c2 === q.ans ? " ok" : i === Q.pick ? " ng" : "";
+      return h("button", { type: "button", class: "choice" + cls + (Q.pick === i ? " mine" : ""), style: o.shapes ? `--sc:${SHAPES[i][1]}` : null, html: (o.shapes ? `<span class="sh">${SHAPES[i][0]}</span>` : `<span class="kb">${i + 1}</span>`) + c2, disabled: done || o.lockAll || null, onclick: () => o.onPick && o.onPick(i) });
+    }));
+    el.append(ch);
+    if (done && Q.pick >= 0 && q.ch[Q.pick] !== q.ans && q.why && q.why[q.ch[Q.pick]] && o.showWhy !== false) el.append(h("div", { class: "whyline", html: `「${q.ch[Q.pick]}」は ${q.why[q.ch[Q.pick]]}` }));
+  }
+}
+/* 問題の下の 道具：💡 公式（点 半分）・✏️ 計算（図に書きこむ） */
+function qTools(el, Q, onHint, label) {
+  const row = h("div", { class: "minirow qtools" });
+  row.append(h("button", { type: "button", class: "mini" + (Q.hint ? " on" : ""), disabled: Q.hint || Q.pick >= 0 || null, onclick: onHint }, `💡 公式（${label || "点 半分"}）`));
+  row.append(h("button", { type: "button", class: "mini", onclick: () => { if (window.penSet) { penSet(true); toast("左の図に 指やペンで 書けます（けす・おわる は 図の左下）"); } } }, "✏️ 計算メモ"));
+  el.append(row);
+}
+const timerBar = (left, lim) => h("div", { class: "qtimer" + (left < 10 ? " hurry" : "") }, h("i", { style: `width:${Math.max(0, left / lim * 100).toFixed(1)}%` }), h("span", {}, `⏱ のこり ${Math.max(0, Math.ceil(left))} 秒`));
+
+/* ---------- 📖 終わったあとの 解説（ダイアログ） ---------- */
+function openReview(log, only) {
+  const dlg = $("#sdlg"), box = clear($("#sdlgIn"));
+  const bad = log.filter(x => !x.ok).length;
+  let filter = only || (bad ? "ng" : "all");
+  const list = h("div", { class: "rvlist" });
+  const tab = (v, t) => h("button", { type: "button", "aria-pressed": filter === v ? "true" : "false", onclick: () => openReview(log, v) }, t);
+  box.append(h("div", { class: "ptitle" }, h("h2", {}, "📖 解説"), h("div", { class: "seg", style: "margin-left:8px" }, tab("ng", `まちがい（${bad}）`), tab("all", `全部（${log.length}）`)), h("button", { type: "button", class: "mini", style: "margin-left:auto", onclick: () => dlg.close() }, "✕ とじる")));
+  log.forEach((x, n) => {
+    if (filter === "ng" && x.ok) return;
+    const q = x.q;
+    const res = x.trail ? (x.ok ? `<b class="okc">○ 完答</b>` : `<b class="ngc">${x.trail.filter(t => t.ok).length} / ${x.trail.length} ステップ</b>`) : x.ok ? `<b class="okc">○ 正解</b>` : x.pick == null ? `<b class="ngc">− 時間切れ</b>` : `<b class="ngc">× あなた：${x.pick}</b>`;
+    const item = h("div", { class: "rvitem " + (x.ok ? "ok" : "ng") },
+      h("div", { class: "rvhead", html: `<span class="rvn">${n + 1}</span><span class="pill">${q.cat}</span><span class="stars">${"★".repeat(q.w)}</span>${x.hint ? '<span class="pill">💡 公式を使った</span>' : ""}` }),
+      h("div", { class: "rvq", html: termify(q.q) }),
+      h("div", { class: "rvans", html: `${res}　正解：<b>${q.ans}</b>` }));
+    if (x.trail) item.append(h("ol", { class: "rvtrail" }, x.trail.map(t => h("li", { class: t.ok ? "ok" : t.ok === false ? "ng" : "na" }, h("span", { html: t.ask }), h("b", { html: t.ans }), h("i", {}, t.ok ? "✓" : t.ok === false ? "✕" : "−")))));
+    else if (q.inst) {
+      if (!x.ok && x.pick && q.why[x.pick]) item.append(h("div", { class: "whyline", html: `「${x.pick}」は ${q.why[x.pick]}` }));
+      item.append(h("ol", { class: "flow" }, q.inst.steps.map(st => h("li", {}, h("span", { html: termify(st.say) }), st.eq ? h("div", { class: "calc", html: st.eq }) : null))));
+    }
+    item.append(h("div", { class: "rvfo", html: `📐 ${q.u.gen}` }));
+    item.append(h("button", { type: "button", class: "mini", onclick: () => { dlg.close(); leaveAll(); openUnit(q.u.id, 1); } }, `📖 授業「${q.u.name}」で復習`));
+    list.append(item);
+  });
+  if (!list.children.length) list.append(h("p", { class: "lead" }, "まちがえた問題はありません！ 「全部」で ふり返れます"));
+  box.append(list);
+  if (!dlg.open) dlg.showModal();
+}
+const reviewBtn = log => { const bad = log.filter(x => !x.ok).length; return h("button", { type: "button", class: "btn" + (bad ? " main" : ""), onclick: () => openReview(log) }, bad ? `📖 まちがえた ${bad} 問の解説` : "📖 解説を見る（全問正解！）"); };
+const trailOf = Q => Q.q.steps.map((s2, j) => ({ ask: s2.ask, ans: s2.ans, ok: Q.sres[j] }));
+function brag(text) {
+  if (navigator.share && /Mobi|Android|iPhone|iPad/.test(navigator.userAgent)) { navigator.share({ text }).catch(() => {}); return; }
+  if (navigator.clipboard) navigator.clipboard.writeText(text).then(() => toast("結果の文章をコピーしました。LINE などに はりつけて自慢しよう"), () => toast(text.split("\n")[1])); else toast(text.split("\n")[1]);
+}
+const shareURL = () => location.origin + location.pathname;
+
+/* =================== ⏱ タイムアタック（ひとり・早とき 共通） =================== */
+let G = null;
 const mult = () => 1 + Math.min(4, Math.floor(G.combo / 10)) * .5;
 function newGame(cfg, seed, mode, startAt) {
   if (G) clearInterval(G.timer);
-  G = { cfg, R: rng(seed), pool: gpool(cfg), qi: 0, score: 0, combo: 0, maxCombo: 0, ok: 0, miss: 0, mode, startAt, endAt: startAt + cfg.t * 1000, q: null, lock: false, over: false, timer: null };
-  nextGQ();
+  const T0 = startT(cfg);
+  G = { cfg, T: T0, qs: makeQs(cfg, seed), qi: 0, score: 0, combo: 0, maxCombo: 0, ok: 0, miss: 0, missRun: 0, gain: 0, stepOk: 0, mode, startAt, endAt: startAt + T0 * 1000, Q: null, lock: false, over: false, timer: null, log: [] };
+  nextQ();
 }
-function nextGQ() {
-  const i = Math.floor(G.R() * G.pool.length), u = G.pool[i];
-  const inst = withSeed(G.R, G.cfg.l, () => { const x = u.pr(); x.order = shuffle(x.choices.map((_, j) => j)); return x; });
-  inst.u = u; G.q = { inst, pick: -1 }; G.qi++; G.lock = false;
-  S.inst = inst;
+function nextQ() { G.Q = newQS(G.qs[G.qi % G.qs.length]); G.qi++; G.lock = false; CUR = G.Q; if (window.penClear) penClear(); }
+function addTime(sec, why) {
+  const t = Math.max(gnow(), G.startAt), left = G.endAt - t;
+  const nl = Math.max(0, Math.min(G.T * 1000, left + sec * 1000)), real = Math.round((nl - left) / 100) / 10;
+  G.endAt = t + nl; if (real > 0) G.gain = Math.round((G.gain + real) * 10) / 10;
+  const bar = $(".hud"); if (!bar || !real) return;
+  const f = h("div", { class: "tpop " + (real > 0 ? "up" : "dn") }, `${real > 0 ? "+" : "−"}${Math.abs(real)} 秒${why ? "　" + why : ""}`);
+  bar.append(f); setTimeout(() => f.remove(), 900);
 }
 function gPick(i) {
-  const q = G.q; if (!G || G.over || G.lock || q.pick >= 0 || gnow() < G.startAt) return;
-  q.pick = i;
-  if (i === 0) { G.combo++; if (G.combo > G.maxCombo) G.maxCombo = G.combo; G.score += Math.round(30 * mult()); G.ok++; G.lock = true; pushScore(); setTimeout(() => { if (G && !G.over) { nextGQ(); drawGQ(); } }, 350); }
-  else { G.combo = 0; G.miss++; G.lock = true; setTimeout(() => { if (G && !G.over) { nextGQ(); drawGQ(); } }, 1100); }
-  drawGQ();
+  if (!G || G.over || G.lock || gnow() < G.startAt) return;
+  const Q = G.Q, q = Q.q;
+  if (q.steps) return gPickStep(i);
+  Q.pick = i; G.lock = true;
+  const ok = q.ch[i] === q.ans;
+  G.log.push({ q, pick: q.ch[i], ok, hint: Q.hint });
+  if (ok) {
+    G.combo++; G.missRun = 0; if (G.combo > G.maxCombo) G.maxCombo = G.combo;
+    const quick = Math.min(1, (gnow() - Math.max(Q.t0, G.startAt)) / 1000 / (READ_SEC * q.w)), half = (Q.hint ? .5 : 1) * quick;
+    G.score += Math.round(30 * q.w * mult() * half); G.ok++;
+    addTime(Math.round(bonusSec(q.w, G.ok) * half * 10) / 10 + (G.combo % 5 === 0 ? COMBO_BONUS : 0), G.combo % 5 === 0 ? `${G.combo} コンボ！` : quick < 1 ? "早おし" : "");
+  } else { G.combo = 0; G.miss++; G.missRun++; const k = Math.min(3, G.missRun); addTime(-PENALTY * k, k > 1 ? "連続ミス" : ""); }
+  drawTA(); pushScore();
+  setTimeout(() => { if (G && !G.over) { nextQ(); drawTA(); } }, ok ? 300 : WRONG_WAIT);
+}
+function gPickStep(i) {
+  const Q = G.Q, q = Q.q, n = q.steps.length, st = q.steps[Q.si], ok = st.ch[i] === st.ans, last = Q.si === n - 1;
+  Q.pick = i; G.lock = true; Q.sres[Q.si] = ok;
+  const think = (gnow() - Math.max(Q.st0 || Q.t0, G.startAt)) / 1000, quick = Math.min(1, think / (Q.si === 0 ? READ_SEC * q.w : 1.2));
+  if (ok) {
+    G.combo++; G.missRun = 0; G.stepOk++; if (G.combo > G.maxCombo) G.maxCombo = G.combo;
+    const half = (Q.hint ? .5 : 1) * quick, all = last && Q.sres.every(Boolean);
+    let pts = Math.round(15 * q.w * mult() * half);
+    if (all) { pts += Math.round(15 * q.w * mult() * (Q.hint ? .5 : 1)); G.ok++; }
+    G.score += pts;
+    addTime(Math.round((bonusSec(q.w, G.ok) / n * half + (G.combo % 5 === 0 ? COMBO_BONUS : 0)) * 10) / 10, all ? "完答！" : G.combo % 5 === 0 ? `${G.combo} コンボ！` : quick < 1 ? "早おし" : "");
+  } else { G.combo = 0; G.miss++; G.missRun++; const k = Math.min(3, G.missRun); addTime(-STEP_PENALTY * k, k > 1 ? "連続ミス" : ""); }
+  drawTA(); pushScore();
+  setTimeout(() => {
+    if (!G || G.over) return;
+    if (!last) { Q.si++; Q.pick = -1; G.lock = false; Q.st0 = gnow(); drawTA(); return; }
+    G.log.push({ q, ok: Q.sres.every(Boolean), hint: Q.hint, trail: trailOf(Q) });
+    nextQ(); drawTA();
+  }, ok ? 450 : STEP_WRONG_WAIT);
 }
 function drawHud() {
   if (!G) return;
-  const t = gnow(), left = Math.max(0, G.endAt - t), all = G.cfg.t * 1000;
+  const t = gnow(), left = Math.max(0, G.endAt - t), all = G.T * 1000;
   const f = $("#tfill"), sec = $("#tsec"), sc = $("#hscore"), cb = $("#hcombo");
   if (f) { f.style.width = (t < G.startAt ? 100 : left / all * 100) + "%"; f.className = left < 10000 && t >= G.startAt ? "hurry" : ""; }
-  if (sec) sec.textContent = t < G.startAt ? G.cfg.t + "秒" : Math.ceil(left / 1000) + "秒";
+  if (sec) sec.textContent = t < G.startAt ? G.T + " 秒" : Math.ceil(left / 1000) + " 秒";
   if (sc) sc.textContent = G.score.toLocaleString();
   if (cb) cb.innerHTML = G.combo >= 2 ? `<b>${G.combo}</b> コンボ${mult() > 1 ? `<i>×${mult()}</i>` : ""}` : "";
 }
-function drawGQ() {
+function drawTA() {
   const el = $("#gq"); if (!el || !G) return;
   const t = gnow();
-  clear(el);
-  if (t < G.startAt) { const n = Math.ceil((G.startAt - t) / 1000); el.append(h("div", { class: "count" }, h("small", {}, cfgName(G.cfg)), h("b", {}, n > 3 ? "…" : String(n)), h("small", {}, "正しい答えを どんどんタップ！ まちがえると コンボが切れる"))); drawHud(); return; }
-  const q = G.q, inst = q.inst;
-  el.append(h("div", { class: "lab" }, h("span", { class: "pill" }, inst.u.name), h("span", { class: "r" }, `✅ ${G.ok}　✕ ${G.miss}`)));
-  el.append(h("div", { class: "prob", html: inst.problem }));
-  const ch = h("div", { class: "choices" + (inst.txt ? " txt one" : "") });
-  for (const i of inst.order) {
-    const b = h("button", { type: "button", class: "choice" + (q.pick < 0 ? "" : i === 0 ? " ok" : i === q.pick ? " ng" : ""), html: inst.choices[i], onclick: () => gPick(i) });
-    if (q.pick >= 0) b.disabled = true;
-    ch.append(b);
+  if (t < G.startAt) {
+    clear(el);
+    const n = Math.ceil((G.startAt - t) / 1000);
+    el.append(h("div", { class: "count" }, h("small", {}, cfgName(G.cfg)), h("b", {}, n > 3 ? "…" : String(n)), rulesBox(G.cfg.st)));
+    drawHud(); draw(); return;
   }
-  el.append(ch);
-  drawHud();
-  draw();
+  const Q = G.Q, q = Q.q;
+  qPanel(el, Q, { onPick: gPick, right: q.steps ? `✅ 完答 ${G.ok}　✕ ${G.miss}` : `正解で +${bonusSec(q.w, G.ok)} 秒　✅ ${G.ok}` });
+  qTools(el, Q, () => { if (!G.lock && !Q.hint) { Q.hint = true; drawTA(); } }, "点・時間 半分");
+  drawHud(); draw();
 }
 function runClock(onEnd) {
   clearInterval(G.timer);
@@ -2662,51 +3145,137 @@ function runClock(onEnd) {
   G.timer = setInterval(() => {
     if (!G) return;
     const t = gnow();
-    if (t < G.startAt) { drawGQ(); return; }
-    if (wasCount) { wasCount = false; drawGQ(); }
-    if (t >= G.endAt && !G.over) { G.over = true; clearInterval(G.timer); onEnd(); return; }
+    if (t < G.startAt) { drawTA(); return; }
+    if (wasCount) { wasCount = false; drawTA(); }
+    if (t >= G.endAt && !G.over) {
+      const Q = G.Q;
+      if (Q.q.steps) G.log.push({ q: Q.q, ok: false, trail: trailOf(Q) }); else if (Q.pick < 0) G.log.push({ q: Q.q, pick: null, ok: false });
+      G.over = true; clearInterval(G.timer); onEnd(); return;
+    }
     drawHud();
   }, 100);
-  drawGQ();
+  drawTA();
 }
-function afterGame() { const coins = Math.floor(G.score / 20); if (G.maxCombo > RW.maxCombo) RW.maxCombo = G.maxCombo; if (G.score > RW.taBest) RW.taBest = G.score; return coins; }
+function afterGame() { const coins = Math.floor(G.score / 20); if (G.maxCombo > RW.maxCombo) RW.maxCombo = G.maxCombo; if (G.score > RW.taBest) RW.taBest = G.score; RW.stepOk += G.stepOk; return coins; }
 function playShell(title) {
   const body = clear($("#body"));
-  body.append(h("div", { class: "hud" }, h("button", { type: "button", class: "mini", onclick: () => { leaveAll(); openGame(); } }, "✕"), h("div", { class: "tbar" }, h("i", { id: "tfill" }), h("span", { id: "tsec" })), h("div", { class: "hc", id: "hcombo" }), h("div", { class: "hs" }, h("small", {}, title), h("b", { id: "hscore" }, "0"))));
+  body.append(h("div", { class: "hud" }, h("button", { type: "button", class: "mini", title: "やめる", onclick: () => { leaveAll(); openGame(); } }, "✕"), h("div", { class: "tbar" }, h("i", { id: "tfill" }), h("span", { id: "tsec" })), h("div", { class: "hc", id: "hcombo" }), h("div", { class: "hs" }, h("small", {}, title), h("b", { id: "hscore" }, "0"))));
   body.append(h("div", { class: "gq", id: "gq" }));
 }
-
-/* ---------- ⏱ ひとりで タイムアタック ---------- */
-function taCfg() { let c = store.get("ta", null); if (!c) c = { c: S.u ? S.u.cat : "seq", t: 60 }; c.l = LEVEL; c.u = 99; return c; }
+/* ゲームの設定（ひとり用）：分野・答え方・持ち時間・考える時間 */
+const gCfg = () => Object.assign({ c: (S.u && S.u.cat) || "seq", st: true, t: 0, sp: "n" }, store.get("gcfg", {}), { l: LEVEL, u: 99 });
+const setGCfg = (k, v) => { const c = store.get("gcfg", {}); c[k] = v; store.set("gcfg", c); render(); };
+const bestKey = (kind, cfg) => `${kind}-${cfg.c}-${cfg.st ? "s" : "p"}${kind === "ta" ? "-" + startT(cfg) : ""}`;
 function startSolo() {
-  const cfg = taCfg(); S.game = { view: "solo" }; history.replaceState(null, "", "#ta");
+  const cfg = gCfg(); leaveAll(); S.mode = "game"; S.game = { view: "solo" }; history.replaceState(null, "", "#ta");
   newGame(cfg, Math.floor(Math.random() * 1e9), "solo", Date.now() + 3200);
   renderGameFrame("⏱ タイムアタック"); playShell("スコア"); runClock(endSolo);
 }
 function endSolo() {
-  const key = G.cfg.c + "-" + G.cfg.l, prev = RW.best[key] || 0, rec = G.score > prev;
+  const key = bestKey("ta", G.cfg), prev = RW.best[key] || 0, rec = G.score > prev;
   if (rec) RW.best[key] = G.score;
   const coins = afterGame(); saveRW(); earn(coins); checkBadges();
-  G.share = `数学Bラボ ⏱タイムアタック（${cfgName(G.cfg)}）\n${G.score.toLocaleString()}点！ ${G.ok} 問を解いた（≒ ${ruler(G.ok)}）\n最大${G.maxCombo}コンボ・段位「${rankOf(RW.coins).name}」\n${location.origin}${location.pathname}`;
+  G.share = `数学Bラボ ⏱タイムアタック（${cfgName(G.cfg)}）\n${G.score.toLocaleString()}点！ ${G.ok} 問を解いた（≒ ${ruler(G.ok)}）\n最大${G.maxCombo}コンボ・段位「${rankOf(RW.coins).name}」\n${shareURL()}`;
+  CUR = null;
   const el = clear($("#gq"));
   el.append(h("div", { class: "gres" },
     rec && G.score > 0 ? h("div", { class: "stamp" }, "新記録") : null,
     h("div", { class: "score" }, h("b", {}, G.score.toLocaleString()), " 点"),
     h("p", { class: "lead" }, `📝 ${G.ok} 問を解いた ≒ `, h("b", {}, ruler(G.ok))),
-    h("p", { class: "lead", style: "font-size:.85rem" }, `✅ 正解 ${G.ok}　✕ ミス ${G.miss}　⚡ 最大 ${G.maxCombo} コンボ　🪙 +${coins}`),
+    h("p", { class: "lead", style: "font-size:.85rem" }, `✅ ${G.cfg.st ? "完答" : "正解"} ${G.ok}　✕ ミス ${G.miss}　⚡ 最大 ${G.maxCombo} コンボ　⏱ +${G.gain} 秒もどした　🪙 +${coins}`),
     h("p", { class: "lead", style: "font-size:.8rem;color:var(--muted)" }, `${cfgName(G.cfg)} のベスト：${Math.max(prev, G.score).toLocaleString()} 点`),
-    h("div", { class: "minirow" }, h("button", { type: "button", class: "btn main", onclick: startSolo }, "↺ もう一度"), h("button", { type: "button", class: "btn", onclick: () => brag(G.share) }, "📣 自慢する"), h("button", { type: "button", class: "btn", onclick: () => { leaveAll(); openGame(); } }, "◀ もどる"))));
+    h("div", { class: "minirow" }, reviewBtn(G.log), h("button", { type: "button", class: "btn main", onclick: startSolo }, "↺ もう一度"), h("button", { type: "button", class: "btn", onclick: () => brag(G.share) }, "📣 自慢"), h("button", { type: "button", class: "btn", onclick: () => { leaveAll(); openGame(); } }, "◀ もどる"))));
   $("#hcombo").innerHTML = "";
   draw();
 }
-function brag(text) {
-  if (navigator.share && /Mobi|Android|iPhone|iPad/.test(navigator.userAgent)) { navigator.share({ text }).catch(() => {}); return; }
-  if (navigator.clipboard) navigator.clipboard.writeText(text).then(() => toast("結果の文章をコピーしました。LINE などに はりつけて自慢しよう"), () => toast(text.split("\n")[1])); else toast(text.split("\n")[1]);
+
+/* =================== 🧗 じっくりチャレンジ（ひとり） =================== */
+let CL = null;
+function startClimb() {
+  const cfg = gCfg(); leaveAll(); S.mode = "game"; S.game = { view: "climb" }; history.replaceState(null, "", "#climb");
+  CL = { cfg, qs: makeQs(cfg, Math.floor(Math.random() * 1e9), 80), i: -1, lives: 3, score: 0, streak: 0, best: 0, ok: 0, stepOk: 0, log: [], Q: null, lim: 0, start: 0, answered: false, last: null, timer: null, locked: false };
+  CL.timer = setInterval(() => { if (CL && CL.Q && !CL.answered) { const left = CL.lim - (Date.now() - CL.start) / 1000; if (left <= 0) climbFinishQ(true); else { const tb = $("#body .qtimer"); if (tb) tb.replaceWith(timerBar(left, CL.lim)); } } }, 250);
+  renderGameFrame("🧗 じっくりチャレンジ");
+  climbNext();
+}
+function climbNext() {
+  if (!CL) return;
+  if (CL.lives <= 0) return climbEnd();
+  CL.i++; const q = CL.qs[CL.i % CL.qs.length];
+  CL.Q = newQS(q); CL.lim = qLimit(q.w, CL.cfg.sp, !!q.steps); CL.start = Date.now(); CL.answered = false; CL.last = null; CL.locked = false; CUR = CL.Q;
+  if (window.penClear) penClear();
+  drawClimb();
+}
+function climbPick(i) {
+  if (!CL || CL.answered || CL.locked) return;
+  const Q = CL.Q, q = Q.q;
+  if (!q.steps) { Q.pick = i; climbFinishQ(false); return; }
+  const st = q.steps[Q.si], ok = st.ch[i] === st.ans, last = Q.si === q.steps.length - 1;
+  Q.pick = i; Q.sres[Q.si] = ok; CL.locked = true;
+  if (ok) CL.stepOk++;
+  drawClimb();
+  setTimeout(() => {
+    if (!CL || CL.Q !== Q) return;
+    CL.locked = false;
+    if (last) { climbFinishQ(false); return; }
+    Q.si++; Q.pick = -1; drawClimb();
+  }, ok ? 550 : 1700);
+}
+function climbFinishQ(timeout) {
+  if (!CL || CL.answered) return;
+  const Q = CL.Q, q = Q.q, t = (Date.now() - CL.start) / 1000;
+  CL.answered = true;
+  let ok, frac = 1, pick = null;
+  if (q.steps) { if (timeout) { Q.over = true; for (let j = Q.si; j < q.steps.length; j++) if (Q.sres[j] == null) Q.sres[j] = false; } frac = Q.sres.filter(Boolean).length / q.steps.length; ok = frac === 1; }
+  else { pick = Q.pick >= 0 ? q.ch[Q.pick] : null; ok = pick === q.ans; Q.done = true; }
+  const full = qPoints(1 - t / CL.lim, q.w, CL.streak, Q.hint);
+  let pts = ok ? full : q.steps ? Math.round(full * frac * .4) : 0, heal = false;
+  if (ok) { CL.streak++; CL.ok++; CL.best = Math.max(CL.best, CL.streak); if (CL.streak % 5 === 0 && CL.lives < 3) { CL.lives++; heal = true; } }
+  else { CL.streak = 0; CL.lives--; }
+  CL.score += pts;
+  CL.last = { ok, pts, heal, timeout, frac };
+  CL.log.push(q.steps ? { q, ok, hint: Q.hint, trail: trailOf(Q) } : { q, pick, ok, hint: Q.hint });
+  drawClimb();
+}
+function drawClimb() {
+  if (!CL) return;
+  const body = clear($("#body")), Q = CL.Q, q = Q.q;
+  body.append(h("div", { class: "clhud" }, h("button", { type: "button", class: "mini", title: "やめる", onclick: () => { leaveAll(); openGame(); } }, "✕"), h("span", { class: "lives" }, "❤️".repeat(Math.max(0, CL.lives)) + "🤍".repeat(Math.max(0, 3 - CL.lives))), h("span", { class: "qn", html: `第 <b>${CL.i + 1}</b> 問` }), CL.streak >= 2 ? h("span", { class: "fire" }, `🔥${CL.streak}`) : null, h("span", { class: "sc" }, h("small", {}, "スコア"), h("b", {}, CL.score.toLocaleString()))));
+  if (!CL.answered) body.append(timerBar(CL.lim - (Date.now() - CL.start) / 1000, CL.lim));
+  const qa = h("div", { class: "gq" }); body.append(qa);
+  qPanel(qa, Q, { onPick: climbPick, right: q.steps ? "まちがえても 続けられる" : "" });
+  if (!CL.answered) qTools(qa, Q, () => { if (!Q.hint && !CL.answered) { Q.hint = true; drawClimb(); } });
+  else {
+    const L = CL.last;
+    body.append(h("div", { class: "clfb " + (L.ok ? "ok" : "ng") },
+      h("div", { class: "big", html: L.ok ? `✅ ${q.steps ? "完答！" : "正解！"} <b>+${L.pts.toLocaleString()}</b>` : L.timeout ? "⏱ 時間切れ… ❤ −1" : q.steps ? `❌ ${Math.round(L.frac * q.steps.length)} / ${q.steps.length} ステップ… ❤ −1${L.pts ? `（+${L.pts}）` : ""}` : "❌ ざんねん… ❤ −1" }),
+      h("div", { class: "sub", html: (L.ok ? (L.heal ? "❤ 5 問連続正解で ハートが 1 つ もどった！　" : "") + (CL.streak >= 2 ? `🔥 ${CL.streak} 問連続（次は ×${(1 + .1 * Math.min(5, CL.streak)).toFixed(1)}）` : "") : `正解は <b>${q.ans}</b>　（左の図が 解き方）`) }),
+      h("div", { class: "rvfo", html: `📐 ${q.u.gen}` }),
+      h("div", { class: "minirow", style: "justify-content:center" }, h("button", { type: "button", class: "btn main", onclick: climbNext }, CL.lives > 0 ? "次の問題 ▶" : "結果を見る ▶"), !L.ok ? h("button", { type: "button", class: "mini", onclick: () => openReview([CL.log[CL.log.length - 1]], "all") }, "📖 くわしく") : null)));
+  }
+  draw();
+}
+function climbEnd() {
+  const key = bestKey("climb", CL.cfg), prev = RW.best[key] || 0, rec = CL.score > prev;
+  if (rec) RW.best[key] = CL.score;
+  if (CL.best > RW.maxCombo) RW.maxCombo = CL.best;
+  RW.climbBest = Math.max(RW.climbBest, CL.ok); RW.stepOk += CL.stepOk;
+  saveRW(); const coins = Math.floor(CL.score / 100); earn(coins); checkBadges();
+  CUR = null; CL.done = true;
+  const text = `数学Bラボ 🧗じっくりチャレンジ（${scopeName(CL.cfg)}${CL.cfg.st ? "・解き方ステップ" : ""}）\n${CL.score.toLocaleString()}点！ 第${CL.i + 1}問まで・${CL.ok}問正解・最大${CL.best}連続\n${shareURL()}`;
+  const body = clear($("#body"));
+  body.append(h("div", { class: "gres" },
+    rec && CL.score > 0 ? h("div", { class: "stamp" }, "新記録") : null,
+    h("div", { class: "score" }, h("b", {}, CL.score.toLocaleString()), " 点"),
+    h("p", { class: "lead" }, `🧗 第 ${CL.i + 1} 問まで 進んだ・✅ ${CL.ok} 問 正解`),
+    h("p", { class: "lead", style: "font-size:.85rem" }, `🔥 最大 ${CL.best} 問連続　🪙 +${coins}　ベスト：${Math.max(prev, CL.score).toLocaleString()} 点`),
+    h("div", { class: "minirow" }, reviewBtn(CL.log), h("button", { type: "button", class: "btn main", onclick: startClimb }, "↺ もう一度"), h("button", { type: "button", class: "btn", onclick: () => brag(text) }, "📣 自慢"), h("button", { type: "button", class: "btn", onclick: () => { leaveAll(); openGame(); } }, "◀ もどる"))));
+  draw();
 }
 
-/* ---------- ゲームのトップ ---------- */
+/* =================== 🎮 ゲームのトップ =================== */
 function openGame() {
-  leaveAll(); S.mode = "game"; S.game = { view: "hub" }; S.drill = null; S.mk = null;
+  leaveAll(); S.mode = "game"; S.game = { view: "hub" }; S.drill = null; S.mk = null; CUR = null;
   history.replaceState(null, "", "#game"); render();
 }
 function renderGameFrame(title) {
@@ -2715,28 +3284,31 @@ function renderGameFrame(title) {
   document.querySelector(".card").classList.add("game");
 }
 function renderHub(body) {
-  const cfg = taCfg(), best = RW.best[cfg.c + "-" + cfg.l] || 0, rk = rankOf(RW.coins);
-  const seg = (key, opts) => h("div", { class: "seg" }, opts.map(([v, lab]) => h("button", { type: "button", "aria-pressed": String(cfg[key]) === String(v) ? "true" : "false", onclick: () => { const c = taCfg(); c[key] = v; store.set("ta", { c: c.c, t: c.t }); render(); } }, lab)));
-  body.append(h("div", { class: "ptitle" }, h("span", { class: "tag" }, "ゲーム"), h("h2", {}, "⏱ タイムアタック"), h("span", { class: "rkchip" }, `🪙 ${RW.coins.toLocaleString()}　${rk.name}`)));
-  body.append(h("p", { class: "lead" }, "60 秒で 何問とける？ 続けて正解すると コンボで点数アップ。"));
-  body.append(h("div", { class: "ctrl" }, h("label", { class: "sl" }, h("span", {}, "分野"), seg("c", [["seq", "数列"], ["stat", "統計"], ["all", "全部"]]), h("span", {})), h("label", { class: "sl" }, h("span", {}, "レベル"), h("span", { class: "lead", style: "font-size:.85rem" }, `${LEVELS[LEVEL].ico} ${LEVELS[LEVEL].name}（右上で変更）`), h("span", {}))));
-  body.append(h("div", { class: "minirow", style: "align-items:center" }, h("button", { type: "button", class: "btn main", onclick: startSolo }, "▶ スタート"), h("span", { class: "lead", style: "font-size:.85rem" }, `ベスト ${best.toLocaleString()} 点`)));
-  body.append(h("hr", { class: "sep" }));
-  body.append(h("div", { class: "ptitle" }, h("h2", {}, "🏆 クラス対戦")));
+  const cfg = gCfg(), rk = rankOf(RW.coins);
+  const seg = (key, opts) => h("div", { class: "seg" }, opts.map(([v, lab]) => h("button", { type: "button", "aria-pressed": String(cfg[key]) === String(v) ? "true" : "false", onclick: () => setGCfg(key, v) }, lab)));
+  body.append(h("div", { class: "ptitle" }, h("span", { class: "tag" }, "ゲーム"), h("h2", {}, "🎮 ゲーム"), h("span", { class: "rkchip" }, `🪙 ${RW.coins.toLocaleString()}　${rk.name}`)));
+  body.append(h("div", { class: "ctrl" },
+    h("label", { class: "sl" }, h("span", {}, "📚 範囲"), seg("c", SCOPES), h("span", {})),
+    h("label", { class: "sl" }, h("span", {}, "答え方"), seg("st", [[true, "🪜 解き方ステップ"], [false, "答えだけ"]]), h("span", {}))));
+  const card = (cls, title, desc, extra, btn, best) => h("section", { class: "ghp " + cls }, cls === "rec" ? h("span", { class: "gbadge" }, "おすすめ") : null, h("b", {}, title), h("p", {}, desc), extra, h("div", { class: "minirow", style: "align-items:center" }, btn, best ? h("span", { class: "bestv" }, `ベスト ${best.toLocaleString()}`) : null));
+  body.append(card("rec", "🧗 じっくりチャレンジ", "1 問ずつ 考える時間。答えると すぐ解説。❤ 3 つ。", seg("sp", [["s", "短め"], ["n", "ふつう"], ["l", "長め"]]), h("button", { type: "button", class: "btn main", onclick: startClimb }, "▶ はじめる"), RW.best[bestKey("climb", cfg)]));
+  body.append(card("", "⏱ タイムアタック", "正解すると 時間がもどる。時間切れまで 何問とける？", seg("t", [[0, "おまかせ"], [60, "60秒"], [120, "120秒"], [180, "180秒"]]), h("button", { type: "button", class: "btn", onclick: startSolo }, "▶ スタート"), RW.best[bestKey("ta", cfg)]));
+  const cls = h("section", { class: "ghp" }, h("b", {}, "🏆 クラス対戦"));
   if (dbBase()) {
-    const code = h("input", { type: "text", id: "jCode", class: "ansin", inputmode: "numeric", maxlength: "4", placeholder: "部屋番号（4けた）" });
+    const code = h("input", { type: "text", id: "jCode", class: "ansin", inputmode: "numeric", maxlength: "4", placeholder: "部屋番号" });
     const name = h("input", { type: "text", id: "jName", class: "ansin", maxlength: "10", placeholder: "ニックネーム", value: store.get("nick", "") });
     const go = () => joinRoom(code.value, name.value);
     [code, name].forEach(x => x.addEventListener("keydown", e => { if (e.key === "Enter") go(); }));
-    body.append(h("p", { class: "lead", style: "font-size:.85rem" }, "先生の合図で 全員いっせいにスタート。ランキングが リアルタイムで動く。"));
-    body.append(h("div", { class: "ansrow" }, code, name));
-    body.append(h("div", { class: "minirow" }, h("button", { type: "button", class: "btn main", onclick: go }, "参加する ▶"), h("button", { type: "button", class: "btn", onclick: makeRoom }, "🏫 先生：部屋をつくる")));
-  } else body.append(h("p", { class: "hintbox" }, "まだ使えません。右上の ⚙ で データベースを登録すると使えます（README「クラス対戦の準備」）。"));
+    cls.append(h("div", { class: "ansrow" }, code, name), h("div", { class: "minirow" }, h("button", { type: "button", class: "btn main", onclick: go }, "参加する ▶"), h("button", { type: "button", class: "mini", onclick: makeRoom }, "🏫 先生：部屋をつくる")));
+  } else cls.append(h("p", {}, "右上の ⚙ で データベースを登録すると使えます。"));
+  body.append(cls);
 }
 
-/* ---------- Firebase（REST ＋ ストリーム） ---------- */
+/* =================== 🏆 クラス対戦（Firebase） =================== */
 function dbBase() { const u = (store.get("db", "") || (window.MB_CONFIG && MB_CONFIG.db) || "").trim().replace(/\/+$/, ""); return /^https:\/\/[^\s]+$/.test(u) ? u : ""; }
 function pid() { let p = store.get("pid", null); if (!p) { p = "p" + Math.random().toString(36).slice(2, 10); store.set("pid", p); } return p; }
+/* 部屋は rooms/b〇〇〇〇（論理表現ラボ・数学Aラボの部屋と ぶつからない） */
+const ROOM = code => "rooms/b" + code;
 function api(method, path, body) { const o = { method }; if (body !== undefined) o.body = JSON.stringify(body); return fetch(dbBase() + "/" + path + ".json", o).then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }); }
 function listen(path, cb) {
   let tree = null, es = null, poll = null, closed = false;
@@ -2750,57 +3322,91 @@ function listen(path, cb) {
   } catch (e) { startPoll(); }
   return () => { closed = true; if (es) es.close(); clearInterval(poll); };
 }
-function syncClock(code) { const t0 = Date.now(), p = `rooms/${code}/clock/${pid()}`; return api("PUT", p, { ".sv": "timestamp" }).then(ts => { const t1 = Date.now(); if (typeof ts === "number") OFF = ts - (t0 + t1) / 2; api("DELETE", p).catch(() => {}); }, () => {}); }
-function joinUrl(code) { let u = `${location.origin}${location.pathname}#join=${code}`; if (store.get("db", "") && !(window.MB_CONFIG && MB_CONFIG.db === dbBase())) u += "&db=" + encodeURIComponent(dbBase()); return u; }
+function syncClock(code) { const t0 = Date.now(), p = `${ROOM(code)}/clock/${pid()}`; return api("PUT", p, { ".sv": "timestamp" }).then(ts => { const t1 = Date.now(); if (typeof ts === "number") OFF = ts - (t0 + t1) / 2; api("DELETE", p).catch(() => {}); }, () => {}); }
+function joinUrl(code) { let u = `${shareURL()}#join=${code}`; if (store.get("db", "") && !(window.MB_CONFIG && MB_CONFIG.db === dbBase())) u += "&db=" + encodeURIComponent(dbBase()); return u; }
 function playersOf(room, round) { const ps = room && room.players || {}; return Object.keys(ps).map(k => Object.assign({ id: k }, ps[k])).filter(p => p.n && (round == null || p.r === round)).sort((a, b) => round == null ? (b.b || 0) - (a.b || 0) : (b.s || 0) - (a.s || 0)); }
+/* 賞：🎯 正確さ・⚡ コンボ・📚 正解数 */
+function awardsOf(lst) {
+  const out = [], best = (f, ok) => { const c = lst.filter(ok || (() => true)); const m = Math.max(0, ...c.map(f)); return m > 0 ? [m, c.filter(p => f(p) === m)] : null; };
+  const acc = best(p => Math.round((p.w || 0) / Math.max(1, (p.w || 0) + (p.m || 0)) * 100), p => (p.w || 0) + (p.m || 0) >= 3);
+  if (acc) out.push({ ico: "🎯", name: "正確さ No.1", v: acc[0] + "%", who: acc[1] });
+  const cb = best(p => p.c || 0); if (cb && cb[0] >= 2) out.push({ ico: "⚡", name: "コンボ No.1", v: cb[0] + " 連続", who: cb[1] });
+  const nw = best(p => p.w || 0); if (nw) out.push({ ico: "📚", name: "正解数 No.1", v: nw[0] + " 問", who: nw[1] });
+  return out;
+}
+const awardsEl = aw => h("div", { class: "awards" }, aw.map(a => h("span", { class: "aw" }, h("b", {}, `${a.ico} ${a.name}`), ` ${a.who.slice(0, 3).map(p => p.n).join("・")}${a.who.length > 3 ? " ほか" : ""}（${a.v}）`)));
 
 /* ---------- 先生：部屋 ---------- */
 let HO = null;
 function makeRoom() {
-  const cfg = { c: S.u.cat, u: 99, l: LEVEL, t: 60 };
-  const tryOne = n => { const code = String(1000 + Math.floor(Math.random() * 9000)); return api("GET", `rooms/${code}`).then(v => { if (v && n < 6) return tryOne(n + 1); return api("PUT", `rooms/${code}`, { app: "mathb", cfg, state: "lobby", round: 0, seed: 0, startAt: 0, host: pid(), created: { ".sv": "timestamp" } }).then(() => { location.hash = "#host/" + code; }); }); };
+  const g = gCfg(), cfg = { mode: "quiz", c: g.c, u: 99, l: LEVEL, st: true, t: 0, n: 10, sp: "n" };
+  const tryOne = n => { const code = String(1000 + Math.floor(Math.random() * 9000)); return api("GET", ROOM(code)).then(v => { if (v && n < 6) return tryOne(n + 1); return api("PUT", ROOM(code), { app: "mathb", cfg, state: "lobby", round: 0, seed: 0, startAt: 0, host: pid(), created: { ".sv": "timestamp" } }).then(() => { location.hash = "#host/" + code; }); }); };
   tryOne(0).catch(e => toast(`部屋をつくれませんでした（${e.message}）。⚙ 設定を確認してください`));
 }
 function openHost(code) {
   leaveAll(); S.mode = "game"; S.game = { view: "host" }; S.inst = null;
-  HO = { code, room: null, tab: "now", ending: false, timer: null, stop: null };
+  HO = { code, room: null, tab: "now", ending: false, timer: null, stop: null, qs: null, qkey: "", prevRank: {} };
   render();
   syncClock(code).then(() => {
     if (!HO || HO.code !== code) return;
-    HO.stop = listen(`rooms/${code}`, room => {
+    HO.stop = listen(ROOM(code), room => {
       if (!HO) return;
       if (!room) { toast("この部屋は閉じられました"); openGame(); return; }
       const first = !HO.room; HO.room = room;
-      if (first) renderHostPanel(); else renderHostPanel(true);
-      drawBoard();
+      renderHostPanel(!first); drawBoard();
     });
-    HO.timer = setInterval(() => {
-      if (!HO || !HO.room) return;
-      const r = HO.room;
-      if (r.state === "play" && gnow() > r.startAt + r.cfg.t * 1000 + 2500 && !HO.ending) { HO.ending = true; api("PATCH", `rooms/${code}`, { state: "end" }).then(() => { if (HO) HO.ending = false; }); }
-      if (r.state === "play") drawBoard();
-    }, 250);
+    HO.timer = setInterval(hostTick, 250);
   });
 }
-function renderHostPanel(soft) {
+const hostQs = r => { const k = r.seed + ":" + JSON.stringify(r.cfg); if (HO.qkey !== k) { HO.qkey = k; HO.qs = makeQs(Object.assign({}, r.cfg, { st: false }), r.seed, r.cfg.n || 10); } return HO.qs; };
+const answeredOf = r => playersOf(r).filter(p => p.a && p.a.r === r.round && p.a.i === r.qi);
+function hostTick() {
+  if (!HO || !HO.room) return;
+  const r = HO.room, t = gnow();
+  if (r.state === "play") {
+    /* 早とき：全員の時間が切れたら 結果発表（正解で時間がもどるので 人によって ちがう） */
+    const ps = playersOf(r, r.round), all = playersOf(r).length;
+    if (!HO.ending && t > r.startAt + 4000 && ((ps.length >= all && ps.length > 0 && ps.every(p => p.d)) || t > r.startAt + 15 * 60e3)) { HO.ending = true; api("PATCH", ROOM(HO.code), { state: "end" }).then(() => { if (HO) HO.ending = false; }); }
+    drawBoard();
+  }
+  if (r.state === "quiz") {
+    if (r.phase === "ask" && !HO.ending) {
+      const all = playersOf(r).length, ans = answeredOf(r).length;
+      if (t > r.qEnd + 600 || (all > 0 && ans >= all && t > r.qStart + 1500)) { HO.ending = true; hostQuizAct("reveal"); setTimeout(() => { if (HO) HO.ending = false; }, 900); }
+    }
+    if (r.phase === "ask") drawBoard();
+  }
+}
+function hostQuizAct(a) {
+  const r = HO.room, qs = hostQs(r), P = ROOM(HO.code);
+  if (a === "reveal" && r.phase === "ask") { const rk = {}; playersOf(r, r.round).forEach((p, i) => { rk[p.id] = i + 1; }); HO.prevRank = rk; api("PATCH", P, { phase: "reveal" }).catch(() => {}); }
+  if (a === "rank") api("PATCH", P, { phase: "rank" }).catch(() => {});
+  if (a === "next") { if (r.qi + 1 >= qs.length) { api("PATCH", P, { state: "end" }).catch(() => {}); return; } const t0 = Math.round(gnow() + 3500); api("PATCH", P, { qi: r.qi + 1, phase: "ask", qStart: t0, qEnd: t0 + qLimit(qs[r.qi + 1].w, r.cfg.sp) * 1000 }).catch(() => {}); }
+  if (a === "final") api("PATCH", P, { state: "end" }).catch(() => {});
+}
+function renderHostPanel() {
   const r = HO.room, body = $("#body"); if (!r) return;
-  const cfg = r.cfg, busy = r.state === "play", n = playersOf(r).length;
-  const qrOld = soft && $("#qr") ? $("#qr").innerHTML : "";
+  const cfg = r.cfg, busy = r.state === "play" || r.state === "quiz", n = playersOf(r).length, quiz = cfg.mode !== "race";
+  const qrOld = $("#qr") ? $("#qr").innerHTML : "";
   clear(body);
-  const seg = (key, opts) => h("div", { class: "seg" }, opts.map(([v, lab]) => h("button", { type: "button", "aria-pressed": String(cfg[key]) === String(v) ? "true" : "false", disabled: busy, onclick: () => { const o = {}; o[key] = v; if (key === "c") o.u = 99; api("PATCH", `rooms/${HO.code}/cfg`, o).catch(() => toast("変更できませんでした")); } }, lab)));
+  const set = o => api("PATCH", `${ROOM(HO.code)}/cfg`, o).catch(() => toast("変更できませんでした"));
+  const seg = (key, opts) => h("div", { class: "seg" }, opts.map(([v, lab]) => h("button", { type: "button", "aria-pressed": String(cfg[key]) === String(v) ? "true" : "false", disabled: busy || null, onclick: () => { const o = {}; o[key] = v; if (key === "c") o.u = 99; set(o); } }, lab)));
   body.append(h("div", { class: "roomhd" }, h("small", {}, "部屋番号"), h("div", { class: "code" }, HO.code), h("div", { class: "qr", id: "qr", html: qrOld })));
-  body.append(h("p", { class: "lead", style: "font-size:.8rem;color:var(--muted)" }, "生徒：数学Bラボ → 🎮 → 部屋番号とニックネーム、または QR を読みとる"));
+  body.append(h("p", { class: "lead", style: "font-size:.78rem;color:var(--muted)" }, "生徒：数学Bラボ → 🎮 → 部屋番号とニックネーム、または QR"));
   const units = UNITS.filter(x => x.cat === cfg.c);
   body.append(h("div", { class: "ctrl" },
-    h("label", { class: "sl" }, h("span", {}, "分野"), seg("c", [["seq", "数列"], ["stat", "統計"], ["all", "全部"]]), h("span", {})),
-    cfg.c !== "all" ? h("label", { class: "sl" }, h("span", {}, "単元"), h("select", { disabled: busy, onchange: e => api("PATCH", `rooms/${HO.code}/cfg`, { u: +e.target.value }).catch(() => {}) }, units.map((u, i) => h("option", { value: i + 1 === units.length ? 99 : i + 1, selected: (cfg.u >= units.length ? 99 : cfg.u) === (i + 1 === units.length ? 99 : i + 1) }, i + 1 === units.length ? "全部" : `〜${i + 1} ${u.name}`))), h("span", {})) : null,
+    h("label", { class: "sl" }, h("span", {}, "形式"), seg("mode", [["quiz", "🎯 クイズ大会"], ["race", "⏱ 早とき"]]), h("span", {})),
+    h("label", { class: "sl" }, h("span", {}, "範囲"), seg("c", SCOPES), h("span", {})),
+    cfg.c !== "all" ? h("label", { class: "sl" }, h("span", {}, "単元"), h("select", { disabled: busy || null, onchange: e => set({ u: +e.target.value }) }, units.map((u, i) => h("option", { value: i + 1 === units.length ? 99 : i + 1, selected: (cfg.u >= units.length ? 99 : cfg.u) === (i + 1 === units.length ? 99 : i + 1) || null }, i + 1 === units.length ? "全部" : `〜${i + 1} ${u.name}`))), h("span", {})) : null,
     h("label", { class: "sl" }, h("span", {}, "レベル"), seg("l", LEVELS.map((l, i) => [i, l.ico + l.name])), h("span", {})),
-    h("label", { class: "sl" }, h("span", {}, "時間"), seg("t", [[30, "30秒"], [60, "60秒"], [90, "90秒"]]), h("span", {}))));
-  body.append(h("div", { class: "minirow", style: "align-items:center" }, h("span", { style: "font-weight:700" }, `👥 ${n} 人`), h("button", { type: "button", class: "btn main", disabled: busy, onclick: hostStart }, r.round ? `▶ 第${r.round + 1}回戦 スタート` : "▶ スタート")));
+    quiz ? h("label", { class: "sl" }, h("span", {}, "問題数"), seg("n", [[5, "5 問"], [10, "10 問"], [15, "15 問"]]), h("span", {})) : h("label", { class: "sl" }, h("span", {}, "答え方"), seg("st", [[true, "🪜 ステップ"], [false, "答えだけ"]]), h("span", {})),
+    quiz ? h("label", { class: "sl" }, h("span", {}, "考える時間"), seg("sp", [["s", "短め"], ["n", "ふつう"], ["l", "長め"]]), h("span", {})) : h("label", { class: "sl" }, h("span", {}, "持ち時間"), seg("t", [[0, "おまかせ"], [60, "60"], [120, "120"], [180, "180"]]), h("span", {}))));
+  body.append(h("div", { class: "minirow", style: "align-items:center" }, h("span", { style: "font-weight:700" }, `👥 ${n} 人`), h("button", { type: "button", class: "btn main", disabled: busy || null, onclick: hostStart }, r.round ? `▶ 第${r.round + 1}回戦 スタート` : "▶ スタート"),
+    r.state === "play" ? h("button", { type: "button", class: "mini", onclick: () => api("PATCH", ROOM(HO.code), { state: "end" }) }, "⏹ ここで結果発表") : null));
   body.append(h("div", { class: "minirow" },
     h("button", { type: "button", class: "mini", onclick: () => { const u = joinUrl(HO.code); if (navigator.clipboard) navigator.clipboard.writeText(u).then(() => toast("参加リンクをコピーしました"), () => toast(u)); else toast(u); } }, "🔗 参加リンク"),
-    h("button", { type: "button", class: "mini", onclick: () => { HO.tab = HO.tab === "best" ? "now" : "best"; drawBoard(); } }, "🏆 ハイスコア表示"),
-    h("button", { type: "button", class: "mini", onclick: () => { if (confirm(`部屋 ${HO.code} を閉じますか？（ランキングも消えます）`)) { const c = HO.code; leaveAll(); api("DELETE", `rooms/${c}`).then(openGame, openGame); } } }, "部屋を閉じる")));
+    !quiz ? h("button", { type: "button", class: "mini", onclick: () => { HO.tab = HO.tab === "best" ? "now" : "best"; drawBoard(); } }, "🏆 ハイスコア") : null,
+    h("button", { type: "button", class: "mini", onclick: () => { if (confirm(`部屋 ${HO.code} を閉じますか？（ランキングも消えます）`)) { const c = HO.code; leaveAll(); api("DELETE", ROOM(c)).then(openGame, openGame); } } }, "部屋を閉じる")));
   if (!qrOld) drawQR(joinUrl(HO.code));
 }
 let qrLib = null;
@@ -2811,11 +3417,15 @@ function drawQR(url) {
   qrLib.addEventListener("load", put);
 }
 function hostStart() {
-  const r = HO.room; if (!r || r.state === "play") return;
-  api("PATCH", `rooms/${HO.code}`, { state: "play", round: (r.round || 0) + 1, seed: Math.floor(Math.random() * 1e9), startAt: Math.round(gnow() + 5000) }).catch(() => toast("スタートできませんでした"));
+  const r = HO.room; if (!r || r.state === "play" || r.state === "quiz") return;
+  const seed = Math.floor(Math.random() * 1e9), P = ROOM(HO.code);
+  HO.prevRank = {};
+  if (r.cfg.mode === "race") { api("PATCH", P, { kind: "race", state: "play", round: (r.round || 0) + 1, seed, startAt: Math.round(gnow() + 5000) }).catch(() => toast("スタートできませんでした")); return; }
+  const qs = makeQs(Object.assign({}, r.cfg, { st: false }), seed, r.cfg.n || 10), t0 = Math.round(gnow() + 4000);
+  api("PATCH", P, { kind: "quiz", state: "quiz", round: (r.round || 0) + 1, seed, qi: 0, phase: "ask", qStart: t0, qEnd: t0 + qLimit(qs[0].w, r.cfg.sp) * 1000 }).catch(() => toast("スタートできませんでした"));
 }
 /* ランキング表：広さを測って 入る列数・行数・文字の大きさを決める（40 人でもスクロールなし） */
-function rows(list, mode, W, H) {
+function rows(list, mode, W, H, moves) {
   const top = Math.max(1, ...list.map(p => mode === "best" ? p.b || 0 : p.s || 0));
   let n = list.length, cols = n <= 10 ? 1 : n <= 24 ? 2 : 3, rowsN = n, more = 0;
   const ol = h("ol", { class: "rk" });
@@ -2832,30 +3442,87 @@ function rows(list, mode, W, H) {
   list.forEach((p, i) => {
     const v = mode === "best" ? p.b || 0 : p.s || 0;
     if (v !== last) { rank = i + 1; last = v; }
-    const medal = rank <= 3 && v > 0 ? ["🥇", "🥈", "🥉"][rank - 1] : String(rank);
-    ol.append(h("li", { class: (rank <= 3 && v > 0 ? `top top${rank}` : "") + (p.id === pid() ? " me" : "") }, h("span", { class: "rn" }, medal), h("span", { class: "nm" }, p.n, mode !== "best" && p.k >= 10 ? h("i", { class: "fire" }, `🔥${p.k}`) : null), h("span", { class: "bar" }, h("i", { style: `width:${(v / top * 100).toFixed(1)}%` })), h("span", { class: "sc" }, v.toLocaleString())));
+    const medal = rank <= 3 && v > 0 ? ["🥇", "🥈", "🥉"][rank - 1] : String(rank), mv = moves && moves[p.id];
+    ol.append(h("li", { class: (rank <= 3 && v > 0 ? `top top${rank}` : "") + (p.id === pid() ? " me" : "") }, h("span", { class: "rn" }, medal), h("span", { class: "nm" }, p.n, mv > 0 ? h("i", { class: "up" }, ` ▲${mv}`) : null, mode !== "best" && p.k >= 3 ? h("i", { class: "fire" }, `🔥${p.k}`) : null, p.d && mode === "play" ? h("i", { class: "fin" }, " おわり") : null), h("span", { class: "bar" }, h("i", { style: `width:${(v / top * 100).toFixed(1)}%` })), h("span", { class: "sc" }, v.toLocaleString())));
   });
   if (more) ol.append(h("li", { class: "more" }, `…ほか ${more} 人`));
   return ol;
+}
+/* 図の SVG をつくる（先生の画面に 問題の図を出す） */
+function figSVG(u, p, k, W, H) {
+  const svg = s("svg", { class: "sv", viewBox: `0 0 ${W} ${H}` }), defs = s("defs", {}, svg);
+  for (const c of ["ink", "wm", "ac", "bl", "gd", "mut"]) { const m = s("marker", { id: "ah-" + c, viewBox: "0 0 10 10", refX: 8, refY: 5, markerWidth: 7, markerHeight: 7, orient: "auto-start-reverse" }, defs); s("path", { d: "M0 0L10 5L0 10z", class: c === "mut" ? "f-ln" : "f-" + c, style: c === "mut" ? "fill:var(--muted)" : null }, m); }
+  try { u.viz(svg, p, k, { W, H, intro: false, redraw: () => {} }); } catch (e) { /* 図がかけなくても 問題は出す */ }
+  return svg;
+}
+function quizCard(q, o = {}) {
+  const counts = o.counts, total = counts ? Math.max(1, sum(counts)) : 1;
+  return h("div", { class: "qc" }, h("div", { class: "qcq", html: termify(q.q) }),
+    h("div", { class: "qcch" }, q.ch.map((c2, i) => {
+      const right = o.reveal && c2 === q.ans;
+      return h("div", { class: "qch" + (o.reveal ? (right ? " right" : " dim") : ""), style: `--sc:${SHAPES[i][1]}` }, h("span", { class: "sh" }, SHAPES[i][0]), h("span", { class: "tx", html: c2 }), counts ? h("i", { class: "cnt", style: `width:${(counts[i] / total * 100).toFixed(1)}%` }) : null, counts ? h("em", {}, `${counts[i]} 人`) : null, right ? h("span", { class: "ok" }, "✓") : null);
+    })));
 }
 function drawBoard() {
   const r = HO && HO.room; if (!r) return;
   const stage = $("#stage"), t = gnow();
   let board = $("#board"); if (!board) { board = h("div", { class: "board", id: "board" }); clear(stage).append(board); }
+  const ctl = (...b) => h("div", { class: "qctl" }, b);
+  const btn = (a, t2, main) => h("button", { type: "button", class: "btn" + (main ? " main" : ""), onclick: () => hostQuizAct(a) }, t2);
+  /* クイズ大会 */
+  if (r.kind === "quiz" && (r.state === "quiz" || r.state === "end") && r.round) {
+    const qs = hostQs(r), q = qs[r.qi] || qs[0], n = qs.length, ps = playersOf(r);
+    const key = [r.round, r.state, r.qi, r.phase, t < r.qStart ? Math.ceil((r.qStart - t) / 1000) : "go", answeredOf(r).length, ps.length, ps.reduce((a, p) => a + (p.s || 0), 0), board.clientWidth, board.clientHeight].join("|");
+    if (key === HO.bkey) { if (r.phase === "ask" && r.state === "quiz" && t >= r.qStart) { const tm = board.querySelector(".qtimer"); if (tm) tm.replaceWith(timerBar((r.qEnd - t) / 1000, (r.qEnd - r.qStart) / 1000)); } return; }
+    HO.bkey = key; clear(board);
+    const head = (title, ...extra) => h("div", { class: "bhead" }, h("b", {}, title), ...extra);
+    if (r.state === "end") {
+      const lst = playersOf(r, r.round), pod = lst.slice(0, 3);
+      board.append(head(`🎉 第${r.round}回戦 結果発表`), h("div", { class: "podium" }, [1, 0, 2].map(i => pod[i] ? h("div", { class: `pd p${i + 1}` }, h("span", { class: "md" }, ["🥇", "🥈", "🥉"][i]), h("b", {}, pod[i].n), h("small", {}, `${(pod[i].s || 0).toLocaleString()} 点`), h("i")) : h("div"))), awardsEl(awardsOf(lst)));
+      const bb = h("div", { class: "bbody" }); board.append(bb); if (lst.length > 3) bb.append(rows(lst.slice(3), "now", bb.clientWidth, bb.clientHeight));
+      return;
+    }
+    if (r.phase === "ask") {
+      if (t < r.qStart) { board.append(head(`第 ${r.qi + 1} / ${n} 問`, h("span", { class: "stars" }, "★".repeat(q.w))), h("div", { class: "count" }, h("b", {}, String(Math.max(1, Math.ceil((r.qStart - t) / 1000)))), h("small", {}, `考える時間 ${qLimit(q.w, r.cfg.sp)} 秒`))); return; }
+      board.append(head(`第 ${r.qi + 1} / ${n} 問`, h("span", { class: "stars" }, "★".repeat(q.w)), h("span", { class: "ansn", html: `✋ 回答 <b>${answeredOf(r).length}</b> / ${ps.length} 人` })), timerBar((r.qEnd - t) / 1000, (r.qEnd - r.qStart) / 1000));
+      const bq = h("div", { class: "bq" }, quizCard(q)); board.append(bq);
+      if (board.clientWidth > 700) bq.append(h("div", { class: "bfig" }, figSVG(q.u, q.p, -1, 640, 420)));
+      board.append(ctl(btn("reveal", "⏩ しめきって 答え合わせ")));
+      return;
+    }
+    if (r.phase === "reveal") {
+      const counts = [0, 0, 0, 0]; answeredOf(r).forEach(p => { if (p.a.c >= 0 && p.a.c < 4) counts[p.a.c]++; });
+      const okN = counts[q.ch.indexOf(q.ans)] || 0;
+      board.append(head(`第 ${r.qi + 1} / ${n} 問　答え合わせ`, h("span", { class: "ansn", html: `⭕ 正解 <b>${okN}</b> / ${ps.length} 人` })));
+      const whys = q.ch.map((c2, i) => counts[i] && c2 !== q.ans && q.why[c2] ? `<li><b>${SHAPES[i][0]} ${c2}</b>（${counts[i]} 人）：${q.why[c2]}</li>` : "").join("");
+      board.append(h("div", { class: "bq rev" }, quizCard(q, { reveal: true, counts }), h("div", { class: "bex" }, figSVG(q.u, q.p, q.inst.steps.length - 1, 640, 400), whys ? h("ul", { class: "bwhy", html: whys }) : null)));
+      board.append(ctl(btn("rank", "📊 ランキングへ ▶", true)));
+      return;
+    }
+    const lst = playersOf(r, r.round), last = r.qi + 1 >= n, moves = {};
+    lst.forEach((p, i) => { const pr = HO.prevRank[p.id]; if (pr) moves[p.id] = pr - (i + 1); });
+    board.append(head(`第 ${r.qi + 1} / ${n} 問のあと　ランキング`));
+    const bb = h("div", { class: "bbody" }); board.append(bb); bb.append(rows(lst, "now", bb.clientWidth, bb.clientHeight, moves));
+    board.append(ctl(last ? btn("final", "🏁 結果発表 ▶", true) : btn("next", `▶ 次の問題（${r.qi + 2} / ${n}）`, true)));
+    return;
+  }
+  /* 早とき・待合室 */
+  HO.bkey = "";
   clear(board);
-  let lst = null, lmode = "now", head, bodyEl = null;
+  let lst = null, lmode = "now", head, bodyEl = null, aw = null;
   const tabs = h("div", { class: "btabs" }, h("button", { type: "button", "aria-selected": HO.tab === "now" ? "true" : "false", onclick: () => { HO.tab = "now"; drawBoard(); } }, "今回"), h("button", { type: "button", "aria-selected": HO.tab === "best" ? "true" : "false", onclick: () => { HO.tab = "best"; drawBoard(); } }, "🏆 ハイスコア"));
   if (HO.tab === "best") { head = h("div", { class: "bhead" }, h("b", {}, "🏆 この部屋のハイスコア"), tabs); const bl = playersOf(r).filter(p => p.b > 0); if (bl.length) { lst = bl; lmode = "best"; } else bodyEl = h("div", { class: "count" }, h("small", {}, "まだ記録がありません")); }
-  else if (r.state === "lobby" || !r.round) { const ps = playersOf(r); head = h("div", { class: "bhead" }, h("b", {}, "参加者を待っています"), tabs); bodyEl = ps.length ? h("div", { class: "chips" }, ps.map(p => h("span", { class: "chipn" }, p.n))) : h("div", { class: "count" }, h("small", {}, `生徒が 部屋番号 ${HO.code} で入ってくると ここに名前が出ます`)); }
+  else if (r.state === "lobby" || !r.round) { const ps = playersOf(r); head = h("div", { class: "bhead" }, h("b", {}, r.cfg.mode === "race" ? "⏱ 早とき：参加者を待っています" : "🎯 クイズ大会：参加者を待っています"), tabs); bodyEl = ps.length ? h("div", { class: "chips" }, ps.map(p => h("span", { class: "chipn" }, p.n))) : h("div", { class: "count" }, h("small", {}, `生徒が 部屋番号 ${HO.code} で入ってくると ここに名前が出ます`)); }
   else if (r.state === "play" && t < r.startAt) { head = h("div", { class: "bhead" }, h("b", {}, `第${r.round}回戦　${cfgName(r.cfg)}`), tabs); bodyEl = h("div", { class: "count" }, h("b", {}, String(Math.max(1, Math.ceil((r.startAt - t) / 1000)))), h("small", {}, "まもなく スタート！")); }
   else {
     lst = playersOf(r, r.round);
-    const end = r.state === "end", left = Math.max(0, r.startAt + r.cfg.t * 1000 - t);
-    head = h("div", {}, h("div", { class: "bhead" }, h("b", {}, end ? `🎉 第${r.round}回戦 結果発表` : `⏱ 残り ${Math.ceil(left / 1000)} 秒`), tabs), end ? null : h("div", { class: "tbar host" }, h("i", { style: `width:${left / (r.cfg.t * 1000) * 100}%`, class: left < 10000 ? "hurry" : "" })));
-    if (end && lst[0] && lst[0].s > 0) head.append(h("div", { class: "champ" }, `🥇 ${lst[0].n} さん　${lst[0].s.toLocaleString()} 点`));
+    const end = r.state === "end", playing = lst.filter(p => !p.d).length;
+    head = h("div", {}, h("div", { class: "bhead" }, h("b", {}, end ? `🎉 第${r.round}回戦 結果発表` : `⏱ まだプレイ中 ${playing} / ${lst.length} 人`), tabs));
+    if (end && lst[0] && lst[0].s > 0) { head.append(h("div", { class: "champ" }, `🥇 ${lst[0].n} さん　${lst[0].s.toLocaleString()} 点`)); aw = awardsEl(awardsOf(lst)); }
+    lmode = end ? "now" : "play";
     if (!lst.length) { lst = null; bodyEl = h("div", { class: "count" }, h("small", {}, "まだ だれも 答えていません")); }
   }
-  board.append(head);
+  board.append(head); if (aw) board.append(aw);
   const bb = h("div", { class: "bbody" }); board.append(bb);
   if (lst) bb.append(rows(lst, lmode, bb.clientWidth, bb.clientHeight)); else bb.append(bodyEl);
 }
@@ -2867,8 +3534,8 @@ function joinRoom(codeIn, nameIn) {
   if (code.length !== 4) { toast("部屋番号は 4 けたです"); return; }
   if (!name) { toast("ニックネームを入れてください"); return; }
   store.set("nick", name);
-  const me = `rooms/${code}/players/${pid()}`;
-  api("GET", `rooms/${code}`).then(room => {
+  const me = `${ROOM(code)}/players/${pid()}`;
+  api("GET", ROOM(code)).then(room => {
     if (!room || !room.state) throw new Error("nf");
     if (room.app !== "mathb") throw new Error("other");
     return api("GET", me);
@@ -2884,23 +3551,32 @@ function openJoin(code, db) {
 }
 function openBattle(code) {
   leaveAll(); S.mode = "game"; S.game = { view: "battle" }; S.inst = null;
-  BT = { code, room: null, played: 0, last: 0, push: null, awarded: {} };
+  BT = { code, room: null, played: 0, last: 0, push: null, awarded: {}, qp: null, tick: null, phaseKey: "" };
   render();
-  syncClock(code).then(() => { if (BT) BT.stop = listen(`rooms/${code}`, onRoom); });
+  syncClock(code).then(() => { if (BT) BT.stop = listen(ROOM(code), onRoom); });
+  /* クイズ大会：カウントダウン → 問題 の切りかえと のこり時間（部屋が かわらなくても 動かす） */
+  BT.tick = setInterval(() => {
+    const r = BT && BT.room; if (!r || !BT.qp || r.kind !== "quiz" || r.state !== "quiz" || r.phase !== "ask") return;
+    const t = gnow(), key = r.qi + ":" + (t < r.qStart ? Math.ceil((r.qStart - t) / 1000) : "go");
+    if (key !== BT.phaseKey) { BT.phaseKey = key; drawQuizPlayer(); return; }
+    const tb = $("#body .qtimer"); if (tb && t >= r.qStart) tb.replaceWith(timerBar((r.qEnd - t) / 1000, (r.qEnd - r.qStart) / 1000));
+  }, 250);
 }
+const meP = () => `${ROOM(BT.code)}/players/${pid()}`;
 function onRoom(room) {
   if (!BT) return;
   if (!room) { toast("先生が部屋を閉じました"); openGame(); return; }
   BT.room = room;
   if (!(room.players && room.players[pid()])) { openJoin(BT.code); return; }
-  if (room.state === "play" && room.round !== BT.played && gnow() < room.startAt + room.cfg.t * 1000 - 3000) {
+  if (room.kind === "quiz" && (room.state === "quiz" || (room.state === "end" && BT.qp && BT.qp.round === room.round))) { quizUpdate(room); return; }
+  /* 早とき */
+  if (room.state === "play" && room.round !== BT.played && gnow() < room.startAt + 3000) {
     BT.played = room.round;
     newGame(room.cfg, room.seed, "battle", room.startAt);
-    api("PATCH", `rooms/${BT.code}/players/${pid()}`, { s: 0, k: 0, r: room.round, d: 0 }).catch(() => {});
+    api("PATCH", meP(), { s: 0, k: 0, c: 0, w: 0, m: 0, r: room.round, d: 0 }).catch(() => {});
     renderGameFrame(`🏆 部屋 ${BT.code}・第${room.round}回戦`); playShell("スコア"); runClock(endBattle);
     return;
   }
-  /* 先生の時計で 終わったら、こちらも終わる */
   if (room.state === "end" && G && !G.over && G.mode === "battle") { G.over = true; clearInterval(G.timer); endBattle(); }
   if (room.state === "end" && BT.played === room.round && !BT.awarded[room.round]) {
     BT.awarded[room.round] = 1;
@@ -2916,36 +3592,113 @@ function pushScore(final) {
   if (!final && t - BT.last < 600) { clearTimeout(BT.push); BT.push = setTimeout(() => pushScore(), 650); return; }
   BT.last = t;
   const me = BT.room && BT.room.players && BT.room.players[pid()] || {};
-  api("PATCH", `rooms/${BT.code}/players/${pid()}`, { s: G.score, k: G.combo, r: BT.played, b: Math.max(me.b || 0, G.score), d: final ? 1 : 0 }).catch(() => {});
+  api("PATCH", meP(), { s: G.score, k: G.combo, c: G.maxCombo, w: G.ok, m: G.miss, r: BT.played, b: Math.max(me.b || 0, G.score), d: final ? 1 : 0 }).catch(() => {});
 }
-function endBattle() { clearTimeout(BT && BT.push); pushScore(true); const coins = afterGame() + 20; saveRW(); earn(coins); G.coins = coins; setTimeout(drawWait, 300); }
+function endBattle() { clearTimeout(BT && BT.push); pushScore(true); const coins = afterGame() + 20; saveRW(); earn(coins); G.coins = coins; BT.log = G.log; CUR = null; setTimeout(drawWait, 300); }
+function waitTop(body, room) {
+  body.append(h("div", { class: "minirow", style: "align-items:center" }, h("button", { type: "button", class: "mini", onclick: () => { leaveAll(); openGame(); } }, "◀ ぬける"), h("b", {}, `🏆 部屋 ${BT.code}`), h("span", { class: "lead", style: "font-size:.85rem;margin-left:auto" }, `👥 ${room ? playersOf(room).length : 0} 人`)));
+}
 function drawWait() {
   if (!BT) return;
   const room = BT.room, body = clear($("#body"));
   renderGameFrame(`🏆 部屋 ${BT.code}`);
-  body.append(h("div", { class: "minirow", style: "align-items:center" }, h("button", { type: "button", class: "mini", onclick: () => { leaveAll(); openGame(); } }, "◀ ぬける"), h("span", { class: "lead", style: "font-size:.85rem" }, `👥 ${room ? playersOf(room).length : 0} 人`)));
+  waitTop(body, room);
   if (!room) body.append(h("p", { class: "lead" }, "つないでいます…"));
   else if (room.state === "play" && room.round !== BT.played) body.append(h("p", { class: "lead" }, h("b", {}, `いま 第${room.round}回戦の最中です`), h("br"), "次の回から参加できます。少し待ってね"));
   else if (BT.played && room.round === BT.played) {
-    const lst = playersOf(room, room.round), my = lst.findIndex(p => p.id === pid()), meP = lst[my] || {}, fin = room.state === "end";
-    body.append(h("p", { class: "lead", style: "font-size:.85rem;color:var(--muted)" }, `第${room.round}回戦 ${fin ? "結果" : "（集計中… みんなが終わるのを待っています）"}`));
+    const lst = playersOf(room, room.round), my = lst.findIndex(p => p.id === pid()), me = lst[my] || {}, fin = room.state === "end";
+    body.append(h("p", { class: "lead", style: "font-size:.85rem;color:var(--muted)" }, `第${room.round}回戦 ${fin ? "結果" : "（みんなが終わるのを待っています）"}`));
     body.append(h("div", { class: "score pass" }, h("b", {}, String(my + 1)), ` 位 / ${lst.length} 人`));
-    body.append(h("p", { class: "lead", style: "font-size:.9rem" }, `${(meP.s || 0).toLocaleString()} 点　📝 ${G ? G.ok : 0} 問${G && G.coins ? `　🪙 +${G.coins}` : ""}`));
+    body.append(h("p", { class: "lead", style: "font-size:.9rem" }, `${(me.s || 0).toLocaleString()} 点　✅ ${G ? G.ok : 0} 問${G && G.coins ? `　🪙 +${G.coins}` : ""}`));
     body.append(rows(lst.slice(0, 5), "now"));
-    if (fin) body.append(h("p", { class: "lead", style: "font-size:.8rem;color:var(--muted)" }, "先生が 次のスタートをおすと 始まります"));
+    if (fin) { const mine = awardsOf(lst).filter(a => a.who.some(p => p.id === pid())); if (mine.length) body.append(h("p", { class: "lead" }, mine.map(a => `${a.ico} ${a.name}！`).join("　"))); }
+    if (fin && BT.log) body.append(h("div", { class: "minirow" }, reviewBtn(BT.log)));
   } else {
     body.append(h("div", {}, h("span", { class: "stamp wait" }, "参加中")));
-    body.append(h("p", { class: "lead" }, h("b", {}, `${store.get("nick", "")} さん、ようこそ！`), h("br"), "先生が スタートをおすと 3・2・1 で 全員いっせいに始まります"));
+    body.append(h("p", { class: "lead" }, h("b", {}, `${store.get("nick", "")} さん、ようこそ！`), h("br"), room.cfg && room.cfg.mode === "race" ? "先生が スタートをおすと 3・2・1 で 全員いっせいに始まります" : "先生が スタートをおすと、1 問ずつ 問題が出ます。じっくり考えて 答えよう"));
     body.append(h("div", { class: "chips small" }, playersOf(room).slice(0, 40).map(p => h("span", { class: "chipn" + (p.id === pid() ? " me" : "") }, p.n))));
   }
+  draw();
+}
+/* ---------- 生徒：🎯 クイズ大会 ---------- */
+function quizUpdate(r) {
+  let QP = BT.qp;
+  if (!QP || QP.round !== r.round) {
+    QP = BT.qp = { round: r.round, qs: makeQs(Object.assign({}, r.cfg, { st: false }), r.seed, r.cfg.n || 10), mine: {}, scored: {}, log: [], stat: { s: 0, k: 0, c: 0, w: 0, m: 0 }, Q: null, qi: -1, awarded: false };
+    api("PATCH", meP(), { s: 0, k: 0, c: 0, w: 0, m: 0, r: r.round, a: null }).catch(() => {});
+  }
+  const q = QP.qs[r.qi] || QP.qs[0];
+  if (r.qi !== QP.qi) { QP.qi = r.qi; QP.Q = newQS(q); if (window.penClear) penClear(); }
+  if (r.state === "quiz" && r.phase !== "ask" && !QP.scored[r.qi]) {
+    QP.scored[r.qi] = 1;
+    const a = QP.mine[r.qi], ok = !!a && q.ch[a.c] === q.ans, st = QP.stat;
+    let pts = 0;
+    if (ok) { pts = qPoints(1 - a.t / ((r.qEnd - r.qStart) / 1000), q.w, st.k, a.h); st.s += pts; st.k++; st.c = Math.max(st.c, st.k); st.w++; } else { st.k = 0; if (a) st.m++; }
+    QP.last = { ok, pts, answered: !!a };
+    QP.log.push({ q, pick: a ? q.ch[a.c] : null, ok, hint: a && a.h });
+    QP.Q.done = true; QP.Q.over = true;
+    api("PATCH", meP(), { s: st.s, k: st.k, c: st.c, w: st.w, m: st.m, r: r.round, b: Math.max(((r.players || {})[pid()] || {}).b || 0, st.s) }).catch(() => {});
+  }
+  if (r.state === "end" && !QP.awarded) {
+    QP.awarded = true;
+    const lst = playersOf(r, r.round), my = lst.findIndex(p => p.id === pid()), top = my >= 0 && my < 3 && QP.stat.s > 0;
+    const coins = 20 + Math.floor(QP.stat.s / 100) + (top ? 50 : 0);
+    if (top) RW.top3++; if (QP.stat.c > RW.maxCombo) RW.maxCombo = QP.stat.c;
+    saveRW(); earn(coins); QP.coins = coins;
+  }
+  drawQuizPlayer();
+}
+function quizAnswer(i) {
+  const r = BT && BT.room, QP = BT && BT.qp; if (!r || !QP) return;
+  if (r.state !== "quiz" || r.phase !== "ask" || QP.mine[r.qi] || gnow() < r.qStart || gnow() > r.qEnd + 300) return;
+  const tt = Math.max(0, (gnow() - r.qStart) / 1000);
+  QP.mine[r.qi] = { c: i, t: tt, h: QP.Q.hint }; QP.Q.pick = i;
+  api("PATCH", meP(), { a: { r: r.round, i: r.qi, c: i, t: Math.round(tt * 10) / 10 } }).catch(() => {});
+  drawQuizPlayer();
+}
+function drawQuizPlayer() {
+  const r = BT.room, QP = BT.qp, n = QP.qs.length, t = gnow(), body = clear($("#body")), Q = QP.Q, q = Q.q;
+  renderGameFrame(`🎯 クイズ大会・部屋 ${BT.code}`);
+  waitTop(body, r);
+  const myRank = () => { const lst = playersOf(r, r.round); return [lst.findIndex(p => p.id === pid()) + 1, lst.length, lst]; };
+  if (r.state === "end") {
+    const [my, all, lst] = myRank(), mine = awardsOf(lst).filter(a => a.who.some(p => p.id === pid()));
+    CUR = null;
+    body.append(h("div", { class: "score pass" }, h("b", {}, String(my)), ` 位 / ${all} 人`), h("p", { class: "lead" }, `${QP.stat.s.toLocaleString()} 点　✅ ${QP.stat.w} / ${n} 問　🔥 最大 ${QP.stat.c} 連続${QP.coins ? `　🪙 +${QP.coins}` : ""}`));
+    if (mine.length) body.append(h("p", { class: "lead" }, mine.map(a => `${a.ico} ${a.name}！`).join("　")));
+    body.append(h("div", { class: "minirow" }, reviewBtn(QP.log)));
+    draw(); return;
+  }
+  if (r.phase === "ask" && t < r.qStart) { CUR = null; body.append(h("div", { class: "count" }, h("small", {}, `第 ${r.qi + 1} / ${n} 問　${"★".repeat(q.w)}`), h("b", {}, String(Math.max(1, Math.ceil((r.qStart - t) / 1000)))), h("small", {}, `考える時間 ${qLimit(q.w, r.cfg.sp)} 秒。正しさが いちばん大事`))); draw(); return; }
+  CUR = Q;
+  if (r.phase === "ask") {
+    const a = QP.mine[r.qi];
+    body.append(h("div", { class: "qpn" }, `第 ${r.qi + 1} / ${n} 問`), timerBar((r.qEnd - t) / 1000, (r.qEnd - r.qStart) / 1000));
+    const qa = h("div", { class: "gq" }); body.append(qa);
+    qPanel(qa, Q, { onPick: quizAnswer, shapes: true, lockAll: !!a, showWhy: false });
+    if (a) { qa.querySelectorAll(".choice").forEach((b, i) => { b.disabled = true; if (i === a.c) b.classList.add("mine"); }); body.append(h("div", { class: "clfb wait" }, h("div", { class: "big" }, "✋ こたえた！"), h("div", { class: "sub" }, "答え合わせは 先生の画面で"))); }
+    else qTools(qa, Q, () => { Q.hint = true; drawQuizPlayer(); });
+    draw(); return;
+  }
+  const L = QP.last || { ok: false, pts: 0, answered: false }, [my, all] = myRank();
+  if (r.phase === "reveal") {
+    body.append(h("div", { class: "clfb " + (L.ok ? "ok" : "ng") }, h("div", { class: "big", html: L.ok ? `✅ 正解！ <b>+${L.pts.toLocaleString()}</b>` : L.answered ? "❌ ざんねん" : "⏱ 時間切れ" }), h("div", { class: "sub", html: L.ok ? (QP.stat.k >= 2 ? `🔥 ${QP.stat.k} 問連続！` : "") : `正解は <b>${q.ans}</b>` })));
+    const qa = h("div", { class: "gq" }); body.append(qa); qPanel(qa, Q, { shapes: true });
+    draw(); return;
+  }
+  CUR = null;
+  body.append(h("div", { class: "score pass" }, h("b", {}, String(my)), ` 位 / ${all} 人`), h("p", { class: "lead" }, `${QP.stat.s.toLocaleString()} 点　✅ ${QP.stat.w} 問${QP.stat.k >= 2 ? `　🔥 ${QP.stat.k} 連続中` : ""}`), h("p", { class: "lead", style: "font-size:.85rem;color:var(--muted)" }, "先生の画面を 見よう。次の問題を 待っています"));
   draw();
 }
 
 /* ---------- 画面のつなぎ ---------- */
 function leaveAll() {
   if (G) { clearInterval(G.timer); G = null; }
+  if (CL) { clearInterval(CL.timer); CL = null; }
   if (HO) { clearInterval(HO.timer); if (HO.stop) HO.stop(); HO = null; }
-  if (BT) { if (BT.stop) BT.stop(); clearTimeout(BT.push); BT = null; }
+  if (BT) { if (BT.stop) BT.stop(); clearTimeout(BT.push); clearInterval(BT.tick); BT = null; }
+  CUR = null;
+  if (window.penSet) penSet(false);
   document.querySelector(".card").classList.remove("game");
 }
 function renderGame(body) {
@@ -2953,26 +3706,40 @@ function renderGame(body) {
   document.querySelector(".card").classList.add("game");
   if (v === "hub") { renderGameFrame("🎮 ゲーム"); renderHub(body); }
   else if (v === "host") { renderGameFrame(`🏫 先生：部屋 ${HO ? HO.code : ""}`); if (HO && HO.room) renderHostPanel(); else body.append(h("p", { class: "lead" }, "部屋をひらいています…")); }
-  else if (v === "battle") drawWait();
+  else if (v === "battle") { if (BT && BT.qp && BT.room && BT.room.kind === "quiz" && BT.room.state !== "lobby") drawQuizPlayer(); else drawWait(); }
+  else if (v === "climb" && CL) { if (CL.done) climbEnd(); else drawClimb(); }
+  else if (v === "solo" && G) { playShell("スコア"); drawTA(); }
+  else { renderGameFrame("🎮 ゲーム"); renderHub(body); }
 }
-/* ゲーム中のステージ：問題の図（ヒント状態）／先生はランキング／トップは段位 */
+/* ゲーム中のステージ：問題の図（ステップに合わせて進む）／先生は ボード／トップは 遊び方と段位 */
 function drawGame(svg, W, H) {
   if (S.game.view === "host") { drawBoard(); return false; }
   const g = s("g", {}, svg);
-  if (G && !G.over && S.inst && gnow() >= G.startAt) { const uu = S.inst.u; uu.viz(svg, S.inst.p, -1, { W, H, intro: false, redraw: () => {} }); $("#hint").textContent = ""; return true; }
-  if (G && !G.over) { T(g, W / 2, H / 2 - 10, String(Math.max(1, Math.ceil((G.startAt - gnow()) / 1000))), "disp tw", 110); return true; }
-  const rk = rankOf(RW.coins), pc = rk.next ? (RW.coins - rk.from) / (rk.next - rk.from) : 1;
+  if (CUR) {
+    const k = figK(CUR);
+    try { CUR.q.u.viz(svg, CUR.q.p, k, { W, H, intro: false, redraw: () => {} }); } catch (e) { console.error(e); }
+    if (CUR.q.steps) { const n = CUR.q.steps.length, d = CUR.si + (CUR.pick >= 0 ? 1 : 0); badge(svg, W - 16, H - 14, d ? `🪜 ステップ ${Math.min(d, n)} / ${n} の図` : "🪜 ステップが合うと 図が進む", "f-chip", "", 12, "end"); }
+    $("#hint").textContent = ""; return true;
+  }
+  if (G && !G.over && gnow() < G.startAt) { T(g, W / 2, H / 2 - 10, String(Math.max(1, Math.ceil((G.startAt - gnow()) / 1000))), "disp tw", 110); return true; }
   if (S.game.view === "solo" && G && G.over) { T(g, W / 2, H / 2 - 20, G.score.toLocaleString(), "disp " + (G.score >= 1000 ? "ta" : "tw"), 80); T(g, W / 2, H / 2 + 36, `${G.ok} 問 ≒ ${ruler(G.ok)}`, "b", 20); return true; }
-  if (S.game.view === "battle" && BT && BT.room && BT.played) { const lst = playersOf(BT.room, BT.room.round), my = lst.findIndex(p => p.id === pid()); if (my >= 0) { T(g, W / 2, H / 2 - 16, `${my + 1} 位`, "disp " + (my < 3 ? "ta" : "tw"), 80); T(g, W / 2, H / 2 + 40, `${lst.length} 人中`, "b", 20); return true; } }
-  T(g, W / 2, 70, "🪙 ごほうび", "b mut", 16);
-  T(g, W / 2, 128, rk.name, "disp tw", 54);
-  s("rect", { x: W / 2 - 150, y: 150, width: 300, height: 12, rx: 6, class: "f-chip s-ln" }, g);
-  s("rect", { x: W / 2 - 150, y: 150, width: 300 * pc, height: 12, rx: 6, class: "f-gd" }, g);
-  T(g, W / 2, 184, rk.next ? `次の「${rk.nextName}」まで あと ${(rk.next - RW.coins).toLocaleString()} コイン` : "最高の段位です！", "mut", 13);
-  T(g, W / 2, 214, `🪙 ${RW.coins.toLocaleString()} コイン　🔥 ${streakNow()} 日連続　🏅 ${Object.keys(RW.badges).length}/${BADGES.length}`, "b", 15);
-  const bw = Math.min(110, (W - 60) / BADGES.length), x0 = (W - bw * BADGES.length) / 2;
-  BADGES.forEach((b, i) => { const on = RW.badges[b.id], x = x0 + bw * (i + .5); T(g, x, 272, on ? b.ico : "🔒", on ? "" : "ghost", 28); T(g, x, 296, b.name, on ? "b" : "mut", clamp(bw / 7.5, 9, 12)); });
-  T(g, W / 2, H - 40, "コイン：演習の正解 +10・合格 +50（はじめて +150）・タイムアタック 20 点で +1・クラス対戦 参加 +20・3 位以内 +50", "mut", clamp(W / 70, 10, 13));
+  if (S.game.view === "climb" && CL && CL.done) { T(g, W / 2, H / 2 - 20, CL.score.toLocaleString(), "disp " + (CL.ok >= 5 ? "ta" : "tw"), 80); T(g, W / 2, H / 2 + 36, `🧗 第 ${CL.i + 1} 問まで・✅ ${CL.ok} 問`, "b", 20); return true; }
+  if (S.game.view === "battle" && BT && BT.room && BT.room.round && (BT.played === BT.room.round || (BT.qp && BT.qp.round === BT.room.round))) { const lst = playersOf(BT.room, BT.room.round), my = lst.findIndex(p => p.id === pid()); if (my >= 0) { T(g, W / 2, H / 2 - 16, `${my + 1} 位`, "disp " + (my < 3 ? "ta" : "tw"), 80); T(g, W / 2, H / 2 + 40, `${lst.length} 人中`, "b", 20); return true; } }
+  /* トップ：遊び方・🪜 解き方ステップ・段位 */
+  const rk = rankOf(RW.coins), pc = rk.next ? (RW.coins - rk.from) / (rk.next - rk.from) : 1, st = gCfg().st, fs = clamp(W / 52, 11, 15);
+  T(g, 24, 46, "遊び方", "b", 17, "start");
+  [["🧗 じっくりチャレンジ", "1 問ずつ 考える時間。答えると すぐ解説。❤ 3 つ（5 問連続正解で 1 つ もどる）"], ["⏱ タイムアタック", "正解すると 時間がもどる。時間がなくなるまで 何問とける？"], ["🏆 クラス対戦", "先生の画面に 1 問ずつ出る「🎯 クイズ大会」と、全員いっせいの「⏱ 早とき」"]]
+    .forEach(([a, b2], i) => { T(g, 34, 74 + i * 24, a, "b", fs, "start"); T(g, 34 + textW(a, fs) + 12, 74 + i * 24, b2, "mut", fs, "start"); });
+  T(g, 24, 168, st ? "🪜 解き方ステップ とは（いま えらんでいる 答え方）" : "答えだけ（いま えらんでいる 答え方）", "b", 17, "start");
+  const lines = st ? ["1 問を「考え方 → 式 → 計算」の 小さな 4 択に 分けて 順に答える", "ステップが合うたびに 点数が入り、問題の図も 1 段ずつ 進む", "まちがえても 正しい答えと「なぜちがうか」が出て 続けられる", "全部合う（完答）と ボーナス。終わったら 📖 解説で ふり返り"] : ["授業の類題と同じ問題に 4 択で答える", "まちがえると「なぜちがうか」が出る", "終わったら 📖 解説で ふり返り"];
+  lines.forEach((t2, i) => T(g, 34, 196 + i * 24, `${i + 1}. ${t2}`, "", fs, "start"));
+  const y0 = 196 + lines.length * 24 + 24;
+  T(g, W / 2, y0, `🪙 ${RW.coins.toLocaleString()} コイン　段位「${rk.name}」　🔥 ${streakNow()} 日連続`, "b", 15);
+  s("rect", { x: W / 2 - 150, y: y0 + 12, width: 300, height: 10, rx: 5, class: "f-chip s-ln" }, g);
+  s("rect", { x: W / 2 - 150, y: y0 + 12, width: 300 * pc, height: 10, rx: 5, class: "f-gd" }, g);
+  T(g, W / 2, y0 + 42, rk.next ? `次の「${rk.nextName}」まで あと ${(rk.next - RW.coins).toLocaleString()} コイン` : "最高の段位です！", "mut", 12);
+  const bw = Math.min(100, (W - 40) / BADGES.length), x0 = (W - bw * BADGES.length) / 2;
+  BADGES.forEach((b, i) => { const on = RW.badges[b.id], x = x0 + bw * (i + .5); T(g, x, y0 + 86, on ? b.ico : "🔒", on ? "" : "ghost", 24); T(g, x, y0 + 106, b.name, on ? "b" : "mut", clamp(bw / 7.5, 8, 11)); });
   return true;
 }
 /* ---------- ⚙ 設定 ---------- */
@@ -3023,7 +3790,12 @@ const applyFz = () => { document.documentElement.classList.remove("fz1", "fz2");
 applyFz();
 const th = store.get("theme", null);
 if (th) document.documentElement.dataset.theme = th;
-document.addEventListener("keydown", e => { if (!G || G.over || /INPUT|TEXTAREA|SELECT/.test(e.target.tagName || "")) return; if (/^[1-4]$/.test(e.key) && G.q && gnow() >= G.startAt) { const b = document.querySelectorAll("#gq .choice")[+e.key - 1]; if (b) b.click(); } });
+/* ゲーム：1〜4 のキーで答える・Enter で 次の問題 */
+document.addEventListener("keydown", e => {
+  if (S.mode !== "game" || /INPUT|TEXTAREA|SELECT/.test(e.target.tagName || "")) return;
+  if (/^[1-4]$/.test(e.key)) { const b = document.querySelectorAll("#body .gq .choice")[+e.key - 1]; if (b && !b.disabled) b.click(); }
+  else if (e.key === "Enter") { const b = document.querySelector("#body .clfb .btn.main"); if (b) { e.preventDefault(); b.click(); } }
+});
 /* ✏️ 図に書きこむ（先生用） */
 {
   const cv = $("#ink"), bar = $("#penbar"), btn = $("#penBtn"), ctx = cv.getContext("2d");
@@ -3031,6 +3803,8 @@ document.addEventListener("keydown", e => { if (!G || G.over || /INPUT|TEXTAREA|
   const fit = () => { const r = cv.getBoundingClientRect(); if (cv.width !== Math.round(r.width * devicePixelRatio)) { cv.width = Math.round(r.width * devicePixelRatio); cv.height = Math.round(r.height * devicePixelRatio); ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0); } };
   const setOn = on => { cv.hidden = !on; bar.hidden = !on; btn.setAttribute("aria-pressed", on ? "true" : "false"); if (on) fit(); };
   btn.addEventListener("click", () => setOn(cv.hidden));
+  /* ゲームの「✏️ 計算メモ」からも使う */
+  window.penSet = setOn; window.penClear = () => ctx.clearRect(0, 0, cv.width, cv.height);
   $("#penOff").addEventListener("click", () => setOn(false));
   $("#penClear").addEventListener("click", () => ctx.clearRect(0, 0, cv.width, cv.height));
   bar.querySelectorAll("button[data-c]").forEach(b => b.addEventListener("click", () => { color = b.dataset.c; bar.querySelectorAll("button[data-c]").forEach(x => x.classList.toggle("on", x === b)); }));
@@ -3051,6 +3825,7 @@ function openHash() {
   let m;
   if (hs === "game") { if (!(S.mode === "game" && S.game.view === "hub")) openGame(); return true; }
   if (hs === "ta") { if (!(G && G.mode === "solo" && !G.over)) { openGame(); startSolo(); } return true; }
+  if (hs === "climb") { if (!(CL && !CL.done)) { openGame(); startClimb(); } return true; }
   if ((m = hs.match(/^join(?:=(\d*))?(?:&db=(.+))?$/))) { openJoin(m[1] || "", m[2] ? decodeURIComponent(m[2]) : ""); return true; }
   if ((m = hs.match(/^host\/(\d{4})$/))) { if (!dbBase()) { openGame(); return true; } if (!(HO && HO.code === m[1])) openHost(m[1]); return true; }
   if ((m = hs.match(/^battle\/(\d{4})$/))) { if (!dbBase()) { openGame(); return true; } if (!(BT && BT.code === m[1])) openBattle(m[1]); return true; }
@@ -3063,7 +3838,7 @@ function openHash() {
 }
 window.addEventListener("hashchange", openHash);
 if (!openHash()) openUnit(store.get("last", UNITS[0].id));
-if (!/^#(join|host|battle|mk\/|ta)/.test(location.hash)) setTimeout(() => welcome(false), 400);
+if (!/^#(join|host|battle|mk\/|ta|climb)/.test(location.hash)) setTimeout(() => welcome(false), 400);
 </script>
 </body>
 </html>
